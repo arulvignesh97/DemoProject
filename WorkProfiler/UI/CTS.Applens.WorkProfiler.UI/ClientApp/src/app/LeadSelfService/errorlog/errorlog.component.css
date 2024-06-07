@@ -1,0 +1,94 @@
+.page-titles {
+  margin: 5px 10px 0px 0px !important;
+  font-size: 9px;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 3px;
+  height: 7em;
+}
+
+.text-themecolor {
+  margin-top: 3%;
+  font-size: 180%;
+}
+
+.select {
+  width: 59%;
+  height: 26px;
+  margin-top: 5%;
+  margin-left: 36%;
+  font-size: small;
+  border-radius: 5px;
+}
+.card {
+  margin-top: 1.5%;
+  width: 99.2%
+}
+
+.container{
+  min-height: 30em;
+}
+
+.link {
+  color: #3F88F9 !important;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.header {
+  padding: 0.4rem 0.4rem !important;
+  text-align: center !important;
+  background: #0031A0 !important;
+  height: 45px !important;
+}
+
+.body {
+  padding: 0.3rem 0.3rem !important;
+  text-align: center !important;
+  height: 45px;
+}
+
+.nodata {
+  margin-left: 43%;
+  font-size: large;
+}
+
+.container {
+  min-height: 32em;
+}
+
+.TabSelected {
+  box-shadow: inset 0 -3px #2D66FE;
+  color: #24211F;
+  cursor: pointer;
+}
+
+.Tab:hover {
+  color: #151b26;
+  box-shadow: inset 0 -3px #24211F;
+  cursor: pointer;
+}
+
+.labelHeader {
+  display: block;
+  margin-top: 1.5%;
+  width: 102%;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 3px;
+  height: 4em;
+}
+
+.Tab {
+  text-align: center;
+  cursor: pointer;
+  font-size: 13px;
+  padding-bottom: 8px;
+  transition-duration: .2s;
+  transition-property: box-shadow, color;
+  margin-top: 15%;
+}
+.exempted {
+  margin-left: 3%;
+  font-size: medium;
+}

@@ -1,0 +1,1065 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    overflow-x: hidden;
+    background: black !important;    
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+*, nav {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", 'primeicons', normal normal normal 14px/1 FontAwesome !important;
+}
+
+
+.pi {
+    font-size: 14px !important;
+}
+.p-accordion-content {
+    padding: 0.5rem !important;
+}
+.p-accordion-header-link:hover {
+    text-decoration: none;
+}
+.p-accordion-header-link {
+    padding: 0.5rem !important;
+}
+app-ticket-attributes .p-accordion p-accordiontab .p-accordion-tab {
+    margin-bottom: 10px !important;
+  }
+.p-dialog .p-dialog-header{
+    height: 10px;
+    box-shadow: 0.125rem 0.25rem rgba(0,0,0,.075) !important;
+}
+.p-dialog .p-dialog-header .p-dialog-title {
+    font-size: 18px !important;
+    color: #0033A0;
+}
+.multiselectclass .p-multiselect {
+    width: 160px !important;
+    height: 27px !important;  
+}
+.multiselectdebtclass .p-multiselect {
+    width: 99% !important;
+    height: 26px !important;
+    margin-left: -14% !important;
+}
+.multiselectclasschtkt .p-multiselect{
+    width: 75% !important;
+    height: 27px !important; 
+}
+.p-dropdown {
+    width: 75% !important;
+    height: 25px !important;
+}
+.p-dropdown .p-dropdown-label.p-placeholder {
+    color: #6c757d;
+    font-size: 11px;
+    margin-top: -4%;
+}
+.p-fluid .p-dropdown .p-dropdown-label {
+    font-size: 12px !important;
+    margin-top: -3% !important;
+}
+input.fieldMandate.borderred {
+  border: 1px solid red !important;
+}
+/* Data Dictionary  */
+.toolbar-padding {
+    padding: 0.3rem !important;
+}
+#data-dictionary .p-button, #data-dictionary .p-inputtext,
+#baseMeasuregrid  .p-button, #data-dictionary .p-inputtext {
+    margin-right: 2px;
+    margin-left: 2px;
+    padding: 0.2rem 0.3rem;   
+}
+#data-dictionary .table-filter .p-inputtext {
+    height: 25px;
+    font-size: 14px;
+}
+.workprofiler-table .p-datatable .p-datatable-thead > tr > th {   
+    color: rgb(255,255,255);
+    font-size: 13px;
+    font-weight: 400;
+    background: #0031A0 !important;
+}
+#data-dictionary .error-log-headers > th,
+#data-dictionary .error-log-headers .p-sortable-column-icon {   
+    font-size: 12px !important;
+}
+
+.workprofiler-table .p-datatable.p-datatable-sm .p-datatable-tbody > tr > td {
+    font-size: 12px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#data-dictionary .p-paginator-bottom {   
+    font-size: 14px !important;
+}
+.p-paginator-current,.p-paginator-icon,.p-paginator-page
+{
+    font-size: 14px !important;
+    color:#fff !important;
+}
+#data-dictionary .optionafield-button .p-button-icon {
+    margin-right: 0.28rem !important;
+    font-size: 10px !important;
+    font-weight: bold;
+}
+#data-dictionary .p-button-label, #baseMeasuregrid .p-button-label {
+    flex: 1 0 auto !important;
+    /* font-size: 14px; */
+}
+.workprofiler-table .p-sortable-column-icon {
+    color: #fff !important;
+    font-size: 0.8rem;
+}
+#data-dictionary .p-multiselect .p-multiselect-label {
+    padding: 0.2rem 0.3rem !important;   
+    font-size: 14px !important;
+}
+#data-dictionary .p-component, #baseMeasuregrid .p-component {
+    font-size: 14px !important;
+}
+#data-dictionary .p-checkbox-box {
+    border: 2px solid #0379ef;
+}
+/* #data-dictionary .p-multiselect-close {
+    display: none;
+} */
+.p-multiselect-panel .p-multiselect-header {
+    width: 200px !important;
+}
+#data-dictionary .table-filter .p-inputtext {
+   margin-right: 0px !important;
+}
+#data-dictionary .p-paginator, #baseMeasuregrid .p-paginator {
+    padding: 0.2rem 1rem !important;
+}
+#data-dictionary #add-dictionary .p-dropdown-items-wrapper {
+    width: 200px;
+}
+#data-dictionary .p-dropdown, #baseMeasuregrid .p-dropdown, #ticketDetails .p-dropdown {
+  width: 100% !important;
+}
+
+#ticketDetails .p-dropdown-label {
+  margin-top: -8% !important;
+}
+
+#data-dictionary .table-body .p-dropdown, #baseMeasuregrid .table-body .p-dropdown {
+  width: 100% !important;
+  margin-left: 0 !important;
+}
+#basemeasuresearch .p-multiselect {
+  width: 100% !important;
+}
+.workprofiler-table .p-datatable-sm .p-dropdown-label {
+  padding: 0.1rem 0.3rem !important;
+  font-size: 14px !important;
+}
+#data-dictionary #add-dictionary .p-dropdown-label{
+    padding: 0.5rem 0.3rem !important;
+    font-size: 14px !important;
+    margin-top: -4% !important;
+}
+#data-dictionary .p-multiselect {
+    width: 170px !important;
+    height: 30px !important;
+}
+.workprofiler-table .p-datatable-scrollable-body table tr{
+    display:table;
+    width:100%;
+    table-layout:fixed;
+}
+.workprofiler-table .p-datatable-scrollable-body {
+    overflow-y: hidden !important;
+}
+#data-dictionary .search-filter-project {
+ width: 170px !important;
+ height: 30px !important;
+}
+#data-dictionary .search-filter-project .p-dropdown-label {
+    font-size: 14px !important;
+    padding: 0 !important;
+    margin-top: 2% !important;
+    margin-left: 2% !important;
+}
+#data-dictionary .dictionary-button .p-button-icon {
+    margin-left: 5px;
+}
+#data-dictionary .p-fileupload-choose {
+    height: 29px;
+    background: #119cd7  !important;
+}
+#data-dictionary #add-optional .optional-reason,
+ #data-dictionary #add-optional .optional-date {
+    height: 30px !important;
+}
+#data-dictionary #add-optional .p-dropdown-label {
+    padding: 0.6rem 0.3rem !important;
+    font-size: 14px !important;   
+}
+#data-dictionary .p-confirm-dialog-message {
+    font-size: 16px !important;
+}
+#data-dictionary .data-confirm .p-dialog-content {
+    padding: 1.5rem 1.5rem 1.5rem 1.5rem !important;
+}
+#data-dictionary .data-confirm .p-dialog-content .p-confirm-dialog-icon {
+    font-size: 2rem !important;
+}
+.workprofiler-table .p-datatable-scrollable-body table tbody {
+    height: 38vh;
+    display: block;
+    overflow: auto;
+    background: #fff;
+}
+#data-dictionary .error-log .p-datatable-scrollable-body table tbody {
+    width: 1600px !important;
+}
+
+#data-dictionary .p-paginator  .p-paginator-element:not(:disabled):hover,
+#baseMeasuregrid .p-paginator  .p-paginator-element:not(:disabled):hover {
+    background: #2196F3 !important;
+}
+#data-dictionary .p-dialog .p-dialog-footer {
+    text-align: left !important;
+}
+.workprofiler-table .p-datatable.p-datatable-sm .p-datatable-header {
+    padding: 0rem 0rem !important;
+}
+.workprofiler-table .p-datatable-scrollable-header-box {
+    padding-right: 0 !important;
+}
+.inherit-back {
+    background: inherit !important;
+}
+.p-paginator .p-paginator-first, .p-paginator .p-paginator-prev, .p-paginator .p-paginator-next, .p-paginator .p-paginator-last {
+    background-color: transparent !important;
+    border-radius: 50% !important;
+    min-width: 2rem !important;
+    height: 2rem !important;
+}
+.p-paginator .p-paginator-pages .p-paginator-page {
+    border-radius: 50% !important;
+    min-width: 2rem !important;
+    height: 2rem !important;
+}
+.h-30 {
+    height: 30px !important;
+}
+/* #data-dictionary .p-datatable-thead {
+    width: calc( 100% - 1em );
+} */
+
+.overflow-unset {
+    text-overflow: unset !important;
+}
+.p-multiselect .p-multiselect-trigger {
+    width: 1.5rem !important;
+}
+.p-disabled {
+    cursor: not-allowed !important;
+    background: #eee !important;
+}
+
+.p-toast .p-toast-message .p-toast-message-content .p-toast-message-icon {
+    font-size: 2rem !important;
+}
+.p-dropdown-item {
+    padding: 0.3rem 0.5rem !important;
+    font-size: 14px;
+}
+.p-paginator-bottom {
+    background: #0031A0 !important;
+    color: #fff !important;    
+    font-size: 14px !important;
+}
+.p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+    background: #2196F3 !important;
+    border-radius: 50% !important;
+    min-width: 2rem !important;
+    height: 2rem !important;
+}
+.p-invalid .p-component {
+    border: 1px solid red;
+}
+.p-multiinvalid .p-component {
+    border: 1px solid red;
+    color: black;
+}
+.p-accordion .p-accordion-header .p-accordion-header-link {
+    background: #0031A0 !important;
+    color: #fff !important;
+}
+/* .p-accordion .p-accordion-header  :hover {
+    background: #3F88F9 !important;
+} */
+.p-accordion-header-text {
+    line-height: 1.5 !important;
+}
+
+.Timesheetgridheader {
+  background-color: #0031A0 !important;
+  color: white !important;
+  padding: 0rem !important;
+  font-size: 12px !important;
+  text-align: center !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", 'primeicons', normal normal normal 14px/1 FontAwesome !important;
+}
+.thheaderActive {
+  columns: white !important;
+  background-color: #119cd7 !important;
+}
+.Timesheetgriddata
+{
+    text-align: center !important;
+    border: 1px solid #e9ecef !important;
+    border-width: 0 0 1px 0 !important;
+    padding: 0.1rem !important;
+    font-size: 130% !important;
+}
+.bottom{
+    top: 32% !important;
+    left: 87% !important;
+}
+/*.right {
+  top: 30% !important;
+  left: -8% !important;
+}*/
+
+.bs-datepicker-head {
+    background-color: #0031A0 !important;
+}
+
+app-ticket-attributes span.p-button-icon.pi.pi-calendar {
+  background: black;
+  margin-top: -6px;
+}
+
+app-ticket-attributes .p-inputtext{
+    padding: 0.5rem 0.1rem !important;
+}
+.p-datatable .p-datatable-thead > tr > th {
+  background: #0031A0; /*Adding important tag will affect timesheet grid */
+  color: #fff !important;
+}
+#approveUnfreezegrid .p-datatable .p-datatable-thead > tr > th {
+  background: #0031A0 !important;
+  color: #fff !important;
+}
+
+.p-component {   
+    font-size: 11px !important;
+    font-weight: normal;
+}
+.p-dropdown-panel {
+    max-width: 9% !important;
+}
+
+app-add-ticket .p-fluid .p-dropdown .p-dropdown-label {
+    font-size: 12px !important;
+    margin-top: -3% !important;
+  }
+  #contentbody {
+    padding-bottom: 5.1% !important;
+}
+  input.p-autocomplete-input.p-component.p-inputtext{
+    width: 75%;
+    height: 25px;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+  }
+#approveUnfreezegrid .p-multiselect {
+  width: 130px !important;
+}
+
+.ticketAttributesFG p-dropdown.ng-invalid.fieldMandate > div,p-dropdown.fieldMandate.ng-invalid > div {
+    border: 1px solid red;
+}
+.ticketAttributesFG div.fieldMandate>span{
+border: 1px solid red;
+}
+.ticketAttributesFG input.ng-invalid.fieldMandate,.ticketAttributesFG input.fieldMandate.ng-invalid{
+    border: 1px solid red;
+}
+.ticketAttributesFG p-autocomplete.ng-invalid.fieldMandate >span>input,.ticketAttributesFG p-autocomplete.fieldMandate.ng-invalid >span>input{
+    border: 1px solid red;
+}
+.ticketAttributesFG p-calendar.ng-invalid.fieldMandate >span>input,.ticketAttributesFG p-calendar.fieldMandate.ng-invalid >span>input{
+    border: 1px solid red;
+}
+#approveUnfreezegrid .p-calendar {
+  height: 34px;
+  
+}
+#approveUnfreezegrid .dailycal .p-inputtext {
+  font-size: 10px !important;
+  width: 90px;
+}
+#approveUnfreezegrid .weeklycal .p-inputtext {
+  font-size: 10px !important;
+  width: 180px;
+}
+.p-datepicker .p-datepicker-header {
+  background: #0031A0 !important;
+  color:#fff !important;
+}
+.p-datepicker .p-datepicker-header .p-datepicker-prev, .p-datepicker .p-datepicker-header .p-datepicker-next {
+    color: #fff !important;
+  }
+#approveUnfreezegrid .dailycal .ng-trigger-overlayAnimation, #approveUnfreezegrid .weeklycal .ng-trigger-overlayAnimation {
+  opacity: 10 !important;
+  top: 30px !important;
+}
+
+.bs-datepicker-body table td span.selected,  .bs-datepicker-body table td.selected span, 
+.bs-datepicker-body table td span[class*="select-"]:after,  .bs-datepicker-body table td[class*="select-"] span:after {
+    background-color: #0031A0 !important;
+}
+
+.backgblue{
+    background-color: #c3d9ec;
+}
+bs-datepicker-container, bs-daterangepicker-container {
+    z-index: 9999 !important;
+}
+::-webkit-scrollbar {
+    width: 5px; 
+    height: 5px;
+    }
+    /* Track */
+    ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+     }
+     
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+    background: darkgrey;
+     }
+     
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+    background: darkgrey ;
+     }
+
+     .p-multiselect-items-wrapper {
+         width:200px;
+     }
+     .p-multiselect-item span, .p-dropdown-item span {
+         white-space: pre-wrap;
+     }
+     .p-multiselect-item, .p-dropdown-item {
+         height: auto !important;
+     }
+    .ticketAttributesFG .p-dropdown-panel .p-dropdown-items .p-dropdown-item{
+        white-space: pre-wrap  !important;
+    }
+    .deletecontent {
+      margin-bottom: -7% !important;
+    }
+
+#approveUnfreezegrid .p-toolbar, .p-toolbar-group-left, .p-toolbar-group-right
+{
+    display:block !important;
+}
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+    font-size: 12px;
+	white-space: pre-wrap  !important;
+}
+.p-multiselect-panel .p-multiselect-items .p-multiselect-item {
+    font-size: 12px;
+	white-space: pre-wrap  !important;
+}
+.langdropdown{    
+    font-size: small !important;
+    width: 80% !important;
+    margin-top: 4% !important;
+    height: 26px !important;
+    border-radius: 2px !important;
+    float: right;
+  }
+  .projectdropdown{    
+    font-size: small !important;
+    width: 90% !important;
+    margin-top: 3% !important;
+    height: 26px !important;
+    border-radius: 2px !important;
+    float: left;   
+  }
+  .langdropdown .p-dropdown-label, .projectdropdown .p-dropdown-label, 
+  .clsdropdownuser .p-dropdown-label {
+    font-size: 13px !important;
+    padding: 0 !important;
+    margin-top: 1% !important;
+    margin-left: 2% !important;
+    font-weight: 500;
+}
+.p-dropdown-panel {
+    max-width: 9% !important;
+}
+.clsdropdownuser {
+    width: 150px !important;
+    margin-top: 0 !important;   
+    border-radius: 2px !important;    
+    font-size: small !important;
+    height: 26px !important;
+    margin-left: -25px;
+  }
+  .p-highlight {
+    color: #fff !important;
+    background:#007ad9 !important;
+  }
+    body p-calendar span {
+        height: 25px;
+    }
+    body p-calendar td span {
+        width: 25px;
+    }
+    body p-calendar span input {
+        width: 75%;
+        font-weight: 100;
+    }
+    body p-calendar span button span { 
+        margin-top: 10px;
+    }
+    body .p-datepicker .p-timepicker > div {
+        padding: 0%;
+    }
+    body .p-datepicker .p-timepicker{
+        border-top: 0px;
+        padding: 0%;        
+        color: #54708b !important;
+    }
+    body .p-datepicker .p-timepicker button{
+        width: 2rem !important;
+        height: 1rem !important;
+        color: #6c757d !important;
+        border: 0 none !important;
+        background: transparent !important;
+        border-radius: 50% !important;
+        transition: background-color 0.2s, color 0.2s, box-shadow 0.2s !important;
+    }
+    body .p-datepicker .p-timepicker span{
+        font-size: 10px;
+    }
+    body .p-datepicker table td {
+        padding: 0%;
+    }
+    body .p-datepicker table {
+        font-size: 10px;
+    }
+    body .p-datepicker table td > span {
+        width: 1.5rem;
+        height: 1.5rem;
+        color: #54708b !important;
+    }
+    body .p-datepicker table th span {
+        width: 2.5rem;
+        height: 2.5rem;
+        color: #9aaec1 !important;
+    }
+    body .p-datepicker select {
+        width: 45%;
+    }
+     .p-datepicker .p-timepicker button:last-child {
+        margin-top: -8px;
+    }
+    .datepicker .p-datepicker table td {
+        padding: 0%;
+    }
+    .datepicker p-calendar span {
+        height: 25px;
+        width: 75%;
+    }
+    .datepicker p-calendar td span {
+        width: 25px;
+    }
+    .datepicker p-calendar span input {
+        width: 122px;
+    }
+    .datepicker p-calendar span button span { 
+        margin-top: 10px;
+    }
+    .datepicker .p-datepicker .p-timepicker > div {
+        padding: 0%;
+    }
+    .datepicker .p-datepicker .p-timepicker{
+        border-top: 0px;
+        padding: 0%;
+        color: #54708b !important;
+    }
+    .datepicker .p-datepicker .p-timepicker button{
+        width: 2rem !important;
+        height: 1rem !important;
+        color: #6c757d !important;
+        border: 0 none !important;
+        background: transparent !important;
+        border-radius: 50% !important;
+        transition: background-color 0.2s, color 0.2s, box-shadow 0.2s !important;
+    }
+    .datepicker .p-datepicker .p-timepicker span{
+        font-size: 1rem;
+    }
+    .datepicker .p-datepicker table {
+        font-size: 10px;
+    }
+  .primary-blue {
+      background: #0031A0 !important;
+  }
+  .secondry-blue {
+      background: #0f5acf !important;
+  }
+  .light-blue {
+   background: #3f88f9 !important;
+  }
+  .lighter-blue {
+      background: #119cd7 !important;
+  }
+
+  .p-progressbar {
+    border: 1px solid #3f88f9 !important;
+    background: #2196F3  !important;
+  }
+  .p-progressbar .p-progressbar-label {
+      color: black !important;
+  }
+
+  .base-measure-greater-70 .p-progressbar-value{
+    background-color: #67b167 !important;
+  }
+  .base-measure-greater-50 .p-progressbar-value{
+    background-color: orange !important;
+  }
+  .base-measure-greater-0 .p-progressbar-value{
+    background-color: #ff5c5c !important;
+  }
+  .base-measure-multi {
+      height: 25px !important;
+  }
+  .base-measure-multi .p-multiselect-label {
+    padding: 0rem 0.3rem !important;
+    font-size: 12px !important;
+  }
+#StartDateSprint p-calendar span,#EndDateSprint p-calendar span,#PsdWorkItem  p-calendar span,#PedWorkItem  p-calendar span{
+    height: 25px;
+    width: 75%;
+}
+#StartDateSprint p-calendar td span,#EndDateSprint p-calendar td span,#PsdWorkItem p-calendar td span,#PedWorkItem p-calendar td span {
+    width: 25px;
+}
+#StartDateSprint p-calendar span input,#EndDateSprint p-calendar span input,#PsdWorkItem p-calendar span input,#PedWorkItem p-calendar span input{
+    width: 123px;
+}
+#PedWorkItem p-calendar .p-datepicker,#EndDateSprint p-calendar .p-datepicker {
+    margin-left: -75%;
+}
+.workitem .p-datepicker table td {
+    padding: 0%;
+}
+.workitem .p-datepicker table {
+    font-size: 10px;
+}
+.workitem .p-datepicker .p-timepicker > div {
+    padding: 0%;
+}
+.workitem .p-datepicker .p-timepicker{
+    border-top: 0px;
+    padding: 0%;
+}
+.workitem .p-datepicker .p-timepicker button{
+    width: 2rem !important;
+    height: 1rem !important;
+    color: #6c757d !important;
+    border: 0 none !important;
+    background: transparent !important;
+    border-radius: 50% !important;
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s !important;
+}
+.attrDatePicker .p-datepicker table td {
+    padding: 0%;
+}
+.attrDatePicker .p-datepicker table {
+    font-size: 10px;
+}
+.attrDatePicker .p-datepicker .p-timepicker > div {
+    padding: 0%;
+}
+.attrDatePicker .p-datepicker .p-timepicker{
+    border-top: 0px;
+    padding: 0%;
+}
+.attrDatePicker .p-datepicker .p-timepicker button{
+    width: 2rem !important;
+    height: 1rem !important;
+    color: #6c757d !important;
+    border: 0 none !important;
+    background: transparent !important;
+    border-radius: 50% !important;
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s !important;
+}
+.attrDatePicker .p-datepicker .p-timepicker span{
+    font-size: 10px;
+}
+#AttrTicketOpenDate p-calendar span,#AttrTicCreatedDate p-calendar span,#AttrActualStartDate p-calendar span,
+#AttrActualEndDate p-calendar span,#AttrClosedDate p-calendar span,#AttrOpenDate p-calendar span,
+#AttrCompletedDate p-calendar span,#AttrReopenDate p-calendar span,#AttrPlannedStartDate p-calendar span,
+#AttrPlannedEndDate p-calendar span,#AttrReleaseDate p-calendar span{
+    height: 25px;
+    width: 75% !important;
+}
+#AttrTicketOpenDate p-calendar td span,#AttrTicCreatedDate p-calendar td span,#AttrActualStartDate p-calendar td span,
+#AttrActualEndDate p-calendar td span,#AttrClosedDate p-calendar td span,#AttrOpenDate p-calendar td span,
+#AttrCompletedDate p-calendar td span,#AttrReopenDate p-calendar td span,#AttrPlannedStartDate p-calendar td span,
+#AttrPlannedEndDate p-calendar td span,#AttrReleaseDate p-calendar td span{
+    width: 25px;
+}
+#AttrTicketOpenDate p-calendar span input,#AttrTicCreatedDate p-calendar span input,#AttrActualStartDate p-calendar span input,
+#AttrActualEndDate p-calendar span input,#AttrClosedDate p-calendar span input,#AttrOpenDate p-calendar span input,
+#AttrCompletedDate p-calendar span input,#AttrReopenDate p-calendar span input,#AttrPlannedStartDate p-calendar span input,
+#AttrPlannedEndDate p-calendar span input,#AttrReleaseDate p-calendar span input{
+    width: 250px;
+}
+#AttrTicketOpenDate p-calendar .p-datepicker{
+    margin-left: -75%;
+}
+#AttrTicketOpenDate div.p-timepicker{
+    font-size: 15px;
+}
+.searchticket .p-dropdown {
+  width: 100% !important;
+  height: 1.5rem !important;
+  border-radius: 6px !important;
+}
+
+.searchticket .p-multiselect {
+  width: 100% !important;
+  border-radius: 6px !important;
+  height: 1.5rem !important;
+}
+
+.searchticket .p-calendar {
+  width: 100% !important;
+  border-radius: 6px !important;
+}
+
+.searchticket .p-dropdown .p-dropdown-label {
+  background: transparent;
+  border: 0 none;
+  font-size: 11px;
+  width: 100% !important;
+  padding: 0.2rem !important;
+}
+
+.searchticket .p-calendar .p-inputtext {
+  border-radius: 6px !important;
+}
+
+.searchticket .p-datatable .p-datatable-thead > tr > th {
+  width: 15em;
+  text-align: center;
+  border: 1px solid lightgrey !important;
+  background-color: #0033a0;
+  padding: 0.4rem !important;
+}
+
+.searchticket .p-paginator {
+  background-color: #0033a0;
+  padding: 0rem !important;
+}
+
+.searchticket .p-datatable .p-sortable-column .p-sortable-column-icon {
+  color: white !important;
+}
+
+.searchticket .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background: white !important;
+  color: black !important;
+  border-radius: 60% !important;
+  min-width: 1.7rem !important;
+  height: 1.7rem !important;
+  right: 7rem;
+}
+
+.searchticket .p-paginator-rpp-options {
+    right: 7rem !important;
+}
+
+
+
+.searchticket .ui-table .ui-table-tbody > tr:nth-child(even) {
+  background-color: #F4F6FC !important;
+}
+
+.searchticket .p-multiselect .p-multiselect-label {
+    padding: 0.2rem !important;
+}
+
+.searchticket .p-dropdown .p-dropdown-label.p-placeholder {
+    color: #6c757d;
+    padding: 0.5rem !important;
+}
+
+.searchticket .p-radiobutton-label {
+    margin-left: 0.4rem;
+    margin-top: 0.3rem;
+    font-size: small;
+    font-weight: 500;
+}
+
+.searchticket .p-datatable-scrollable-footer,.searchticket .p-datatable-scrollable-header {
+    overflow: unset !important;
+}
+
+.searchticket .p-datatable-scrollable-view {
+    width:100% !important;
+}
+
+.searchticket .p-datatable-scrollable-body {
+    position: relative;
+    min-height: 27em !important;
+}
+
+.searchticket .p-paginator-left-content {
+    margin-right: inherit;
+    position: relative;
+    right: 16.5em;
+}
+.searchheader{
+    padding: 0.5rem !important;
+}
+
+.searchticket .p-datatable .p-sortable-column:not(.p-highlight):hover {
+    background: #0033a0;
+    color: #495057;
+}
+
+.searchticket button.p-button-text {
+    background-color: #0D47A1 !important;
+    padding: 0.5em;
+    color: white !important;
+    box-shadow: none !important;
+    border-radius: 6px !important;
+    border: none !important;
+    cursor: pointer;
+    right: 16.5em;
+}
+
+.searchticket .p-paginator .p-paginator-current {
+    background-color: transparent;
+    border: 0 none;
+    color: #6c757d;
+    min-width: 1.357rem;
+    height: 1.357rem;
+    margin: -1.857rem;
+    padding: 0 0.5rem;
+    left: 27rem;
+}
+
+.searchticket .p-paginator .p-paginator-first, 
+.searchticket .p-paginator .p-paginator-prev, 
+.searchticket .p-paginator .p-paginator-next,
+.searchticket .p-paginator .p-paginator-last {
+    background-color: transparent;
+    border: 0 none;
+    color: #6c757d;
+    min-width: 1.357rem !important;
+    height: 1.357rem !important;
+    margin: 0rem;
+    transition: box-shadow 0.2s;
+    border-radius: 3px;
+    right: 7rem;
+}
+
+.searchticket .p-paginator .p-paginator-pages .p-paginator-page {
+    background-color: transparent;
+    border: 0 none;
+    color: #6c757d;
+    min-width: 1.357rem;
+    height: 1.357rem;
+    margin: 0.143rem;
+    transition: box-shadow 0.2s;
+    border-radius: 3px;
+    right: 7rem;
+}
+
+.searchticket .p-datatable .p-datatable-header {
+    background: #f8f9fa;
+    color: #495057;
+    border: 1px solid #e9ecef;
+    border-width: 1px 0 1px 0;
+    padding: 0rem;
+    font-weight: 600;
+}
+
+.searchticket .p-datatable .p-datatable-tbody > tr > td {
+    width: 15em;
+    text-align: center;
+    padding: 0.3rem !important;
+    border: 1px solid lightgrey !important;
+}
+
+.searchticket label.lblrow {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.searchticket .p-datatable-scrollable-footer, 
+.searchticket .p-datatable-scrollable-header {
+    overflow: hidden !important;
+}
+
+.searchticket p-table {
+  width: inherit;
+}
+
+.searchticket .p-datatable.p-component.p-datatable-scrollable {
+    width: 100% !important;
+}
+
+.datepicker .p-datepicker table td > span {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #54708b !important;
+}
+.datepicker .p-datepicker table th span {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: #9aaec1 !important;
+}
+
+.datepicker .p-datepicker select {
+    width: 45%;
+}
+app-debt-review-and-override .p-paginator .p-dropdown{
+    margin-left: 1.5rem !important;
+}
+
+app-ticketeffortupload .p-dialog .p-dialog-header{
+    background: #11269D;
+}
+app-ticketeffortupload .p-dialog .p-dialog-header .p-dialog-title {
+    color: white;
+}
+app-ticketeffortupload .p-dialog .p-dialog-content{
+    padding: 0;
+}
+app-ticketeffortupload .pi-times:before {
+color: white;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 15px;
+    height: 15px; 
+  }
+  /* KeyCloak Added Styles */
+.keyCloakDialog .p-dialog .p-dialog-titlebar,
+.keyCloakDialog .p-dialog .p-dialog-header {
+    border: 1px solid #c8c8c8 !important;
+    background-color: #f4f4f4 !important;
+    padding: 1rem !important;
+  }
+  .keyCloakDialog .p-dialog .p-dialog-header .p-dialog-header-icon {
+    color: #0033A0 !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+  }
+  .keyCloakDialog .p-dialog .p-dialog-header{
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+    padding-left: 0.75rem !important;
+    padding-right: 0.5rem !important;
+  }
+  .keyCloakDialog .p-dialog .p-dialog-header,
+  .keyCloakDialog .p-dialog .p-dialog-title  {
+    color: #0033A0 !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+  }
+  .keyCloakDialog .p-dialog .p-dialog-content {
+    background: #ffffff;
+    color: #495057;
+    padding: 0 0.5rem 1rem 0.5rem !important;
+    font-size: 0.85rem !important;
+}
+  /* Old Primeng Dilaog primengv9*/
+.keyCloakDialog .ui-dialog .ui-dialog-titlebar {
+    border: 1px solid #c8c8c8 !important;
+    background-color: #f4f4f4 !important;
+  }
+  .keyCloakDialog .ui-dialog .ui-dialog-content {
+    font-size: 0.85rem !important;
+  }
+  .keyCloakDialog .ui-dialog .ui-widget-header,
+  .keyCloakDialog .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-icon {
+    color: #0033A0 !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+  }
+  .keyCloakDialog .pi-times:before {
+    font-size: 11px !important;
+    font-weight: 900 !important;
+  }
+   .keyCloakDialog .mrgbtm {
+    margin-bottom: 1em !important;
+    text-align: center !important;
+    margin-top: 2em !important;
+  }
+  .keyCloakDialog .button-stay-logged-in{
+    font: normal normal normal 0.85rem Arial,sans-serif !important;
+                          background: #0033A0 0% 0% no-repeat padding-box !important;
+                          border: 1px solid #0033A0 !important;
+                          font-weight: 700 !important;
+                          border-radius: 5px !important;
+                          height: 30px !important;
+  }
+  .keyCloakDialog .button-stay-logged-out{
+    font: normal normal normal 0.85rem Arial,sans-serif !important;
+                          background: white !important;
+                          border: 1px solid #0033A0 !important;
+                          color: #0033A0 !important; 
+                          width: 8em !important;
+                          font-weight: 700 !important;
+                          border-radius: 5px !important;
+                          height: 30px !important;
+  }
+  .keyCloakDialog .button-stay-login{
+    font: normal normal normal 0.85rem Arial,sans-serif !important;
+                          background: #0033A0 0% 0% no-repeat padding-box !important;
+                          border: 1px solid #0033A0 !important;
+                          width: 5em !important;
+                          font-weight: 700 !important;
+                          border-radius: 5px !important;
+                          height: 30px !important;
+  }
+div.overlay-panel div{
+    float: right !important;
+ 
+}
+.p-overlaypanel .p-overlaypanel-content {
+   padding: 0.7rem !important;
+}
+
+@font-face {
+    font-family: "Gellix";
+    src: local("Gellix"), url(./assets/Gellix/Gellix-Regular.ttf) format("truetype");
+  }
+
+  app-header .p-dropdown-label {
+    font-size: 12px !important;
+    margin-top: -4% !important;
+    /* padding-left: 8px !important; */
+}
+
+.projects .p-dropdown-label {
+  font-weight: 500;
+}

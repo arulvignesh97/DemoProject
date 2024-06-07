@@ -1,0 +1,373 @@
+
+<div id="data-dictionary">
+    <p-toolbar styleClass="p-mb-1 bg-white inherit-back toolbar-padding border-0">
+        <ng-template pTemplate="left">
+            <h6 class="p-mb-0 text-dark p-1">{{'DataDictionary' | translate}}</h6>
+        </ng-template>        
+    </p-toolbar>
+    <div class="pl-2 pr-2 h-80 bg-white" [ngClass]="{'h-85': ((isError && searchClicked) || (isSuccess && searchClicked)),'h-80': (!isError || !isSuccess) }">
+    <div class="dictionary-accordion">
+    <p-accordion collapseIcon="pi pi-minus-circle" expandIcon="pi pi-plus-circle" styleClass="p-mb-2 mt-1" (onOpen)="onSearchTabOpen($event)" (onClose)="onSearchTabClose($event)">
+      <p-accordionTab header="{{'SearchFilters' | translate}}" [selected]="true">
+        <div id="search-filter" class="form-inline">
+
+          <div class="form-group col-3 search-col">
+            <label class="search-filter-label" for="project"><span class="pattern-mandatory">*</span>{{'Project' | translate}}</label>                        
+            <p-dropdown styleClass="search-filter-project"  [options]="projects" optionLabel="ProjectName" [(ngModel)]="selectedProject" emptyFilterMessage="No projects Found" placeholder="Select Project" (onChange)="projectChange($event)"></p-dropdown>
+          </div>
+          <div class="form-group col-3 search-col">
+            <label class="search-filter-label"  for="portfolio"><span class="pattern-mandatory">*</span>{{'Portfolio' | translate}}</label>            
+            <p-multiSelect maxSelectedLabels="1" [disabled]="dataDisable || displayExemptedMsg" placeholder="Select Portfolios" [options]="portfolios" styleClass="search-filter-multi" [filter]="true" [virtualScroll]="getVirtualScroll(portfolios)" [itemSize]="virtualItemSize" optionLabel="portfolioName" [(ngModel)]="selectedPortfolios" emptyFilterMessage="No portfolios Found" (onChange)="portfolioChange($event)" [resetFilterOnHide]="true"></p-multiSelect>            
+          </div>
+          <div class="form-group col-3 search-col">
+            <label class="search-filter-label"  for="application"><span class="pattern-mandatory">*</span>{{'Application' | translate}}</label>            
+            <p-multiSelect maxSelectedLabels="1" [disabled]="dataDisable || displayExemptedMsg" placeholder="Select Applications" [options]="applications" styleClass="search-filter-multi" [filter]="true" [virtualScroll]="getVirtualScroll(applications)" [itemSize]="virtualItemSize" optionLabel="applicationName" [(ngModel)]="selectedApplications" emptyFilterMessage="No applications Found" [resetFilterOnHide]="true"></p-multiSelect>
+          </div>
+          
+          <button pButton  [disabled]="(dataDisable || searchDisabled || displayExemptedMsg) " class="search-button data-button w-80" type="button" label="{{'Search' | translate}}" title="{{'ClickHereToSearchDataDictionary' | translate}}" (click)="SearchDictionaries()"></button>
+        </div>
+      </p-accordionTab>
+  </p-accordion>
+</div>
+<div id="alert" class="alert alert-danger warningMessage margintop" 
+*ngIf="displayExemptedMsg" [innerHtml]="exemptedMsg"></div>
+<div *ngIf="!displayExemptedMsg">
+  <div *ngIf="!dataDictionaryEnabled" class="mt-0 p-2 text-danger data-enable">
+    <span *ngIf="dataDisable">                          
+        <div class="alert alert-danger mt-0 pt-2 pb-2" role="alert" >            
+            <p class="mb-0"> {{'AccessUnavailable' | translate}}</p>
+        </div>
+    </span>
+  </div>
+    </div>
+    <div *ngIf="dataLoaded">
+        <div *ngIf="searchClicked && isLengthError && !displayExemptedMsg" class="alert alert-danger mt-2 mb-2 pt-2 pb-2" 
+        role="alert" >            
+                <p class="mb-0"> {{'NoMatchingRecordsFound' | translate}}</p>
+        </div>
+    </div>
+    <div class="alert alert-danger mt-1 pt-2 pb-2" role="alert" *ngIf="(isError && !searchClicked)">                
+        <p class="mb-0">{{errorMessage}}</p>
+    </div>
+  <div *ngIf="dataDictionaryEnabled && !displayExemptedMsg"  style="overflow: scroll;height: 50vh;">
+    <div class="p-d-flex p-ai-center p-jc-between p-0 mb-1">                
+        <span class="p-input-icon-left">           
+            <input *ngIf="searchClicked && !isLengthError && !displayExemptedMsg" placeholder="Effective Date" [disabled]="disabledSignOff" pInputText [minDate]="minCompletionDate"  #signoffDatePick="bsDatepicker" placement="right" bsDatepicker  [(ngModel)]="signOff" [bsConfig]="datePickerConfig" [dateCustomClasses]="dateCustomClasses"  class="calendarlabel signOff-date" readonly>
+            <i *ngIf="searchClicked && !isLengthError && !displayExemptedMsg" [disabled]="disabledSignOff" class="fa fa-calendar iconleft signoff-cal-icon" aria-hidden="true" (click)="toggleSignoff(signoffDatePick)"></i>  
+            <button *ngIf="searchClicked && !isLengthError && !displayExemptedMsg" pButton [disabled]="disabledSignOff"  class="data-button w-80" type="button" label="{{'SignOff' | translate}}" (click)="UpdateSignOffDate()"></button>                                                             
+        </span>
+      <span class="p-input-icon-right dictionary-button"  >                    
+        <button pButton class="data-button w-80" pRipple type="button" label="{{'Add' | translate}}" title="{{'Add' | translate}}" (click)="openNew()"  [disabled]="displayExemptedMsg"></button>
+        <button *ngIf="searchClicked && !isLengthError && !displayExemptedMsg" pButton class="data-button w-80 secondry-blue" pRipple title="{{'Save' | translate}}" (click)="SaveDataDictionaryByID()" type="button" label="{{'Save' | translate}}"></button>
+        <button *ngIf="searchClicked && !isLengthError && !displayExemptedMsg" pButton class="data-button w-80 light-blue" pRipple type="button" title="{{'Delete' | translate}}" label="{{'Delete' | translate}}" (click)="deleteDictionaries()"></button>
+        &nbsp; &nbsp;
+        <button pButton  class="data-button lighter-blue" pRipple icon="fa fa-exclamation-triangle" title="{{'ErrorLog' | translate}}" (click)="showErrorLogDialog()" [disabled]="displayExemptedMsg"></button>
+        <button  pButton  class="data-button lighter-blue" pRipple icon="pi pi-download" (click)="DownloadDataDictionary()"  title="{{'ExcelDownload' | translate}}" [disabled]="displayExemptedMsg"></button>                
+       
+        <p-fileUpload [ngClass]="{'disabled': displayExemptedMsg }" [disabled]="displayExemptedMsg" #upload mode="basic" accept=".xlsm" title="{{'Upload' | translate}}" customUpload="true" (uploadHandler)="excelUpload($event)" [auto]="true" chooseLabel="" class="p-d-inline-block" chooseIcon="pi pi-upload">
+        </p-fileUpload>
+        
+        <button pButton class="data-button lighter-blue" [ngClass]="{ConflictPattern: conflictPattern}"  icon="fa fa-exclamation-circle" title="Conflict patterns" (click)="GetConflictPatternDetails()" [disabled]="displayExemptedMsg"></button>
+      </span>
+    </div>
+        
+    <div class="workprofiler-table" *ngIf="searchClicked && !isLengthError && !displayExemptedMsg">
+    <p-table #dtGrid [value]="dictionaries" [rows]="100" [paginator]="true"
+        [(selection)]="selectedDictionaries" [rowHover]="true" dataKey="id"
+        currentPageReportTemplate="{{'View' | translate}} {first} - {last} {{'of' | translate}} {totalRecords}" [showCurrentPageReport]="true" [rowsPerPageOptions]="rowsPerPage" [scrollable]="true" [scrollHeight]="scrollHeight" styleClass="p-datatable-sm p-datatable-gridlines" [loading]="dictionaryloading" (onHeaderCheckboxToggle)="dictionaryHeaderChange($event)">
+        <ng-template pTemplate="caption">            
+            <div class="alert alert-danger mt-1 pt-2 pb-2" role="alert" *ngIf="isError">                
+                <p class="mb-0">{{errorMessage}}</p>
+            </div>
+            <div class="alert alert-success mt-1 pt-2 pb-2" role="alert" *ngIf="isSuccess">               
+                <p class="mb-0">{{successMessage}}</p>
+              </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 2rem">
+                    <p-tableHeaderCheckbox [inputId]="HeaderCheckBox"></p-tableHeaderCheckbox>
+                </th>
+                <th class="data-header app-name" pSortableColumn="applicationName">{{'ApplicationName' | translate}}<p-sortIcon field="applicationName"></p-sortIcon></th>
+                <th class="data-header" pSortableColumn="causeName">{{'CauseCode' | translate}}<p-sortIcon field="causeName"></p-sortIcon></th>
+                <th class="data-header" pSortableColumn="resolutionName">{{'ResolutionCode' | translate}}<p-sortIcon field="resolutionName"></p-sortIcon></th>
+                <th class="data-header" pSortableColumn="debtName">{{'DebtCategory' | translate}}<p-sortIcon field="debtName"></p-sortIcon></th>
+                <th class="data-header" pSortableColumn="avoidableFlagName">{{'AvoidableFlag' | translate}}<p-sortIcon field="avoidableFlagName"></p-sortIcon></th>
+                <th class="data-header" pSortableColumn="residualDebtName">{{'ResidualDebt' | translate}}<p-sortIcon field="residualDebtName"></p-sortIcon></th>
+                <th class="data-header">{{'Edit' | translate}}</th>
+                <th class="data-header" pSortableColumn="createdBy">Created By <p-sortIcon field="createdBy"></p-sortIcon></th>               
+            </tr>
+            <tr [hidden]="!toggleFilter" class="table-filter">               
+              <th style="width: 2rem">
+                 
+              </th>
+              <th>
+                <div class="p-inputgroup">                    
+                    <input type="text" [(ngModel)]="searchApplicationName" pInputText (input)="dtGrid.filter($event.target.value, 'applicationName', 'startsWith')">   
+                    <span class="p-inputgroup-addon clear-filter" (click)="clearFilter('searchApplicationName','applicationName','startsWith')"><i class="pi pi-times"></i></span>      
+                </div>
+              </th>
+              <th>              
+                <div class="p-inputgroup">                    
+                    <input type="text" [(ngModel)]="searchCauseCode" pInputText (input)="dtGrid.filter($event.target.value, 'causeName', 'startsWith')">   
+                    <span class="p-inputgroup-addon clear-filter" (click)="clearFilter('searchCauseCode','causeName','startsWith')"><i class="pi pi-times"></i></span>      
+                </div>
+              </th>
+              <th>
+                <div class="p-inputgroup">                    
+                    <input type="text" [(ngModel)]="searchResolutionCode" pInputText (input)="dtGrid.filter($event.target.value, 'resolutionName', 'startsWith')">   
+                    <span class="p-inputgroup-addon clear-filter" (click)="clearFilter('searchResolutionCode','resolutionName','startsWith')"><i class="pi pi-times"></i></span>      
+                </div>
+              </th>
+              <th>
+                <div class="p-inputgroup">                    
+                    <input type="text" [(ngModel)]="searchDebtCategory" pInputText (input)="dtGrid.filter($event.target.value, 'debtName', 'startsWith')">   
+                    <span class="p-inputgroup-addon clear-filter" (click)="clearFilter('searchDebtCategory','debtName','startsWith')"><i class="pi pi-times"></i></span>      
+                </div>
+              </th>
+              <th>
+                <div class="p-inputgroup">                    
+                    <input type="text" [(ngModel)]="searchAvoidableFlag" pInputText (input)="dtGrid.filter($event.target.value, 'avoidableFlagName', 'startsWith')">   
+                    <span class="p-inputgroup-addon clear-filter" (click)="clearFilter('searchAvoidableFlag','avoidableFlagName','startsWith')"><i class="pi pi-times"></i></span>      
+                </div>
+              </th>
+              <th>
+                <div class="p-inputgroup">                    
+                    <input type="text" [(ngModel)]="searchResidualDebt"  pInputText (input)="dtGrid.filter($event.target.value, 'residualDebtName', 'startsWith')">   
+                    <span class="p-inputgroup-addon clear-filter" (click)="clearFilter('searchResidualDebt','residualDebtName','startsWith')"><i class="pi pi-times"></i></span>      
+                </div>
+              </th>
+              <th>
+                 
+            </th>
+            <th>
+                <div class="p-inputgroup">                    
+                    <input type="text" [(ngModel)]="searchCreatedBy" pInputText (input)="dtGrid.filter($event.target.value, 'createdBy', 'startsWith')">   
+                    <span class="p-inputgroup-addon clear-filter" (click)="clearFilter('searchCreatedBy','createdBy','startsWith')"><i class="pi pi-times"></i></span>      
+                </div>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-datadictionary>
+            <tr class="table-body">
+                <td style="width: 2rem" class="overflow-unset">
+                    <p-tableCheckbox [inputId]="datadictionary.id" (click)="tableCheckChange($event,datadictionary)" [value]="datadictionary" ></p-tableCheckbox>                   
+                </td>
+                <td class="text-center app-name" title="{{datadictionary.applicationName}}">{{datadictionary.applicationName}}</td>
+                <td class="text-center" title="{{datadictionary.causeName}}">{{datadictionary.causeName}}</td>
+                <td class="text-center" title="{{datadictionary.resolutionName}}">{{datadictionary.resolutionName}}</td>
+                <td  title="{{getTitle(debtClassifications,datadictionary.debtId)}}">                   
+                    <p-dropdown appendTo="body" [disabled]="!datadictionary.defaultFlag" [options]="debtClassifications" [(ngModel)]="datadictionary.debtId"></p-dropdown>                      
+                </td>
+                <td  title="{{getTitle(avoidableFlags,datadictionary.avoidableFlagId)}}">
+                    <p-dropdown appendTo="body" [disabled]="!datadictionary.defaultFlag" [options]="avoidableFlags" [(ngModel)]="datadictionary.avoidableFlagId"></p-dropdown>
+                </td>
+                <td  title="{{getTitle(residualDebts,datadictionary.residualDebtId)}}">
+                    <p-dropdown appendTo="body" [disabled]="!datadictionary.defaultFlag" [options]="residualDebts" [(ngModel)]="datadictionary.residualDebtId"></p-dropdown>
+                </td>
+                <td class="text-center" title="{{'OptionalFields' | translate}}" class="overflow-unset">
+                    <button pButton type="button" [class]="getOptionalColors(datadictionary)" [disabled]="getOptionalDisabled(datadictionary)" class="optionafield-button" (click)="showOptionalPattern(datadictionary)" label="{{'OptionalFields' | translate}}"></button>
+                </td>
+                <td class="text-center" title="{{datadictionary.createdBy}}">{{datadictionary.createdBy}}</td>              
+            </tr>
+            
+        </ng-template>
+        <ng-template pTemplate="paginatorleft" let-state>
+            <button class="w-80 h-30" type="button" pButton label="{{'Clear' | translate}}" (click)="clearAllFilters()"></button> &nbsp;
+            <button type="button" class="h-30" pButton [icon]="toggleicon" label="{{'ToggleSearch' | translate}}" (click)="toggle($event)"></button>
+        </ng-template>        
+        <ng-template pTemplate="emptymessage">
+          <tr>
+              <td colspan="7" style="text-align: center;">{{'NoMatchingRecordsFound' | translate}}</td>
+          </tr>
+      </ng-template>
+    </p-table>
+    </div>
+</div>
+</div>
+<p-dialog [(visible)]="addPatternDialog" [style]="{width: '60%'}" header="{{'AddPattern' | translate}}" [modal]="true" styleClass="p-fluid" [draggable]="false" >
+    <ng-template pTemplate="content">
+    <form name="addpattern" [formGroup]="addpatternFG">
+        <div class="alert alert-danger mt-2 pt-2 pb-2" role="alert" *ngIf="isPatternError">            
+            <p class="mb-0">{{errorPatternMessage}}</p>
+        </div>
+        <div id="add-dictionary">
+        <div class="row mb-3 mt-3">           
+            <div class="col-md-3">
+                <label><span class="pattern-mandatory">*</span>{{'ApplicationName' | translate}}</label>
+                <p-dropdown required="true" appendTo="body" formControlName="applicationName" [options]="applicationDetails" [virtualScroll]="getVirtualScroll(applicationDetails)" [itemSize]="virtualItemSize"  placeholder="-Select-" [ngClass]="{'p-invalid': addpatternFG.get('applicationName').invalid && saveClicked}" [filter]="true"></p-dropdown>
+            </div>
+            <div class="col-md-3">
+                <label><span class="pattern-mandatory">*</span>{{'CauseCode' | translate}}</label>
+                <p-dropdown required="true" appendTo="body"  formControlName="causeCode" placeholder="-Select-" [options]="causeCodes" [virtualScroll]="getVirtualScroll(causeCodes)" [itemSize]="virtualItemSize" [ngClass]="{'p-invalid': addpatternFG.get('causeCode').invalid && saveClicked}" [filter]="true"></p-dropdown>
+            </div>
+            <div class="col-md-3">
+                <label><span class="pattern-mandatory">*</span>{{'ResolutionCode' | translate}}</label>
+                <p-dropdown required="true" appendTo="body" formControlName="resolutionCode" placeholder="-Select-" [options]="resolutionsCodes" [virtualScroll]="getVirtualScroll(resolutionsCodes)" [itemSize]="virtualItemSize" [ngClass]="{'p-invalid': addpatternFG.get('resolutionCode').invalid && saveClicked}" [filter]="true"></p-dropdown>
+            </div>
+            <div class="col-md-3">
+                <label><span class="pattern-mandatory">*</span>{{'DebtCategory' | translate}}</label>
+                <p-dropdown required="true" appendTo="body" formControlName="debtCategory" placeholder="-Select-" [options]="debtClassifications" [ngClass]="{'p-invalid': addpatternFG.get('debtCategory').invalid && saveClicked}"></p-dropdown>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label><span class="pattern-mandatory">*</span>{{'AvoidableFlag' | translate}}</label>
+                <p-dropdown required="true" appendTo="body" formControlName="avaidableFlag" placeholder="-Select-" [options]="avoidableFlags" [ngClass]="{'p-invalid': addpatternFG.get('avaidableFlag').invalid && saveClicked}" (onChange)="residualChange()"></p-dropdown>
+            </div>
+            <div class="col-md-3">
+                <label><span class="pattern-mandatory">*</span>{{'ResidualFlag' | translate}}</label>
+                <p-dropdown required="true" appendTo="body" formControlName="residualFlag" placeholder="-Select-" [options]="residualDebts" [ngClass]="{'p-invalid': addpatternFG.get('residualFlag').invalid && saveClicked}" (onChange)="residualChange()"></p-dropdown>
+            </div>
+            <div class="col-md-3" [hidden]="!reasonResidualHide">
+                <label>{{'ReasonForResidual' | translate}}</label>
+                <p-dropdown appendTo="body" formControlName="reasonForResidual" placeholder="-Select-" [options]="reasonForResidual" ></p-dropdown>
+            </div>
+            <div class="col-md-3" [hidden]="!completionDateHide">
+                <label>{{'ExpectedCompletionDate' | translate}}</label>
+                <input placeholder="-Select-" pInputText [minDate]="minCompletionDate"  #newCompletionDate="bsDatepicker" bsDatepicker  formControlName="completionDate" [bsConfig]="datePickerConfig" [dateCustomClasses]="dateCustomClasses" placement="left" class="calendarlabel" readonly>
+                <i class="fa fa-calendar iconleft" aria-hidden="true" (click)="newCompletionDate.toggle()"></i>                
+            </div>
+        </div>
+    </div>
+    </form>
+    </ng-template>
+    
+    <ng-template pTemplate="footer">       
+        <button pButton pRipple label="{{'Save' | translate}}"  class="data-button w-80"  (click)="AddNewPattern()"></button>
+        <button pButton pRipple label="{{'Clear' | translate}}"  class="p-button-outlined p-button-info ml-3 w-80 button-outline h-30" (click)="ClearPattern()"></button>
+    </ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="optionalPatternDialog" [style]="{width: '40%'}" header="Add Optional Attributes" [modal]="true" styleClass="p-fluid" [draggable]="false">
+    <ng-template pTemplate="content">
+       
+        <div class="row mb-3" id="add-optional">
+            <div class="col-md-6" [hidden]="!optionalReasonResidualHide">
+                <label>{{'ReasonForResidual' | translate}}</label>
+                <p-dropdown appendTo="body" [(ngModel)]="optionalReasonResidual" placeholder="-Select-" [options]="reasonForResidual" styleClass="optional-reason" ></p-dropdown>
+            </div>
+            <div class="col-md-6"  [hidden]="!optionalCompletionDateHide">
+                <label>{{'ExpectedCompletionDate' | translate}}</label>                
+                <input placeholder="-Select-" pInputText [minDate]="minCompletionDate"  #completiondate="bsDatepicker" placement="left" bsDatepicker [bsConfig]="datePickerConfig" [dateCustomClasses]="dateCustomClasses"  [(ngModel)]="optionalCompletionDate"   class="calendarlabel optional-date" readonly>
+                <i class="fa fa-calendar iconleft" aria-hidden="true" (click)="completiondate.toggle()"></i>   
+            </div>            
+        </div>       
+    </ng-template>
+    
+    <ng-template pTemplate="footer">       
+        <button pButton pRipple label="{{'Save' | translate}}" class="data-button w-80" (click)="AddReasonResidualAndCompDate()"></button>
+        <button pButton pRipple label="{{'Clear' | translate}}" class="p-button-outlined p-button-info ml-3 w-80 button-outline h-30"  (click)="clearOptional()"></button>
+    </ng-template>
+</p-dialog>
+<p-dialog #errorDialog header="{{'ErrorLogData' | translate}}" [draggable]="false" [style]="{width: '70%'}" [(visible)]="errorLogDialog"  [modal]="true">
+    <div class="workprofiler-table">
+    <p-table #errorLogGrid [value]="errorLogs" [rows]="100" [paginator]="true" [paginatorDropdownAppendTo]="errorDialog"
+        [rowHover]="true" currentPageReportTemplate="{{'View' | translate}} {first} - {last} {{'of' | translate}} {totalRecords}" [showCurrentPageReport]="true" [rowsPerPageOptions]="rowsPerPage" [scrollable]="true" scrollHeight="38vh" styleClass="p-datatable-sm p-datatable-gridlines error-width error-log"  [loading]="errorLogloading">
+        <ng-template pTemplate="colgroup" let-columns>
+                <col class="error-width-lg">
+                <col class="error-width-sm">
+                <col class="error-width-sm">
+                <col class="error-width-sm">
+                <col class="error-width-sm">
+                <col class="error-width-sm">
+                <col class="error-width-sm">
+                <col class="error-width-md">
+                <col class="error-width-lg">       
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr class="error-log-headers">
+                <th class="error-width-lg text-center" pSortableColumn="applicationName">{{'ApplicationName' | translate}} <p-sortIcon field="applicationName"></p-sortIcon></th>
+                <th class="error-width-sm text-center" pSortableColumn="causeCode">{{'CauseCode' | translate}}<p-sortIcon field="causeCode"></p-sortIcon></th>
+                <th class="error-width-sm text-center" pSortableColumn="resolutionCode">{{'ResolutionCode' | translate}} <p-sortIcon field="resolutionCode"></p-sortIcon></th>
+                <th class="error-width-sm text-center" pSortableColumn="debtClassification">{{'DebtClassification' | translate}} <p-sortIcon field="debtClassification"></p-sortIcon></th>               
+                <th class="error-width-sm text-center" pSortableColumn="avoidableFlag">{{'AvoidableFlag' | translate}} <p-sortIcon field="avoidableFlag"></p-sortIcon></th>
+                <th class="error-width-sm text-center" pSortableColumn="residualDebt">{{'ResidualDebt' | translate}}<p-sortIcon field="residualDebt"></p-sortIcon></th>
+                <th class="error-width-sm text-center" pSortableColumn="reasonForResidual">{{'ReasonForResidual' | translate}}<p-sortIcon field="reasonForResidual"></p-sortIcon></th>
+                <th class="error-width-md text-center" pSortableColumn="expectedCompletionDate">{{'ExpectedCompletionDate' | translate}}<p-sortIcon field="expectedCompletionDate"></p-sortIcon></th>
+                <th class="error-width-lg text-center" pSortableColumn="remarks">{{'Remarks' | translate}} <p-sortIcon field="remarks"></p-sortIcon></th>
+            </tr>
+            <tr [hidden]="!toggleErrorFilter" class="table-filter">               
+                <th>
+                    <div class="p-inputgroup">                    
+                        <input type="text" [(ngModel)]="errorApplicationName" pInputText (input)="errorLogGrid.filter($event.target.value, 'applicationName', 'startsWith')">   
+                        <span class="p-inputgroup-addon clear-filter" (click)="clearErrorLogFilter('errorApplicationName','applicationName','startsWith')"><i class="pi pi-times"></i></span>      
+                    </div>
+                </th>                
+                <th>              
+                  <div class="p-inputgroup">                    
+                      <input type="text" [(ngModel)]="errorCauseCode" pInputText (input)="errorLogGrid.filter($event.target.value, 'causeCode', 'startsWith')">   
+                      <span class="p-inputgroup-addon clear-filter" (click)="clearErrorLogFilter('errorCauseCode','causeCode','startsWith')"><i class="pi pi-times"></i></span>      
+                  </div>
+                </th>
+                <th>
+                  <div class="p-inputgroup">                    
+                      <input type="text" [(ngModel)]="errorResolutionCode" pInputText (input)="errorLogGrid.filter($event.target.value, 'resolutionCode', 'startsWith')">   
+                      <span class="p-inputgroup-addon clear-filter" (click)="clearErrorLogFilter('errorResolutionCode','resolutionCode','startsWith')"><i class="pi pi-times"></i></span>      
+                  </div>
+                </th>
+                <th>
+                  <div class="p-inputgroup">                    
+                      <input type="text" [(ngModel)]="errorDebtCategory" pInputText (input)="errorLogGrid.filter($event.target.value, 'debtClassification', 'startsWith')">   
+                      <span class="p-inputgroup-addon clear-filter" (click)="clearErrorLogFilter('errorDebtCategory','debtClassification','startsWith')"><i class="pi pi-times"></i></span>      
+                  </div>
+                </th>
+                <th>
+                  <div class="p-inputgroup">                    
+                      <input type="text" [(ngModel)]="errorAvoidableFlag" pInputText (input)="errorLogGrid.filter($event.target.value, 'avoidableFlag', 'startsWith')">   
+                      <span class="p-inputgroup-addon clear-filter" (click)="clearErrorLogFilter('errorAvoidableFlag','avoidableFlag','startsWith')"><i class="pi pi-times"></i></span>      
+                  </div>
+                </th>                
+                <th>
+                  <div class="p-inputgroup">                    
+                      <input type="text" [(ngModel)]="errorResidualDebt"  pInputText (input)="errorLogGrid.filter($event.target.value, 'residualDebt', 'startsWith')">   
+                      <span class="p-inputgroup-addon clear-filter" (click)="clearErrorLogFilter('errorResidualDebt','residualDebt','startsWith')"><i class="pi pi-times"></i></span>      
+                  </div>
+                </th>
+                <th>
+                    <div class="p-inputgroup">                    
+                        <input type="text" [(ngModel)]="errorReasonForResidual" pInputText (input)="errorLogGrid.filter($event.target.value, 'reasonForResidual', 'startsWith')">   
+                        <span class="p-inputgroup-addon clear-filter" (click)="clearErrorLogFilter('errorReasonForResidual','reasonForResidual','startsWith')"><i class="pi pi-times"></i></span>      
+                    </div>
+                  </th>
+                <th>
+                    <div class="p-inputgroup">                    
+                        <input type="text" [(ngModel)]="errorExpectedCompletionDate"  pInputText (input)="errorLogGrid.filter($event.target.value, 'expectedCompletionDate', 'startsWith')">   
+                        <span class="p-inputgroup-addon clear-filter" (click)="clearErrorLogFilter('errorExpectedCompletionDate','expectedCompletionDate','startsWith')"><i class="pi pi-times"></i></span>      
+                    </div>
+                  </th>
+                  <th>
+                    <div class="p-inputgroup">                    
+                        <input type="text" [(ngModel)]="errorRemarks"  pInputText (input)="errorLogGrid.filter($event.target.value, 'remarks', 'contains')">   
+                        <span class="p-inputgroup-addon clear-filter" (click)="clearErrorLogFilter('errorRemarks','remarks','contains')"><i class="pi pi-times"></i></span>      
+                    </div>
+                  </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-error>
+            <tr>
+                <td class="error-width-lg text-center" title="{{error.applicationName}}">{{error.applicationName}}</td>
+                <td class="error-width-sm text-center" title="{{error.causeCode}}">{{error.causeCode}}</td>
+                <td class="error-width-sm text-center" title="{{error.resolutionCode}}">{{error.resolutionCode}}</td>
+                <td class="error-width-sm text-center" title="{{error.debtClassification}}">{{error.debtClassification}}</td>
+                <td class="error-width-sm text-center" title="{{error.avoidableFlag}}">{{error.avoidableFlag}}</td>
+                <td class="error-width-sm text-center" title="{{error.residualDebt}}">{{error.residualDebt}}</td>
+                <td class="error-width-sm text-center" title="{{error.reasonForResidual}}">{{error.reasonForResidual}}</td>
+                <td class="error-width-md text-center" title="{{error.expectedCompletionDate}}">{{error.expectedCompletionDate}}</td>
+                <td class="error-width-lg text-center" title="{{error.remarks}}">{{error.remarks}}</td>            
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft" let-state>
+            <button class="w-80 h-30" type="button" pButton label="{{'Clear' | translate}}" (click)="clearAllErrorLogFilters()"></button> &nbsp;
+            <button class="h-30" type="button" pButton [icon]="toggleErroricon" label="{{'ToggleSearch' | translate}}" (click)="toggleErrorLog($event)"></button>
+        </ng-template>        
+          <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="7" style="text-align: center;">{{'NoMatchingRecordsFound' | translate}}</td>
+            </tr>
+        </ng-template>
+    </p-table>   
+</div>       
+</p-dialog>
+</div>
+

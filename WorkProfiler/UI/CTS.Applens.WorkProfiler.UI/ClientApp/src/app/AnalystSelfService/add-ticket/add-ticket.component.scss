@@ -1,0 +1,101 @@
+.modal-content {
+    width: 680px !important;
+    margin-top: 20% !important;
+    margin-left: -13% !important;
+    height: auto !important;
+}
+#btnSaveAddTicket {
+    width: 77px;
+    height: 30px;
+    border-radius: 4px;
+    padding: 2px;
+    background: #0033A0;
+    font-size: 12px;
+    border: 1px #C8C9CB;
+    color: white;
+    font-family: Proxima Nova, Regular,sans-serif !important;
+    cursor: pointer;
+}
+#btnCloseAddTicket {
+    height: 30px;
+    width: 77px;
+    border: 1px solid #0033A0;
+    background: white;
+    font-size: 12px;
+    border-radius: 4px;
+    color: #0033A0;
+    font-family: Proxima Nova, Regular,sans-serif !important;
+    cursor: pointer;
+    margin-left: -21%;
+}
+.inlinebox{
+    display: -webkit-inline-box;
+}
+.radiotxt {
+    width: 68px !important;
+    height: 14px !important;
+    font-size: 12px !important;
+    // font-family: Proxima Nova, Regular !important;
+    font-weight: 100 !important;
+}
+#mandatory {
+    color: red;
+}
+.margintop{
+    margin-top: 1%;
+}
+.addTicketcontainer{
+    border: 1px solid #0033a0;
+}
+.top1margin{
+    margin-top: 1%;
+    height: auto;
+    border-color:blue($color: #000000)
+}
+.txtaddTicket{
+    width: 75%;
+    height: 25px;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+}
+.txtaddTicketdesc{
+    width: 89%;
+    height: 40px;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+}
+.txtaddTicket :hover{
+    border-color: lightcoral;
+}
+.lbladdTickets{
+    width: 75%;
+    font-weight: 400;
+    font-size: 11px;
+}
+:disabled :hover{
+    pointer-events: visiblePainted;
+}
+.is-invalid{
+    border-color: red;
+}
+.hyperLink{
+    margin-left: -37px;
+}
+.assgrpdrpdwn{
+    width: 86%;
+    margin-left: 7%
+}
+.opendatedisable {
+    pointer-events: none;
+}
+// ::ng-deep div.ui-datepicker .ui-timepicker{
+//     padding:initial;
+//     font-size:smaller;
+//   }
+
+:disabled{
+    opacity: 0.5;
+    cursor: not-allowed !important;
+}
+
+  

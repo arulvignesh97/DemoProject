@@ -1,0 +1,216 @@
+.lblheadername{
+  width: 75%;
+  font-weight: 400;
+  font-size: 11px;
+}
+.p-dialog .p-dialog-content {
+  height:500px !important
+}
+select
+{
+    width: 100%;
+    font-size: 11px !important;
+}
+div
+{
+    user-select: none;
+}
+.tFooterBtn:hover
+{
+  background-color: lightgrey !important;
+}
+.tableFooterPagination > ul > li
+{
+    background-color: transparent;
+}
+input {
+    font-size: 0.65rem;
+}
+
+.validation{
+  border-color: #dc3545 !important;
+}
+
+.clsErrWarning {
+  display: inline-grid;
+  margin-top: 18px !important;
+  height: fit-content;
+}
+th
+{
+  background-color: #0031A0;
+  padding: 2px;
+}
+.list-group-item
+{
+  background-color: transparent;
+  padding: 0;
+}
+li > button
+{
+  background-color: lightgrey;
+  color: red;
+}
+.filter-Buttons > button
+{
+  background-color: #2196F3 !important;border: #2196F3 !important;color: white;
+}
+.save-Buttons
+{
+  background: #0031A0 !important;color: white !important;
+}
+
+
+
+
+/*------------------------------------- */
+.p-button, .p-inputtext {
+  margin-right: 2px;
+  margin-left: 2px;
+}
+.p-toolbar {
+  padding: 0.5rem !important;
+}
+#search-filter .form-group {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
+#search-filter .form-group label {
+  margin-right: 30px !important;
+  margin-bottom: 4px !important;
+}
+.data-dropdown {
+  padding: 0.2rem;
+}
+#data-dictionary .optionafield-button{
+  font-size: 12px !important;
+  padding: 0.28rem !important;
+  font-weight: bold;
+  width: 100%;
+}
+.search-filter-multi {
+  width:100%;
+}
+.search-filter-label {
+  font-size: 14px;
+}
+.pattern-mandatory {
+color:#ff0000;
+font-weight: bold;
+}
+.clear-filter {
+  padding: 0 !important;    
+  min-width: 1.357rem !important;
+  color: red;
+  font-weight: bold;
+  cursor: pointer;
+  pointer-events: auto;
+  margin-left: -2px;
+}
+.clear-filter i {
+  font-size: 12px !important;
+}
+
+.data-toast {
+  font-size: 14px !important;
+}
+.clsBgGreen {
+  background-color: green !important;
+}
+
+.clsBgRed {
+  background-color: red !important;
+}
+
+.clsBgGrey {
+  background-color: grey !important;
+}
+
+.error-width-lg {
+  width: 150px;    
+}
+.error-width-sm {
+  width: 173px;    
+}
+.error-width-md {
+  width: 200px;    
+}
+.data-header {
+  padding: 0.5rem 0 0.5rem 0 !important;
+  text-align: center !important;
+}
+.app-name {
+  width: 15% !important;
+}
+.search-button {
+  margin-left: 2% !important;
+}
+.data-button {
+  background: #0031A0;
+  height: 32.5px;
+}
+.w-80 {
+  width: 90px !important;
+}
+.w-10 {
+width: 10% !important;
+}
+.h-80 {
+  height: 80vh !important;
+}
+.search-col {
+  max-width: 26% !important;
+}
+.dictionary-accordion {
+  padding: 2px 0px 0px 0px;
+}
+.calendarlabel {   
+  height: 25px;   
+  font-weight: normal;
+  font-size: 12px;
+  padding: 14px;
+  padding-left: 5px;
+  background-color: transparent;
+}
+.iconleft {
+  margin-left: -14%;
+  font-size: 14px;
+}
+.data-enable {
+    height: 60vh;
+}
+.signOff-date {
+  height: unset !important;
+}
+.signoff-cal-icon {
+  left: unset !important;
+}
+.ConflictPattern {
+  animation: DDthresholdglow 1s infinite alternate;
+}
+.button-outline {
+  color: #0031A0 !important;
+}
+
+@keyframes DDthresholdglow {
+  from {
+      box-shadow: 0 0 10px -10px #4cabea;
+  }
+
+  to {
+      box-shadow: 0 0 5px 5px #4cabea;
+  }
+}
+
+@media screen and (min-width: 1140px) and (max-width: 1340px) {
+  #search-filter .form-group label {
+      margin-right: 70px !important;
+      margin-bottom: 4px !important;
+  }
+}
+
+@media screen and  (max-width: 1335px) {
+  .h-80 {
+     height: 85vh !important
+  }
+}

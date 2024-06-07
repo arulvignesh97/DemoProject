@@ -1,0 +1,431 @@
+<form name="ticketAttributes" class= "ticketAttributesFG" [formGroup]="ticketAttributesFG">
+  <div class="ClsAttributeBody">
+    <ng-marquee class="ClsMarquee" speed="drowsy" *ngIf="isPartialMarquee === true && this.ticketdetails.isCognizant == '1'">
+      {{'ParticallyAutomated' | translate}}
+      &nbsp;&nbsp;&nbsp;
+      {{'TicketIsImplementedViaBot' | translate}}
+    </ng-marquee>
+    <ng-marquee class="ClsMarquee" speed="drowsy" *ngIf="isTickAttrMarquee === true && this.ticketdetails.isCognizant == '1'">
+      {{'TicketIsImplementedViaBot' | translate}}
+    </ng-marquee>
+    <div class="col-md-12 ClsAttrWarning">
+      <div class="row text-align alert alert-success" *ngIf="isSuccess">{{'Attributevaluesupdatedsuccessfully' | translate}}</div>
+      <div class="row text-align alert alert-danger" *ngIf="isTicketAttrMandateMsg === true">
+        <label class="clsWarnMsg">{{MandateMessage}}</label>
+        <label class="clsWarnMsg" *ngIf="mndteWarningShow && !isAllfieldsCaptured">{{'Pleasefillthemandatoryfield' | translate}}</label>
+        <label class="clsWarnMsg" *ngIf="mndteWarningBusinessShow && !isAllfieldsCaptured">{{'Pleasefillthemandatoryfield' | translate}}</label>
+        <label class="clsWarnMsg" *ngIf="isCompletedOpnDteErr">{{'CompletedDateTimeStampshouldbegreaterthanorequaltoOpenDateTime' | translate}}</label>
+        <label class="clsWarnMsg" *ngIf="isCompletedReopnDteErr">{{'CompletedDateTimestampshouldbegreaterthanReOpenDateandCurrentDate' | translate}}</label>
+        <label class="clsWarnMsg" *ngIf="isClosedCompleteDteErr">{{'ClosedDateTimestampshouldbegreaterthanorequaltoCompletedDateTime' | translate}}</label>
+        <label class="clsWarnMsg" *ngIf="isClosedReopnDteErr">{{'ClosedDateshouldbegreaterthanReOpenDateandCurrentDate' | translate}}</label>
+        <label class="clsWarnMsg" *ngIf="isClosedOpenDteErr">{{'ClosedDateTimeStampshouldbebetweenOpenDateandCurrentDate' | translate}}</label>
+        <label class="clsWarnMsg" *ngIf="isActualEndDteErr">{{'ActualEndDateTimestampshouldbegreaterthanorequaltoOpenDateTime' | translate}}</label>
+        <label class="clsWarnMsg" *ngIf="isActualEndDteClsdErr">{{'ActualEndDateTimeStampshouldbegreaterthanorequaltoActualStartDateTime' | translate}}</label>
+        <label class="clsWarnMsg" *ngIf="isActualEndClsDteErr">{{'ActualEndDateTimeStampshouldbelessthanorequaltoClosedDateTime' | translate}}</label>
+        <label class="clsWarnMsg" *ngIf="isReopenDteErr">{{'ReopenDateTimestampshouldbegreaterthanorequaltoOpenDate' | translate}}</label>
+        <label class="clsWarnMsg" *ngIf="isPlannedEndDteErr">{{'PlannedEndDateTimestampshouldbegreaterthanPlannedStartDate' | translate}}</label>
+        <label class="clsWarnMsg" *ngIf="isDebtErr">{{'PleasemakesurealltheDebtfieldsfortheticketiscaptured' | translate}}</label>
+        <label class="clsWarnMsg" *ngIf="isDescriptionErr">{{'PleaseentervalidTicketDescription' | translate}}</label>
+        <label class="clsWarnMsg" *ngIf="isAllfieldsCaptured">{{'Pleasemakesureallthemandatedfieldsfortheticketiscaptured' | translate}}</label>
+        <label class="clsWarnMsg" *ngIf="invalidAssignedto">{{mandteAssignedto}}</label>
+        <label class="clsWarnMsg" *ngIf="isTranslationFailure">{{'TranslationFailureMessage' | translate}}}</label>
+        <label class="clsWarnMsg" *ngIf="isChangesDone">{{'Nochangeshasbeenmade' | translate}}</label>
+        <label class="clsWarnMsg" *ngIf="showEncryptMessage">{{'Encryptionfailureduetotechnicalissue' | translate}}</label>
+        <label class="clsWarnMsg" *ngIf="">{{'GracePeriodMessage' | translate}}</label>
+      </div>
+    </div>
+    <p-accordion expandIcon="pi pi-plus-circle" collapseIcon="pi pi-minus-circle">
+      <p-accordionTab [selected]="expandTickAttr === true">
+        <p-header>
+          <span class="ClsAccordion">{{'TicketAttribute' | translate}}</span>
+        </p-header>
+        <div class="row">
+          <div class="col-md-3">
+            <label class="LblAttr">{{'ProjectName' | translate}}<span class="Mandatory">*</span></label>
+            <input type="text" class="TxtAttr" formControlName="projectName" [attr.disabled]="true">
+          </div>
+          <div class="col-md-3" *ngIf="popupAttributeModels[0].SupportTypeId == 2">
+            <label class="LblAttr">{{'TowerName' | translate}}<span class="Mandatory">*</span></label>
+            <input type="text" class="TxtAttr" formControlName="towerName" [attr.disabled]="true">
+          </div>
+          <div class="col-md-3" *ngIf="popupAttributeModels[0].SupportTypeId == 1">
+            <label class="LblAttr">{{'ApplicationName' | translate}}<span class="Mandatory">*</span></label>
+            <input type="text" class="TxtAttr" formControlName="appName" [attr.disabled]="true" *ngIf="displayAppTxtbox === true">
+            <p-dropdown [filter]="true" [options]="applicationList" placeholder="--Select--" [autoDisplayFirst]="false" *ngIf="displayAppDropdown === true"
+              formControlName = "appId" resetFilterOnHide="true" maxSelectedLabels="0"
+              (onChange)="onDropDownChange($event.value,'appId')" appendTo= "body">
+            </p-dropdown>
+          </div>
+          <div class="col-md-3">
+            <label class="LblAttr">{{'Ticket/Task(LineItem)' | translate}}<span class="Mandatory">*</span></label>
+            <input type="text" class="TxtAttr" formControlName="ticketTask" [attr.disabled]="true">
+          </div>
+          <div class="col-md-3 attrDatePicker" id = "AttrTicketOpenDate">
+            <label class="LblAttr">{{'TicketOpenDate' | translate}}<span class="Mandatory">*</span></label>
+            <p-calendar formControlName="ticketOpenDte"
+            [monthNavigator]="true"
+            [yearNavigator]="true" yearRange="{{startingyear}}:{{currentyear}}"
+              showTime="true" [showSeconds]="true" hourFormat="12" dateFormat="d M yy">
+            </p-calendar>
+          </div>
+          <div class="col-md-3">
+            <label class="LblAttr">{{'TicketDescription' | translate}}<span class="Mandatory">#</span></label>
+            <input type="text" class="TxtAttr" formControlName="description" [ngClass]="{fieldMandate: isDescriptionErr}"
+                   [attr.disabled]="disableDescription == true ? true : null" (blur)="causeCodeOnChange(2)"
+                   title="{{descriptionTitle}}">
+          </div>
+          <div class="col-md-3">
+            <label class="LblAttr">{{'Priority' | translate}}<span class="Mandatory">*</span></label>
+            <p-dropdown [filter]="true" [options]="priorityList" placeholder="--Select--" [autoDisplayFirst]="false" name="priorityId"
+            formControlName = "priorityId" resetFilterOnHide="true" maxSelectedLabels="0"
+            (onChange)="onDropDownChange($event.value,'priorityId')" appendTo= "body">
+            </p-dropdown>
+          </div>
+          <div class="col-md-3">
+            <label class="LblAttr">{{'TicketType' | translate}}<span class="Mandatory">*</span></label>
+            <input type="text" class="TxtAttr" formControlName="ticketType" [attr.disabled]="true"
+            (blur)="newAlgoCheck('TicketTypeMapID')">
+          </div>
+        </div>
+      </p-accordionTab>
+    </p-accordion>
+    <p-accordion expandIcon="pi pi-plus-circle" collapseIcon="pi pi-minus-circle" *ngIf="this.displayDebtAccordion === true">
+      <p-accordionTab [selected]="expandDebtAttr === true">
+        <p-header>
+          <span class="ClsAccordion">{{'DebtAttributes' | translate}}</span>
+        </p-header>
+        <div class="row">
+          <div class="col-md-3" *ngIf="this.attrList[8].isVisible">
+            <label class="LblAttr">{{'CauseCode' | translate}} &nbsp;<em *ngIf="displayCCEdit==true" class="pi pi-user-edit ClsAttrEditIcon" title="Click to modify Debt information" (click)="changeDebtClassificationMode()"></em></label>
+            <p-dropdown [filter]="true" [options]="causeCodeList" placeholder="--Select--" [autoDisplayFirst]="false" name="causeCodeId" id="causeCodeId"
+              formControlName = "causeCodeId" resetFilterOnHide="true" maxSelectedLabels="1"
+              (onChange)="onDropDownChange($event.value,'causeCodeId')" [ngClass]="{fieldMandate: isDebtMandate}"
+              title="{{gracePeriodTitle}}" appendTo="body">
+              <ng-template let-item pTemplate="item">
+                <div [style.font-weight]= "(item.attrValue === 'True') ? 'Bold' : 'Normal'" >{{item.label}}</div>
+              </ng-template>
+              <ng-template let-item pTemplate="selectedItem">{{item.label}}</ng-template>
+            </p-dropdown>
+          </div>
+          <div class="col-md-3" *ngIf="this.attrList[9].isVisible">
+            <label class="LblAttr">{{'ResolutionCode' | translate}}</label>
+            <p-dropdown [filter]="true" [options]="resolutionList" placeholder="--Select--" [autoDisplayFirst]="false"
+              formControlName = "resolutionCodeId" resetFilterOnHide="true" maxSelectedLabels="0"  id="resolutionCodeId"
+              (onChange)="onDropDownChange($event.value,'resolutionCodeId')" [ngClass]="{fieldMandate: isDebtMandate}"
+              title="{{gracePeriodTitle}}" appendTo="body">
+              <ng-template let-item pTemplate="item">
+                <div [style.font-weight]= "(item.attrValue === 'True') ? 'Bold' : 'Normal'" >{{item.label}}</div>
+              </ng-template>
+              <ng-template let-item pTemplate="selectedItem">{{item.label}}</ng-template>
+            </p-dropdown>
+          </div>
+          <div class="col-md-3" *ngIf="this.attrList[10].isVisible">
+            <label class="LblAttr">{{'DebtClassification' | translate}} &nbsp;<em *ngIf="displayDCEdit==true" class="pi pi-user-edit ClsAttrEditIcon" title="Click to modify Debt information" (click)="changeDebtClassificationMode()"></em></label>
+            <p-dropdown [filter]="true" [options]="debtClassificationList" placeholder="--Select--" [autoDisplayFirst]="false" id="debtClassificationId"
+              formControlName = "debtClassificationId" resetFilterOnHide="true" maxSelectedLabels="0"  [ngClass]="{fieldMandate: isDebtMandate}"
+              (onChange)="onDropDownChange($event.value,'debtClassificationId')" title="{{gracePeriodTitle}}" appendTo="body">
+            </p-dropdown>
+          </div>
+          <div class="col-md-3" *ngIf="this.attrList[11].isVisible">
+            <label class="LblAttr">{{'AvoidableFlag' | translate}}</label>
+            <div class="row flex">
+              <div class="col-md-2 col-md-10 maxRadioWidth" *ngFor="let data of avoidableFlgList" title="{{gracePeriodTitle}}" [ngClass]="{fieldMandate: isDebtMandate && this.ticketAttributesFG.controls['avoidableFlgId'].invalid === true}">
+                <span><input type="radio" name="avoidableFlgId" formControlName="avoidableFlgId" value="{{data.Id}}" /></span>
+                <label class="LblAttr">&nbsp;{{data.Value}} </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3" *ngIf="this.attrList[12].isVisible">
+            <label class="LblAttr">{{'ResidualDebt' | translate}}</label>
+            <div class="row flex">
+              <div class="col-md-2 col-md-10 maxRadioWidth" *ngFor="let data of residualDebtList" title="{{gracePeriodTitle}}" [ngClass]="{fieldMandate: isDebtMandate  && this.ticketAttributesFG.controls['residualFlgId'].invalid === true}">
+                <span><input type="radio" name="residualFlgId" formControlName="residualFlgId" value="{{data.Id}}" /></span>
+                <label class="LblAttr">&nbsp;{{data.Value}} </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-accordionTab>
+    </p-accordion>
+    <p-accordion expandIcon="pi pi-plus-circle" collapseIcon="pi pi-minus-circle" *ngIf="this.displayMandteAccordion === true">
+      <p-accordionTab [selected]="expandMandteAttr === true">
+        <p-header>
+          <span class="ClsAccordion">{{'MandatoryAttributes' | translate}}</span>
+        </p-header>
+        <div class="row">
+          <div class="col-md-3" *ngIf="this.attrList[13].isVisible">
+            <label class="LblAttr">{{'Severity' | translate}}</label>
+            <p-dropdown [filter]="true" [options]="severityList" placeholder="--Select--" [autoDisplayFirst]="false"
+              formControlName = "severityId" resetFilterOnHide="true" maxSelectedLabels="0" [ngClass]="{fieldMandate: isFieldMandate}"
+              (onChange)="onDropDownChange($event.value,'severityId')" appendTo="body">
+            </p-dropdown>
+          </div>
+          <div class="col-md-3" *ngIf="this.attrList[14].isVisible">
+            <label class="LblAttr">{{'AssignedTo' | translate}}</label>
+            <input type="text" class="TxtAttr" formControlName="assignedTo" [attr.disabled]="disableAssignedTo === true" *ngIf="disableAssignedTo === true" [ngClass]="{fieldMandate: isFieldMandate}">
+            <p-autoComplete formControlName="assignedTo" [suggestions]="assigneeList" field="assigneName"
+                            (completeMethod)="searchAssignee($event)" [ngClass]="{fieldMandate: invalidAssignedto}" *ngIf="disableAssignedTo === false">
+            </p-autoComplete>
+          </div>
+          <div class="col-md-3" *ngIf="this.attrList[15].isVisible">
+            <label class="LblAttr">{{'TicketSource' | translate}}</label>
+            <p-dropdown [filter]="true" [options]="ticketSourceList" placeholder="--Select--" [autoDisplayFirst]="false"
+               formControlName = "ticketSourceId"  resetFilterOnHide="true" maxSelectedLabels="0"  [ngClass]="{fieldMandate: isFieldMandate}"
+               (onChange)="onDropDownChange($event.value,'ticketSourceId')" appendTo="body">
+            </p-dropdown>
+          </div>
+          <div class="col-md-3" *ngIf="this.attrList[16].isVisible">
+            <label class="LblAttr">{{'KEDBPath' | translate}}</label>
+            <input type="text" class="TxtAttr" formControlName="kEDBPath"  [ngClass]="{fieldMandate: isFieldMandate}">
+          </div>
+          <div class="col-md-3" *ngIf="this.attrList[17].isVisible">
+            <label class="LblAttr">{{'FlexField(1)' | translate}}</label>
+            <input type="text" class="TxtAttr" placeholder=" Max of 100 characters" maxlength="100" formControlName="flexField1"
+                   [ngClass]="{fieldMandate: isFieldMandate}" title="{{flex1Title}}"
+                   (blur)="newAlgoCheck('FlexField1')">
+          </div>
+          <div class="col-md-3" *ngIf="this.attrList[18].isVisible">
+            <label class="LblAttr">{{'FlexField(2)' | translate}}</label>
+            <input type="text" class="TxtAttr" placeholder=" Max of 100 characters" maxlength="100" formControlName="flexField2"
+                   [ngClass]="{fieldMandate: isFieldMandate}" title="{{flex2Title}}"
+                   (blur)="newAlgoCheck('FlexField2')">
+          </div>
+          <div class="col-md-3" *ngIf="this.attrList[19].isVisible">
+            <label class="LblAttr">{{'FlexField(3)' | translate}}</label>
+            <input type="text" class="TxtAttr" placeholder=" Max of 100 characters" maxlength="100" formControlName="flexField3"
+                   [ngClass]="{fieldMandate: isFieldMandate}" title="{{flex3Title}}"
+                   (blur)="newAlgoCheck('FlexField3')">
+          </div>
+          <div class="col-md-3" *ngIf="this.attrList[20].isVisible">
+            <label class="LblAttr">{{'FlexField(4)' | translate}}</label>
+            <input type="text" class="TxtAttr" placeholder=" Max of 100 characters" maxlength="100" formControlName="flexField4"
+                   [ngClass]="{fieldMandate: isFieldMandate}" title="{{flex4Title}}"
+                   (blur)="newAlgoCheck('FlexField4')">
+          </div>
+          <div class="col-md-3" *ngIf="this.attrList[22].isVisible">
+            <label class="LblAttr">{{'EstimatedWorkSize' | translate}}</label>
+            <input type="number" class="TxtAttr" formControlName="estimatedWorkSize"  [ngClass]="{fieldMandate: isFieldMandate}" (keypress)="onKeyPress($event,'estimatedWorkSize')">
+          </div>
+          <div class="col-md-3" *ngIf="this.attrList[23].isVisible">
+            <label class="LblAttr">{{'ActualEffort' | translate}}</label>
+            <input type="text" class="TxtAttr" formControlName="actualEffort" [attr.disabled]="true"  [ngClass]="{fieldMandate: isFieldMandate}">
+          </div>
+          <div class="col-md-3 attrDatePicker" id="AttrTicCreatedDate" *ngIf="this.attrList[24].isVisible">
+            <label class="LblAttr">{{'TicketCreateDate' | translate}}</label>
+            <p-calendar formControlName="ticketCreatedDte" (onSelect)="onDateChange(oldVal,$event,'ticketCreatedDte')"
+                        showTime="true" [showSeconds]="true" hourFormat="12" dateFormat="d M yy"
+                        [monthNavigator]="true"
+                        [yearNavigator]="true" yearRange="{{startingyear}}:{{currentyear}}"
+                        [ngClass]="{fieldMandate: isFieldMandate,borderred:isTickCreatedDteErr}" [maxDate]="maxDate" 
+                        appendTo="body">
+            </p-calendar>
+          </div>
+          <div class="col-md-3 attrDatePicker" id="AttrActualStartDate" *ngIf="this.attrList[25].isVisible">
+            <label class="LblAttr">{{'ActualStartDateTime' | translate}}</label>
+            <p-calendar formControlName="actualStartDte" (onSelect)="onDateChange(actualOldStartDateTime,$event,'actualStartDte')"
+                        showTime="true" [showSeconds]="true" hourFormat="12" dateFormat="d M yy"
+                        [monthNavigator]="true"
+                        [yearNavigator]="true" yearRange="{{startingyear}}:{{currentyear}}"
+                        [ngClass]="{fieldMandate: isFieldMandate,borderred:isActualStrtDteErr}" [maxDate]="actualStartMaxDate"
+                        appendTo="body">
+            </p-calendar>
+          </div>
+          <div class="col-md-3 attrDatePicker" id="AttrActualEndDate" *ngIf="this.attrList[26].isVisible">
+            <label class="LblAttr">{{'ActualEndDateTime' | translate}}</label>
+            <p-calendar formControlName="actualEndDte" (onSelect)="onDateChange(actualOldEndDateTime,$event,'actualEndDte')"
+                        showTime="true" [showSeconds]="true" hourFormat="12" dateFormat="d M yy"
+                        [monthNavigator]="true"
+                        [yearNavigator]="true" yearRange="{{startingyear}}:{{currentyear}}"
+                        [ngClass]="{fieldMandate: isFieldMandate,borderred:isActualDteErr}" [maxDate]="actualEndMaxDate"
+                        appendTo="body"> 
+            </p-calendar>
+          </div>
+          <div class="col-md-3 attrDatePicker"  id="AttrClosedDate" *ngIf="this.attrList[27].isVisible">
+            <label class="LblAttr">{{'ClosedDate' | translate}}</label>
+            <p-calendar formControlName="closedDte" (onSelect)="onDateChange(closedOldDte,$event,'closedDte')"
+                        showTime="true" [showSeconds]="true" hourFormat="12" dateFormat="d M yy"
+                        [monthNavigator]="true"
+                        [yearNavigator]="true" yearRange="{{startingyear}}:{{currentyear}}"
+                        [ngClass]="{fieldMandate: isFieldMandate,borderred:isClosedDteErr}"
+                        title="{{closedDteTitle}}" [maxDate]="closedMaxDate" 
+                        appendTo="body">
+            </p-calendar>
+          </div>
+          <div class="col-md-3" *ngIf="this.attrList[29].isVisible">
+            <label class="LblAttr">{{'ResolutionRemarks' | translate}}</label>
+            <input type="text" class="TxtAttr" formControlName="resolutionMethodName" (blur)="causeCodeOnChange(2)" [attr.disabled]="disableResolnRemrks == true ? true : null"
+                   [ngClass]="{fieldMandate: isFieldMandate}" (keypress)="onKeyUp($event,'resolutionMethodName')">
+          </div>
+          <div class="col-md-3" *ngIf="this.attrList[31].isVisible">
+            <label class="LblAttr">{{'RCAID' | translate}}</label>
+            <input type="text" class="TxtAttr" formControlName="rcaId"  [ngClass]="{fieldMandate: isFieldMandate}">
+          </div>
+          <div class="col-md-3" *ngIf="this.attrList[32].isVisible">
+            <label class="LblAttr">{{'MetResponseSLA(Y/N)' | translate}}</label>
+            <div class="row flex">
+              <div class="col-md-2 col-md-10 maxRadioWidth" *ngFor="let data of radioBtnValList" [ngClass]="{fieldMandate: isFieldMandate && this.ticketAttributesFG.controls['metResFlgId'].invalid === true}">
+                <span><input type="radio" name="" formControlName="metResFlgId" value="{{data.Id}}" /></span>
+                <label class="LblAttr">&nbsp;{{data.Value}} </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3" *ngIf="this.attrList[33].isVisible">
+            <label class="LblAttr">{{'MetResolution(Y/N)' | translate}}</label>
+            <div class="row flex">
+              <div class="col-md-2 col-md-10 maxRadioWidth" *ngFor="let data of radioBtnValList" [ngClass]="{fieldMandate: isFieldMandate && this.ticketAttributesFG.controls['metResolnFlgId'].invalid === true}">
+                <span><input type="radio" name="" formControlName="metResolnFlgId" value="{{data.Id}}"/></span>
+                <label class="LblAttr">&nbsp;{{data.Value}} </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 attrDatePicker"  id="AttrOpenDate" *ngIf="this.attrList[34].isVisible">
+            <label class="LblAttr">{{'OpenDateTime' | translate}}</label>
+            <p-calendar formControlName="openDteTime" (onSelect)="onDateChange(openOldDateTime,$event,'openDteTime')" [maxDate]="maxDate"
+                        showTime="true" [showSeconds]="true" hourFormat="12" dateFormat="d M yy"
+                        [monthNavigator]="true"
+                        [yearNavigator]="true" yearRange="{{startingyear}}:{{currentyear}}"
+                        [ngClass]="{fieldMandate: isFieldMandate,borderred:isOpenDteErr}"
+                        appendTo="body">
+            </p-calendar>
+          </div>
+          <div class="col-md-3 attrDatePicker"  id="AttrCompletedDate" *ngIf="this.attrList[35].isVisible">
+            <label class="LblAttr">{{'CompletedDateTime' | translate}}</label>
+            <p-calendar formControlName="completedDte" (onSelect)="onDateChange(completedOldDateTime,$event,'completedDte')"
+                        showTime="true" [showSeconds]="true" hourFormat="12" dateFormat="d M yy"
+                        [monthNavigator]="true"
+                        [yearNavigator]="true" yearRange="{{startingyear}}:{{currentyear}}"
+                        [ngClass]="{fieldMandate: isFieldMandate,borderred:isCompletedDteErr}"
+                        title="{{completedDteTitle}}" [maxDate]="complMaxDate"
+                        appendTo="body">
+            </p-calendar>
+          </div>
+          <div class="col-md-3 attrDatePicker"  id="AttrReopenDate" *ngIf="this.attrList[36].isVisible">
+            <label class="LblAttr">{{'ReopenDateTime' | translate}}</label>
+            <p-calendar formControlName="reopenDte" (onSelect)="onDateChange(reopenOldDateTime,$event,'reopenDte')"
+                        showTime="true" [showSeconds]="true" hourFormat="12" dateFormat="d M yy"
+                        [monthNavigator]="true"
+                        [yearNavigator]="true" yearRange="{{startingyear}}:{{currentyear}}"
+                        [maxDate]="reopenMaxDate"
+                        [ngClass]="{fieldMandate: isFieldMandate,borderred:isReopenDteErr}"
+                        appendTo="body">
+            </p-calendar>
+          </div>
+          <div class="col-md-3 attrDatePicker" id ="AttrPlannedStartDate" *ngIf="this.attrList[37].isVisible">
+            <label class="LblAttr">{{'PlannedStartDate' | translate}}</label>
+            <p-calendar formControlName="plannedStrtDte" (onSelect)="onDateChange(plannedOldStartDate,$event,'plannedStrtDte')"
+                        showTime="true" [showSeconds]="true" hourFormat="12" dateFormat="d M yy" 
+                        [monthNavigator]="true"
+                        [yearNavigator]="true" yearRange="{{startingyear}}:{{currentyear}}"
+                        [maxDate]="pStrtMaxDate"
+                        [ngClass]="{fieldMandate: isFieldMandate,borderred:isPlannedStrtDteErr}"
+                        appendTo="body">
+            </p-calendar>
+          </div>
+          <div class="col-md-3" *ngIf="this.attrList[38].isVisible">
+            <label class="LblAttr">{{'Comments' | translate}}</label>
+            <input type="text" class="TxtAttr" formControlName="comments" [ngClass]="{fieldMandate: isFieldMandate}" 
+            (blur)="newAlgoCheck('Comments')"/>
+          </div>
+          <div class="col-md-3" *ngIf="this.attrList[39].isVisible">
+            <label class="LblAttr"> {{'PlannedEffort' | translate}}</label>
+            <input type="number" class="TxtAttr" formControlName="plannedEffort" maxlength="18" [ngClass]="{fieldMandate: isFieldMandate}" (keypress)="onKeyPress($event,'plannedEffort')" />
+          </div>
+          <div class="col-md-3 attrDatePicker" id="AttrPlannedEndDate" *ngIf="this.attrList[40].isVisible">
+            <label class="LblAttr"> {{'PlannedEndDate' | translate}} </label>
+            <p-calendar formControlName="plannedEndDte" (onSelect)="onDateChange(plannedOldEndDate,$event,'plannedEndDte')"
+                        showTime="true" [showSeconds]="true" hourFormat="12" dateFormat="d M yy" 
+                        [monthNavigator]="true"
+                        [yearNavigator]="true" yearRange="{{startingyear}}:{{currentyear}}"
+                        [ngClass]="{fieldMandate: isFieldMandate,borderred:isPlannedEndDteErr}"
+                        appendTo="body">
+            </p-calendar>
+          </div>
+          <div class="col-md-3 attrDatePicker" id="AttrReleaseDate" *ngIf="this.attrList[41].isVisible">
+            <label class="LblAttr"> {{'ReleaseDate' | translate}} </label>
+            <p-calendar formControlName="releaseDte" (onSelect)="onDateChange(releaseOldDate,$event,'releaseDte')"
+                        showTime="true" [showSeconds]="true" hourFormat="12" dateFormat="d M yy"
+                        [monthNavigator]="true"
+                        [yearNavigator]="true" yearRange="{{startingyear}}:{{currentyear}}"
+                        [ngClass]="{fieldMandate: isFieldMandate,borderred:isReleaseDteErr}" [maxDate]="releaseMaxDate"
+                        appendTo="body">
+            </p-calendar>
+          </div>
+          <div class="col-md-3" *ngIf="this.attrList[42].isVisible">
+            <label class="LblAttr"> {{'TicketSummary' | translate}} </label>
+            <input type="text" class="TxtAttr" formControlName ="ticketSummary"  [ngClass]="{fieldMandate: isFieldMandate}"
+            (blur)="newAlgoCheck('TicketSummary')">
+          </div>
+          <div class="col-md-3" *ngIf="this.attrList[43].isVisible">
+            <label class="LblAttr"> {{'IsPartiallyAutomated' | translate}} </label>
+            <div class="row flex">
+              <div class="col-md-2 col-md-10 maxRadioWidth" *ngFor="let data of radioBtnValList"
+                   [ngClass]="{fieldMandate: isFieldMandate && this.ticketAttributesFG.controls['isPartial'].invalid === true}"
+                   title="{{isPartialTitle}}">
+                <span><input type="radio" name="" formControlName="isPartial" value="{{data.Id}}" /></span>
+                <label class="LblAttr">&nbsp;{{data.Value}} </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3" *ngIf="this.attrList[21].isVisible">
+            <label class="LblAttr">{{'ReleaseType' | translate}}</label>
+            <div class="row flex">
+              <div class="col-md-2 col-md-10 maxRadioWidth" *ngFor="let data of releaseTypeList" [ngClass]="{fieldMandate: isFieldMandate && this.ticketAttributesFG.controls['releaseTypeFlgId'].invalid === true}">
+                <span><input type="radio" name="" formControlName="releaseTypeFlgId" value="{{data.ReleaseTypeId}}"
+                  (onChange)="newAlgoCheck('ReleaseTypeMapID')"/></span>
+                <label class="LblAttr">&nbsp;{{data.ReleaseTypeName}} </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3" *ngIf="this.attrList[28].isVisible">
+            <label class="LblAttr">{{'KEDBUpdated/Added' | translate}}</label>
+            <div class="row flex">
+              <div class="col-md-2 col-md-10 maxRadioWidth" *ngFor="let data of kedbUpdatedList" [ngClass]="{fieldMandate: isFieldMandate && this.ticketAttributesFG.controls['kedbUpFlgId'].invalid === true}">
+                <span><input type="radio" name="" formControlName="kedbUpFlgId" value="{{data.KEDBUpdatedId}}"/> </span>
+                <label class="LblAttr">&nbsp;{{data.KEDBUpdatedName}} </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3" *ngIf="this.attrList[30].isVisible">
+            <label class="LblAttr">{{'KEDBAvailableIndicator' | translate}}</label>
+            <div class="row flex">
+              <div class="col-md-2 col-md-10 maxRadioWidth" *ngFor="let data of kedbAvailableList" [ngClass]="{fieldMandate: isFieldMandate && this.ticketAttributesFG.controls['kedbAvailFlgId'].invalid === true}">
+                <span><input type="radio" name="" formControlName="kedbAvailFlgId" value="{{data.Id}}"
+                  (onChange)="newAlgoCheck('KEDBAvailableIndicatorMapID')"/></span>
+                <label class="LblAttr">&nbsp;{{data.KEDBAvailableName}} </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3" *ngIf="this.attrList[45].isVisible">
+            <span><label class="LblAttr">{{'Business Impact'}}</label>
+              <p-dropdown [filter]="true" [options]="businessimpactlist" placeholder="Select" [autoDisplayFirst]="false"
+                 formControlName = "AHBusinessImpact"  resetFilterOnHide="true" maxSelectedLabels="0" [ngClass]="{'p-invalid': mndteWarningBusinessShow}"
+                 (onChange)="onDropDownChange($event.value,'businessImpactList')" appendTo="body">
+              </p-dropdown></span>
+          </div>
+          <div class="col-md-3" *ngIf="this.attrList[46].isVisible">
+            <label class="LblAttr">Impact Comments</label>
+            <input type="text" class="TxtAttr" formControlName="AHImpactComments" maxlength="250" [ngClass]="{fieldMandate: mndteWarningShow}" />  
+          </div>
+        </div>
+      </p-accordionTab>
+    </p-accordion>
+    <div class="row ClsAttrFooter">
+      
+      <div class="col-md-2">
+        <button id="BtnAttrSaveAttributes" (click)="btnAttrSave('N')">
+          {{'Save' | translate}}
+        </button>
+      </div>
+      <div class="col-md-2">
+        <button id="BtnAttrSaveClose" (click)="btnAttrSave('Y')">
+          {{'Save&Close' | translate}}
+        </button>
+      </div>
+      <div class="col-md-2">
+        <button id="BtnAttrSubmit" (click)="btnAttrSubmitClick()">
+          {{'Submit' | translate}}
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

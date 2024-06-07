@@ -1,0 +1,100 @@
+.ClsAccordion{  
+  font-size: 12px !important;
+  font-weight:700;
+  text-decoration: none !important;
+  color: white;
+}
+.LblAttr{
+  width: 75%;
+  font-weight: 400;
+  font-size: 11px;
+  padding-top: 5%;
+}
+.TxtAttr{
+  width: 75%;
+  height: 25px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+}
+.ClsAttributeBody{
+  width:902px !important;
+  height:auto;
+}
+.Mandatory {
+  color: red;
+  font-size: small;
+}
+.ClsAttrFooter {
+  margin-top: 2%;
+}
+#BtnAttrSaveAttributes {
+  width: 77px;
+  height: 30px;
+  border: 1px #C8C9CB;
+  border-radius: 4px;
+  padding: 2px;
+  background: #0033A0;
+  font-size: 12px;
+  color: white;  
+  cursor: pointer;
+  margin-left: 651px !important;
+}
+#BtnAttrSaveClose {
+  width: 90px;
+  height: 30px;
+  border: 1px #C8C9CB;
+  border-radius: 4px;
+  padding: 2px;
+  background: #0033A0;
+  font-size: 12px;
+  color: white;  
+  cursor: pointer;
+  margin-left: 579px !important;
+}
+
+#BtnAttrSubmit {
+  width: 77px;
+  height: 30px;
+  border: 1px #C8C9CB;
+  border-radius: 4px;
+  padding: 2px;
+  background: #1EADE9;
+  font-size: 12px;
+  color: white;  
+  cursor: pointer;
+  margin-left: 520px !important;
+}
+.p-calendar-w-btn .p-datepicker-trigger {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  background: white;
+}
+.ClsAttrEditIcon{
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.ClsAttrRadio{
+  padding-top: 5%;
+}
+.ClsAttrWarning{
+  display: inline-grid;
+  margin-top: 18px !important;
+  height: fit-content;
+}
+.ClsMarquee{
+  color: red;
+  font-size: 12px !important;
+}
+.maxRadioWidth{
+  max-width: 36% !important;
+}  
+.flex{
+  display: flex;
+}
+.clsWarnMsg{
+  width: 100% !important;
+}
+
+
+
+

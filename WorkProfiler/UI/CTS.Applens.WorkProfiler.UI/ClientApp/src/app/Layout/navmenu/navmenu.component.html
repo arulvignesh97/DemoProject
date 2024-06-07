@@ -1,0 +1,143 @@
+
+<nav id="sidebar" style="margin-top: 0px;height: 77vh;background-color: #000348;padding-left: 2px;" class="active" >
+  <ul class="list-unstyled components">
+    
+
+    <li *ngIf="AnalystSelfRole" routerLinkActive="link-active" skipLocationChange="true" style="border-top: 0px solid black;">
+        <div  id="divAnalystSelfService" [ngClass]="{'selectedMainMenuClass': !menuAnalystSelfServiceEnable}" class="onhover w-100 analyst-self" (click)="ToggleMainMenu(1, menuAnalystSelfServiceEnable)">
+          <span><img class="Padding_3" style="height:30px;" src="./assets/images/leftsidebar/ico_TicketingModule.png" /></span>
+          <span class="submenutext"> &nbsp; {{'AnalystSelfService' | translate}} </span>
+          <span class="tooltiptext"> {{'AnalystSelfService' | translate}} </span>
+        </div>
+        <div [hidden]="menuAnalystSelfServiceEnable">
+      <li [routerLink]="['/timesheet-entry']" routerLinkActive="link-active" skipLocationChange="true" *ngIf="collapsed">
+        <div id="timesheetLink" class="onhover navmenu-element" [ngClass]="{'navmenu-element-selected': !subMenuTimesheetEnable}" (click)="ToggleSubMenu(1, subMenuTimesheetEnable)" >
+          <span class="submenutext">&nbsp;&nbsp; {{'TimesheetEntry' | translate}}</span>
+          <span class="tooltiptext"> Project<br/> {{'TimesheetEntry' | translate}} </span>
+        </div>
+      </li>
+      <li *ngIf="collapsed && AnalystHasProject" [routerLink]="['/ticketeffortupload/1']" routerLinkActive="link-active" skipLocationChange="true">
+        <div id="ticket-effort-upload" class="onhover navmenu-element" [ngClass]="{'navmenu-element-selected': !subMenuTicketEffortUploadEnable}" (click)="ToggleSubMenu(3, subMenuTicketEffortUploadEnable)">
+          <span class="submenutext">&nbsp;&nbsp;{{'TicketUpload' | translate}}</span>
+          <span class="tooltiptext"> Project<br/> {{'TicketUpload' | translate}} </span>
+        </div>
+      </li>
+      <li *ngIf="collapsed && AnalystHasProject" [routerLink]="['/errorlog/1']" routerLinkActive="link-active" skipLocationChange="true">
+        <div class="onhover navmenu-element" [ngClass]="{'navmenu-element-selected': !subMenuErrorLogEnable}" (click)="ToggleSubMenu(4, subMenuErrorLogEnable)">
+          <span class="submenutext">&nbsp;&nbsp;  {{'ErrorLog' | translate}}</span>
+          <span class="tooltiptext"> Project<br/> {{'ErrorLog' | translate}} </span>
+        </div>
+      </li>
+      </div>
+    </li>
+
+    <li *ngIf="LeadSelfServiceRole" routerLinkActive="link-active" skipLocationChange="true" style="border-top: 0px solid black;">
+      <div id="divLeadSelfService" [ngClass]="{'selectedMainMenuClass': !menuLeadSelfServiceEnable}" class="onhover w-100 lead-self-link" (click)="ToggleMainMenu(2, menuLeadSelfServiceEnable)">
+        <span><img class="Padding_3" style="height:30px;" src="./assets/images/leftsidebar/ico_LeadSelfService.png" /></span>
+        <span class="submenutext"> &nbsp; {{'LeadSelfService' | translate}} </span>
+        <span class="tooltiptext"> {{'LeadSelfService' | translate}} </span>
+      </div>
+      <div [hidden]="menuLeadSelfServiceEnable">
+
+        <li *ngIf="collapsed && getMenuEnabled('TicketApprove/Unfreeze')" [routerLink]="['/approveunfreeze']" routerLinkActive="link-active" skipLocationChange="true">
+          <div id="approve-unfreeze" class="onhover navmenu-element" [ngClass]="{'navmenu-element-selected': !subMenuApproveUnFreezeEnable}" (click)="ToggleSubMenu(2, subMenuApproveUnFreezeEnable)">
+            <span class="submenutext">&nbsp;&nbsp; {{'Approve/Unfreeze' | translate}}</span>
+            <span class="tooltiptext"> Project<br/> {{'Approve/Unfreeze' | translate}} </span>
+          </div>
+        </li>
+        <li *ngIf="collapsed && getMenuEnabled('TicketUpload')" [routerLink]="['/ticketeffortupload/2']" routerLinkActive="link-active" skipLocationChange="true">
+          <div id="ticket-effort-upload" class="onhover navmenu-element" [ngClass]="{'navmenu-element-selected': !subMenuTicketEffortUploadEnable}" (click)="ToggleSubMenu(3, subMenuTicketEffortUploadEnable)">
+            <span class="submenutext">&nbsp;&nbsp;{{'TicketUpload' | translate}}</span>
+            <span class="tooltiptext"> Project<br/> {{'TicketUpload' | translate}} </span>
+          </div>
+        </li>
+        <li *ngIf="collapsed && getMenuEnabled('ErrorLog')" [routerLink]="['/errorlog/2']" routerLinkActive="link-active" skipLocationChange="true">
+          <div class="onhover navmenu-element" [ngClass]="{'navmenu-element-selected': !subMenuErrorLogEnable}" (click)="ToggleSubMenu(4, subMenuErrorLogEnable)">
+            <span class="submenutext">&nbsp;&nbsp;  {{'ErrorLog' | translate}}</span>
+            <span class="tooltiptext"> Project<br/> {{'ErrorLog' | translate}} </span>
+          </div>
+        </li>
+        <li *ngIf="collapsed" [routerLink]="['/data-dictionary']" routerLinkActive="link-active" skipLocationChange="true">
+          <div class="onhover navmenu-element" [ngClass]="{'navmenu-element-selected': !subMenuDataDictionaryEnable}" (click)="ToggleSubMenu(5, subMenuDataDictionaryEnable)">
+            <span class="submenutext">&nbsp;&nbsp; {{'DataDictionary' | translate}}</span>
+            <span class="tooltiptext"> Project<br/> {{'DataDictionary' | translate}} </span>
+          </div>
+        </li>
+        <li *ngIf="collapsed" [routerLink]="['/debt-review']" routerLinkActive="link-active" skipLocationChange="true">
+          <div id="debt-review" class="onhover navmenu-element" [ngClass]="{'navmenu-element-selected': !subMenuDebtReviewEnable}" (click)="ToggleSubMenu(6, subMenuDebtReviewEnable)">
+            <span class="submenutext">&nbsp;&nbsp; {{'DebtReview&Override' | translate}}</span>
+            <span class="tooltiptext"> {{'DebtReview&Override' | translate}} </span>
+          </div>
+        </li>
+        <li *ngIf="collapsed && tabdisplay">
+          <div id="debt-review" class="onhover navmenu-element" [ngClass]="{'navmenu-element-selected': !subMenuSprintReviewEnable}"  (click)="openSprintReview()">
+            <span class="submenutext">&nbsp;&nbsp;{{'SprintReview/Closure' | translate}}</span>
+            <span class="tooltiptext"> {{'SprintReview/Closure' | translate}} </span>
+          </div>
+        </li>
+        <li *ngIf="collapsed && tabdisplay">
+          <div id="debt-review" [ngClass]="{'navmenu-element-selected': !subMenuTimesheetComplianceEnable}" class="onhover navmenu-element" (click)="openTimesheetComplience()">
+            <span class="submenutext">&nbsp;&nbsp;{{'TimesheetComplianceReport' | translate}}</span>
+            <span class="tooltiptext"> {{'TimesheetComplianceReport' | translate}} </span>
+          </div>
+        </li>
+        <li *ngIf="collapsed && tabdisplay">
+          <div id="debt-review" [ngClass]="{'navmenu-element-selected': !subMenuDetailedTimesheetEnable}" class="onhover navmenu-element" (click)="openDetailedTimesheetReport()">
+            <span class="submenutext">&nbsp;&nbsp;{{'DetailedTimesheetReport' | translate}}</span>
+            <span class="tooltiptext"> {{'DetailedTimesheetReport' | translate}} </span>
+          </div>
+        </li>
+        </div>
+    </li>
+    <li *ngIf="LeadSelfServiceRole && isCognizant" routerLinkActive="link-active" skipLocationChange="true" style="border-top: 0px solid black;">
+      <div id="divMainspringMetrics" [ngClass]="{'selectedMainMenuClass': !menuMainspringMetricsEnable}" class="onhover w-100" (click)="ToggleMainMenu(3, menuMainspringMetricsEnable)">
+        <span><img class="Padding_3" style="height:30px;" src="./assets/images/leftsidebar/ico_MainspringMetrics.png" /></span>
+        <span class="submenutext"> &nbsp;  {{'MainspringMetrics' | translate}}</span>
+        <span class="tooltiptext"> {{'MainspringMetrics' | translate}}</span>
+      </div>
+      <div *ngIf="!menuMainspringMetricsEnable">
+    <li *ngIf="collapsed" [routerLink]="['/basemeasures']" routerLinkActive="link-active" skipLocationChange="true">
+      <div class="onhover navmenu-element" [ngClass]="{'navmenu-element-selected': !subMenuBasemeasureEnable}" (click)="ToggleSubMenu(7, subMenuBasemeasureEnable)">
+        <span class="submenutext">&nbsp;&nbsp; {{'BaseMeasures' | translate}}</span>
+        <span class="tooltiptext"> Project<br/> {{'BaseMeasures' | translate}} </span>
+      </div>
+    </li>
+    <li *ngIf="collapsed">
+      <div id="debt-review" [ngClass]="{'navmenu-element-selected': !subMenubaseMeasureReportEnable}" class="onhover navmenu-element" (click)="openbaseMeaureReport()">
+        <span class="submenutext">&nbsp;&nbsp;{{'BaseMeasureReport' | translate}}</span>
+        <span class="tooltiptext"> {{'BaseMeasureReport' | translate}} </span>
+      </div>
+    </li>
+    <li *ngIf="collapsed">
+      <div id="debt-review" [ngClass]="{'navmenu-element-selected': !subMenuTicketSummaryReportEnable}" class="onhover navmenu-element" (click)="openTicketSummaryReport()">
+        <span class="submenutext">&nbsp;&nbsp;{{'TicketSummaryReport' | translate}}</span>
+        <span class="tooltiptext"> {{'TicketSummaryReport' | translate}} </span>
+      </div>
+    </li>
+    <li *ngIf="collapsed">
+      <div id="debt-review" [ngClass]="{'navmenu-element-selected': !subMenuAdMetricsEnable}" class="onhover navmenu-element" (click)="openAdMetricsReport()">
+        <span class="submenutext">&nbsp;&nbsp;{{'ADMetrics' | translate}}</span>
+        <span class="tooltiptext"> {{'ADMetrics' | translate}} </span>
+      </div>
+    </li>
+    </div>
+    </li>
+    
+    <li routerLinkActive="link-active" *ngIf="IsSAAbove && collapsed" skipLocationChange="true">
+      <div class="onhover w-100" routerLink="/opportunity">
+        <span><img class="Padding_3" style="height:30px;" src="./assets/images/Group 1216@2x.png" /></span>
+        <span class="submenutext">&nbsp; &nbsp; My Opportunity</span>
+        <span class="tooltiptext"> My Opportunity </span>
+      </div>
+    </li>
+    
+
+  <li  routerLinkActive="link-active" routerLink="/searchticket" skipLocationChange="true" style="border-top: 0px solid black;min-width: 100%;" [ngClass]="{'selectedMainMenuClass': !menuSearchTicketsEnable}" class="onhover w-100" (click)="ToggleMainMenu(4, menuSearchTicketsEnable)">
+    <div  id="divSearchTickets" class="onhover w-100">
+      <span><img class="Padding_3" style="height:30px;" src="./assets/images/leftsidebar/ico_search.png" /></span>
+      <span class="submenutext"> &nbsp; {{'SearchTickets' | translate}} </span>
+      <span class="tooltiptext"> {{'SearchTickets' | translate}} </span>
+    </div>
+</li>
+  </ul>
+</nav>

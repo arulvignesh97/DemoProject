@@ -1,0 +1,12 @@
+{
+  "IsMyActitvity": false,
+  "MyActivityLog": false,
+  "KeyCloakEnabled": true,
+
+  "MyActivityDomain": "https://applensqa.cognizant.com",
+  "MyActivityServiceURL": "/MyActivityApi",
+  "MyActivityRedirectionalURL": "/MyActivity",
+  "MyActivityLogo": "/MyActivity/assets/images/MyActivityNotifiy.svg",
+
+  "MyActivityToolTip": "My Activities"
+}

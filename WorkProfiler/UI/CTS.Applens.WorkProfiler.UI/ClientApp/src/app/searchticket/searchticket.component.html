@@ -1,0 +1,191 @@
+<div class="searchticket">
+  <div class="card row cardheight">
+    <div class="col-md-10">
+      <label class="searchlabel">{{'SearchTicket' |translate}}</label>
+    </div>   
+    <div class="col-md-2" style="margin-left: -25px;">
+      <i class="fa fa-search fa-lg searchicon" pTooltip="Search Tickets" (click)="showFilterPopup()"></i>
+    </div>
+  </div>
+  
+  <div class="row alert alert-danger mt-2 mr-2 left msgText" *ngIf="isDisplayExempted">
+    <label [innerHTML]="exemptedMsg"></label>
+  </div>
+  <div class="row alert alert-danger mt-2 mr-2 left msgText" *ngIf="NoRecordMsg">
+    <label>No Records Found for <b>{{NoRecordProject.join(', ')}}</b></label>
+  </div>
+  
+  <div class="card row margintop" style="overflow: scroll;overflow-x: hidden; height: 54vh;" *ngIf="IsDataPresent">
+    <p-table #dt [columns]="mappingCols" [value]="MasterData" [rows]="10" [scrollable]="true" scrollHeight="280px"
+      [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50,75,100]" [paginator]="true" [style]="{width:'98%'}"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+      <ng-template pTemplate="caption">
+        <div class="row width100">
+
+          <div class="col-md-9"></div>
+          <div class="col-md-2 popupcontent">
+            <p-checkbox id="showAllfield" (onChange)="ShowAllColumns($event)" [(ngModel)]="hideColumns"
+              pTooltip="Check to show all fields" tooltipPosition="bottom"></p-checkbox>
+            <label class='u-text-label-size'>{{'Showallfields' |translate}}</label>
+          </div>
+          <div class="col-md-1">
+            <img class="imgsize" src="./assets/Excelicon.png" (click)="exportToExcel()" />
+          </div>
+
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header" let-columns> 
+        <tr>
+          <th *ngFor="let col of mappingCols" [hidden]="col.hide" [pSortableColumn]="col.field">
+            {{col.header |translate}}
+            <p-sortIcon [field]="col.field"></p-sortIcon>
+          </th>
+        </tr>
+        <tr [hidden]="!showsearch" *ngIf="clearSearch">
+          <th *ngFor="let col of mappingCols" [hidden]="col.hide">
+            <input #clear pInputText class="clearicon" type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
+            <i class="pi pi-times" pTooltip="Reset Search Value" tooltipPosition="bottom" (click)="ClearFilter(dt.filter('', col.field, 'contains'),clear)"></i>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex">
+        <tr>
+          <td *ngFor="let col of columns" pTooltip="{{rowData[col.field]}}" [hidden]="col.hide">
+            <label for="" class="lblrow">{{rowData[col.field]}}</label>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="9">No Records found.</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="paginatorleft">
+
+        <button type="button" class="p-button-text p-button-plain" pTooltip="Clear" (click)="clearAllCustomize()">{{'Clear'
+          |translate}}</button>&nbsp;&nbsp;&nbsp;
+        <button type="button" class="p-button-text p-button-plain" pTooltip="Toggle Search" (click)="toggle()">{{'ToggleSearch'
+          |translate}}</button>
+
+      </ng-template>
+    </p-table>
+  </div>
+
+  <p-dialog header="Search Ticket" [modal]="true" [(visible)]="display" styleClass="p-fluid" draggable="false"
+  style="margin-left: 12%;">
+  <ng-template pTemplate="content" #searchmodal  >
+    <div style="overflow: hidden;">
+      <div class="row alert alert-danger mt-2 left mr-2" *ngIf="iserrormsg">
+        <label class="widthmsg" *ngIf="!isMandate">{{MandatoryMsg}}</label>
+      </div>
+      <div>
+        <label class="row">
+          <span class="exemptedMsgText">{{'ExemptedMsgSearchPopup' | translate}}</span>
+        </label>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <p-radioButton name="Scope" *ngIf="IsApporInfra" class="lblheader" value="1" [(ngModel)]="SelectedScope"
+            (onClick)="OnRadioChange(1)" label="Application">
+          </p-radioButton>
+          &nbsp;&nbsp;&nbsp;
+          <p-radioButton name="Scope" *ngIf="IsApporInfra" class="lblheader" value="2" [(ngModel)]="SelectedScope"
+            (onClick)="OnRadioChange(2)" label="Infra" >
+          </p-radioButton>
+        </div>
+        <div class="col-md-4 popupcontent">
+          <div class="col-md-6">
+            <label class="lblheader">{{'Project' |translate}} <span class="Mandatory">*</span> </label>
+          </div>
+          <div class="col-md-6">
+            <p-multiSelect [options]="ProjectList" maxSelectedLabels="1" [(ngModel)]="SelectedProject"
+            [ngClass]="{fieldMandate: isFieldMandate}"
+              defaultLabel="Select" [resetFilterOnHide]="true" 
+              [required]="true" (onChange)="OnProjectChange()" appendTo="body">
+              <ng-template let-proj pTemplate="item">
+                <div>
+                    <div [ngClass]="{'exemptedColor':proj.isExempted,'nonexemptedColor':!proj.isExempted}">{{proj.label}}</div>
+                </div>
+            </ng-template>
+            </p-multiSelect>
+          </div>
+        </div>
+      </div>
+      <form [formGroup]="SearchModalFG">
+        <div class="row linemargin">
+          <div class="col-md-4 popupcontent">
+            <div class="col-md-6">
+              <label class="lblheader">{{'Filterby' |translate}}</label>
+            </div>
+            <div class="col-md-6">
+              <p-dropdown [options]="FilterByList" formControlName="SelectedFilter"
+                [ngClass]="{fieldMandate: isFieldMandate}" [resetFilterOnHide]="true" [filter]="true"
+                placeholder="Select" appendTo="body"></p-dropdown>
+            </div>
+          </div>
+          <div class="col-md-4 popupcontent">
+            <div class="col-md-6">
+              <label class="lblheader">{{'FromDate' |translate}}</label>
+            </div>
+            <div class="col-md-6">
+              <p-calendar formControlName="SelectedFromDate" [minDate]="FromminDate" [maxDate]="FrommaxDate"
+                [monthNavigator]="true" [yearNavigator]="true" yearRange="{{FromStartRange}}:{{FromLastRange}}"
+                inputId="min-max" [readonlyInput]="true" (onSelect)="OnFromDateChange($event)" appendTo="body"></p-calendar>
+            </div>
+          </div>
+          <div class="col-md-4 popupcontent">
+            <div class="col-md-6">
+              <label class="lblheader">{{'ToDate' |translate}}</label>
+            </div>
+            <div class="col-md-6">
+              <p-calendar formControlName="SelectedToDate" [minDate]="TominDate" [maxDate]="TomaxDate"
+                [monthNavigator]="true" [yearNavigator]="true" yearRange="{{ToStartRange}}:{{ToLastRange}}"
+                inputId="min-max" [readonlyInput]="true" appendTo="body" ></p-calendar>
+            </div>
+
+          </div>
+        </div>
+        <div *ngFor="let user of MasterHierarchyList;let rowindex = index">
+          <div class="row linemargin" *ngIf="(rowindex===0)||(rowindex===3)||(rowindex===6)||(rowindex===9)">
+
+            <div class="col-md-4 popupcontent" *ngFor="let rowData of MasterHierarchyList;let colindex = index">
+
+              <div class="col-md-6"
+                *ngIf="(colindex>=0 && colindex<3 && rowindex===0)||(colindex>=3 && colindex<6  && rowindex===3)
+                            ||(colindex>=6 && colindex<9 && rowindex===6) ||(colindex>=9 && colindex<12 && rowindex===9)">
+                <label class="lblheader">{{rowData.label |translate}}</label>
+              </div>
+              <div class="col-md-6"
+                *ngIf="(colindex>=0 && colindex<3 && rowindex===0)||(colindex>=3 && colindex<6  && rowindex===3)
+                            ||(colindex>=6 && colindex<9 && rowindex===6) ||(colindex>=9 && colindex<12 && rowindex===9)">
+                <p-multiSelect [options]="rowData.List" maxSelectedLabels="1"
+                  [formControlName]="rowData.formcontrolname"
+                  (onChange)="LoadHierarchy(colindex,rowData.formcontrolname)" defaultLabel="Select"
+                  [resetFilterOnHide]="true" [ngClass]="{fieldMandate: isFieldMandate}" appendTo="body"></p-multiSelect>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br>
+        <div class="row">
+          <div class="col-md-8">
+          </div>
+          <div class="col-md-4">
+            <button class="btnsearch btn btn-success" type="button" (click)="Search()"><i class="fa fa-search"></i> {{'Search'
+              |translate}}</button>
+            &nbsp;&nbsp;&nbsp;
+            <button class="btnsearch btn btn-info" (click)="Resetpopup()"><i class="fa fa-eraser"></i>&nbsp;{{'Clear'
+              |translate}}</button>
+            &nbsp;&nbsp;&nbsp;
+            <button class="btnsearch btn btn-warning" type="button" (click)="ClosePopUp()"><i
+                class="fa fa-remove"></i>&nbsp;{{'Close' |translate}}</button>
+          </div>
+
+        </div>
+
+      </form>
+    </div>
+  </ng-template>
+  </p-dialog>
+</div>

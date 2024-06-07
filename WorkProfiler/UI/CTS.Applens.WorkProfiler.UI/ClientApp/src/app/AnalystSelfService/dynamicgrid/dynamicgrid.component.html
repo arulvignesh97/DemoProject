@@ -1,0 +1,277 @@
+<div class="row firstrow">
+  <div class="col-md-8">
+    <button class="ModuleButton addTicket" [ngClass]="{'f-9' : lang === 'ja' || lang === 'es'}" (click)="addTicketPopup()" 
+    title="{{'AddTicket' | translate}}" [disabled]="addTicketIcon">
+    {{'AddTicket' | translate}}</button>
+      <button  *ngIf="hideworkItem" [ngClass]="{'f-9' : lang === 'ja' || lang === 'es'}" class="ModuleButton addworkItem btnAddWorkitem" title = "AddWorkItem" [disabled]="addWorkItemIcon" (click)="AddWorkItem()">
+        {{'AddWorkItem' | translate}}</button>
+          <button *ngIf="hidenondelivery" id="btnNonDelivery" class="ModuleButton addnondelivery btnNonDelivery" title="{{'AddNonTicketActivity' | translate}}" 
+           [ngClass]="{'btnNdWorkItem' : !this.hideworkItem, 'f-9' : lang === 'ja' || lang === 'es'}"[disabled]="addNondeliveryicon" (click)="AddNonDeliveryActivity()">
+            {{'AddNonTicketActivity' | translate}}</button>
+      <button class="ModuleButton btnsearch addsearch" id="btnChoose"
+              [disabled]="chooseTicketicon" title="{{'Search'| translate}}" [ngClass]="{'f-9' : lang === 'ja' || lang === 'es'}"
+              (click)="searchPopup()">{{'Search'| translate}}</button>
+      <img (click)="erroredTicketsPopup(true)" class="clsErrorCorrection" title="Error Log" id="erroredTickets" style="cursor: pointer;" src="./assets/ico_ErroredRecords.png" />
+      <button class="circle-menu-toggle" (click) = "openinfopopup()"><em class="fa fa-info-circle" title="{{'CurrentWeekstatus' | translate}}"></em></button>
+    </div>
+    <!-- <div class="displaynone">
+
+         <input readonly type="text" #dp="bsDatepicker" bsDatepicker [bsConfig]="FromdatePickerConfig"  
+        placement="bottom"  [(ngModel)]="selectedDate" [dateCustomClasses]="dateCustomClasses"
+        (ngModelChange)="onChange($event)" style="display: none;"/>      
+      </div>  -->
+     <div class="col-md-1 selectweekplacement" ><label class="lblselectweek" [ngClass]="{'lblselectweekes' : lang === 'es'}">{{'SelectWeek' | translate}}: </label></div>
+     <div class="col-md-3 calenderlabelplacement" style="padding-top: 1%;
+     padding-left: 4%;">
+        
+        
+        <div style="position: absolute; z-index:1">
+          <p-calendar [(ngModel)]="selectedDate" id="temp"
+      [showIcon]="true" inputId="icon" 
+      placement="bottom"
+      (ngModelChange)="onChange($event)"
+       ></p-calendar>
+      </div>
+       
+       <div style="margin-top: 0%;
+       margin-left: -19%;
+       z-index: 1;
+       padding-left: 8%;
+       padding-right: 2%;
+       position: absolute;
+       width: 75%;
+       height: 3%;">
+        <input type="label" [(ngModel)]="selectdate" class="calendarlabel" disabled />
+       </div>
+    </div>
+</div>
+<div class="row entryrow"></div>
+<div id="alert" class="alert alert-danger warningMessage" *ngIf="ValidationMessage != '' ">{{ValidationMessage}}</div>
+<div id="alert" class="alert alert-success warningMessage" *ngIf="SuccessMessage != '' ">{{SuccessMessage}}</div>
+<div class="row gridrow">
+  <div class="col-md-12 secondrow">
+    <p-table [value]="ticketdetails" [scrollable]="true" scrollHeight="255px">
+      <ng-template pTemplate="header">
+        <tr class="trMainGrid">
+          <th id="helper" style="width:1%" class="Timesheetgridheader"></th>
+          <th id="popupattribute" style="width:2%" class="Timesheetgridheader"></th>
+          <th id="thType" style="width:2%" class="Timesheetgridheader"></th>
+          <th id="thTicketWorkItemId" [ngClass]="{'thTicketWorkItemId':IsCognizant,'thcusTicketWorkItemId':!IsCognizant}" class="Timesheetgridheader">{{header}}</th>
+          <th id="thDescription" [ngClass]="{'thDescription':IsCognizant,'thcusDescription':!IsCognizant}" class="Timesheetgridheader">{{'Description' | translate}}</th>
+          <th id="thService"  *ngIf="IsCognizant" class="Timesheetgridheader" >{{'Service' | translate}}</th>
+          <th id="thActivity"  *ngIf="IsCognizant" class="Timesheetgridheader">{{'Activity' | translate}}</th>
+          <th id="thtickettype" class="Timesheetgridheader" *ngIf="!IsCognizant">Ticket Type</th>
+          <th id="thstatus" class="Timesheetgridheader">{{'Status' | translate}}</th>
+          <th id="thtotaleffort" class="Totaleffortcolumn Timesheetgridheader">{{'TotalEffort' | translate}}</th>
+          <ng-container *ngFor="let date of lstweekdays">
+            <th id="thweekdates" class="datacolumn Timesheetgridheader" [class.thheaderActive]="date.FreezeStatus == 'false' && this.IsDaily || date.EnabeheaderND == 'false' && this.IsDaily ">
+              {{date.gridmonth | translate}} {{date.griddate}} <br />{{date.gridday |translate}}<br/>
+              <span *ngIf="date.FreezeStatus == 'false' || date.EnabeheaderND == 'false'"><input *ngIf="IsDaily" type="checkbox" id={{date.gridday}} name={{date.gridday}} (click)="oncheckboxclick(date)"/></span>
+            </th>
+          </ng-container>
+          <th id="thItsmEffort" class="ITSMeffortcolumn Timesheetgridheader">{{'ITSMEffort' | translate}}</th>
+          <th id="thcopyrow" class="copywidth Timesheetgridheader" *ngIf="IsCognizant"></th>
+          <th id="thdeleterow" class="copywidth Timesheetgridheader"></th>
+        </tr>
+        <tr>
+          <td [ngClass]="{'effortheader1':IsCognizant,'effortcusheader1':!IsCognizant}" 
+          [class.effortgreen]="IsDaily && effort1 == MandatoryHours || !IsDaily && effort1 == MandatoryHours/5" 
+          [class.effortred]="(IsDaily && effort1 > MandatoryHours)||(!IsDaily && effort1 > MandatoryHours/5)  || (IsDaily && effort1 < MandatoryHours) || (!IsDaily && effort1 < MandatoryHours/5)">
+          {{Totaleffort1}}</td>
+          <td [ngClass]="{'effortheader2':IsCognizant,'effortcusheader2':!IsCognizant}" 
+          [class.effortgreen]="IsDaily && effort2 == MandatoryHours || !IsDaily && effort2 == MandatoryHours/5" 
+          [class.effortred]="(IsDaily && effort2 > MandatoryHours)||(!IsDaily && effort2 > MandatoryHours/5)  || (IsDaily && effort2 < MandatoryHours) || (!IsDaily && effort2 < MandatoryHours/5)">
+          {{Totaleffort2}}</td>
+          <td [ngClass]="{'effortheader3':IsCognizant,'effortcusheader3':!IsCognizant}" 
+          [class.effortgreen]="IsDaily && effort3 == MandatoryHours || !IsDaily && effort3 == MandatoryHours/5" 
+          [class.effortred]="(IsDaily && effort3 > MandatoryHours)||(!IsDaily && effort3 > MandatoryHours/5)  || (IsDaily && effort3 < MandatoryHours) || (!IsDaily && effort3 < MandatoryHours/5)">
+          {{Totaleffort3}}</td>
+          <td [ngClass]="{'effortheader4':IsCognizant,'effortcusheader4':!IsCognizant}" 
+          [class.effortgreen]="IsDaily && effort4 == MandatoryHours || !IsDaily && effort4 == MandatoryHours/5" 
+          [class.effortred]="(IsDaily && effort4 > MandatoryHours)||(!IsDaily && effort4 > MandatoryHours/5)  || (IsDaily && effort4 < MandatoryHours) || (!IsDaily && effort4 < MandatoryHours/5)">
+          {{Totaleffort4}}</td>
+          <td [ngClass]="{'effortheader5':IsCognizant,'effortcusheader5':!IsCognizant}" 
+          [class.effortgreen]="IsDaily && effort5 == MandatoryHours || !IsDaily && effort5 == MandatoryHours/5" 
+          [class.effortred]="(IsDaily && effort5 > MandatoryHours)||(!IsDaily && effort5 > MandatoryHours/5)  || (IsDaily && effort5 < MandatoryHours) || (!IsDaily && effort5 < MandatoryHours/5)">
+          {{Totaleffort5}}</td>
+          <td [ngClass]="{'effortheader6':IsCognizant,'effortcusheader6':!IsCognizant}" 
+          [class.effortgreen]="IsDaily && effort6 == MandatoryHours || !IsDaily && effort6 == MandatoryHours/5" 
+          [class.effortred]="(IsDaily && effort6 > MandatoryHours)||(!IsDaily && effort6 > MandatoryHours/5)  || (IsDaily && effort6 < MandatoryHours) || (!IsDaily && effort6 < MandatoryHours/5)">
+          {{Totaleffort6}}</td>
+          <td [ngClass]="{'effortheader7':IsCognizant,'effortcusheader7':!IsCognizant}" 
+          [class.effortgreen]="IsDaily && effort7 == MandatoryHours || !IsDaily && effort7 == MandatoryHours/5" 
+          [class.effortred]="(IsDaily && effort7 > MandatoryHours)||(!IsDaily && effort7 > MandatoryHours/5)  || (IsDaily && effort7 < MandatoryHours) || (!IsDaily && effort7 < MandatoryHours/5)">
+          {{Totaleffort7}}</td>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-i="rowIndex" let-td>
+
+        <tr class="tdMainGrid" [ngClass]="{'clsBgRed': td.gridValidationservice}">
+          <td style="width:1%" class="Timesheetgriddata">
+            <em [ngClass]="{'helperGrey':td.type === 'ND', 'helperNotComplete': td.type === 'T' && td.isAttributeUpdated === 0, 'helperComplete': td.type === 'W' || (td.type === 'T' && td.isAttributeUpdated === 1)}">
+            </em>
+          </td>
+          <td  *ngIf = "td.type === 'ND'" style="width:2%" class="Timesheetgriddata"><em></em></td>
+          <td  *ngIf = "td.type === 'W' || td.type === 'T'" style="width:2%" class="Timesheetgriddata"><em class="fa fa-angle-down" 
+            [attr.title]="td.type === 'W' ? 'Capture the required attributes under Smart Execution module':'Ticket Attributes'"
+            (click)="openAttributesModal(td)"></em></td>
+          <td style="width:2%" class="Timesheetgriddata type" [ngClass]="{'blue': td.type === 'W', 'red':td.type === 'T','orange':td.type === 'ND' }">{{td.type}}</td>
+          <td class="Timesheetgriddata Ticketid" [ngClass]="{'trTicketWorkItemId':IsCognizant,'trcusTicketWorkItemId':!IsCognizant}"title="{{td.ticketIDTitle +'\n'+ (td.openDateNTime != null && td.type != 'W' && td.type != 'ND' ? (td.openDateNTime | date:'dd-MMM-yyyy hh:mm:ss a') :'') }}">{{td.ticketId}}</td>
+          <td class="Timesheetgriddata description" [ngClass]="{'thDescription':IsCognizant,'thcusDescription':!IsCognizant}" title={{td.ticketDescription}}>{{td.ticketDescription}}</td>
+          <td *ngIf="IsCognizant" class="Timesheetgriddata trService">
+            <select [(ngModel)]="td.serviceId" class="ddGridStatus" [disabled]="td.type==='ND' || td.isGracePeriodMet || futuredisable"
+                    (change)="BindActivityDetails($event,td,i)" title={{td.ServiceTitle}}>
+              <option *ngIf="(td.type === 'T' && td.supportTypeId != '2') || td.type === 'ND' || td.type === 'W'" [value]="0" selected>--Select--</option>
+              <option *ngIf="td.supportTypeId === 2 && td.type === 'T'" [value]="0" selected>Infra Service</option>
+              <option *ngFor="let x of td.lstServiceModel" [value]="x.serviceId">{{x.serviceName}}</option>
+            </select>
+          </td>
+          <td *ngIf="IsCognizant && ((td.type === 'T' && td.supportTypeId != '2') || td.type === 'ND' || td.type === 'W')" class="Timesheetgriddata trActivity" (change)="CheckforDuplicateActivity(td,i)">
+            <select [(ngModel)]="td.activityId" class="ddGridStatus" [disabled]="td.type==='ND' || futuredisable">
+              <option [value]="0" selected>--Select--</option>
+              <option *ngFor="let x of td.lstActivityModel" [value]="x.activityId">{{x.activityName}}</option>
+            </select>
+          </td>
+          <td *ngIf="IsCognizant && td.supportTypeId ===2 && td.type === 'T'" class="Timesheetgriddata trActivity">
+            <select [(ngModel)]="td.activityId" class="ddGridStatus" title={{td.InfraTitle}} 
+            (change)="CheckforDuplicateActivity(td,i)" [disabled]="futuredisable">
+              <option [value]="0" selected>--Select--</option>
+              <option *ngFor="let x of td.lstTaskModel" [value]="x.infraTransactionTaskId">{{x.infraTaskName}}</option>
+            </select>
+          </td>
+          <td *ngIf="!IsCognizant" class="Timesheetgriddata trActivity">
+            <select [(ngModel)]="td.ticketTypeMapId" class="ddGridStatus" [disabled]="td.isAHTicket==='1' || td.type==='ND' || futuredisable">
+              <option [value]="0" selected>--Select--</option>
+              <option *ngFor="let x of td.lstTicketTypeModel" [value]="x.ticketTypeMappingId">{{x.ticketType}}</option>
+            </select>
+          </td>
+          <td class="Timesheetgriddata trStatus">
+            <select [(ngModel)]="td.ticketStatusMapId" class="ddGridStatus" 
+            [disabled]="td.type==='ND' || td.isGracePeriodMet || futuredisable" (change)="UpdateStatus($event,td)"
+                    title={{td.StatusTitle}}>
+              <option [value]="0" selected>--Select--</option>
+              <option *ngFor="let x of td.lstStatusDetails" [value]="x.ticketStatusId">{{x.statusName}}</option>
+            </select>
+          </td>
+          <td class="Timesheetgriddata trtotal"> <input type="text" class="efforttextbox" title={{td.benchMarkTitle}} [ngClass]="{'totaleffortgreen': td.benchMarkColor === 'GREEN','totaleffortred':td.benchMarkColor === 'RED' }" value="{{td.effortTillDate}}" disabled/></td>
+          <td class="datacolumn Timesheetgriddata" [ngClass]="{'tddataActive' : td.freezeStatus1=='false' && this.IsDaily}">
+            <input type="text" class="efforttextbox" (keypress)="EffortKeyPress($event,td.effort1)" [(ngModel)]="td.effort1" [disabled]="td.freezeStatus1 != 'false'" value="{{td.effort1}}"/>
+          </td>
+          <td class="datacolumn Timesheetgriddata" [ngClass]="{'tddataActive' : td.freezeStatus2== 'false' && this.IsDaily}">
+            <input type="text" class="efforttextbox" (keypress)="EffortKeyPress($event,td.effort2)" [(ngModel)]="td.effort2" [disabled]="td.freezeStatus2!= 'false'"
+                   [ngClass]="{'borderclass' : mandatoryhourMon}" value="{{td.effort2}}"/>
+          </td>
+          <td class="datacolumn Timesheetgriddata" [ngClass]="{'tddataActive' : td.freezeStatus3== 'false' && this.IsDaily}">
+            <input type="text" class="efforttextbox" (keypress)="EffortKeyPress($event,td.effort3)" [(ngModel)]="td.effort3" [disabled]="td.freezeStatus3!= 'false'"
+                   [ngClass]="{'borderclass' : mandatoryhourTue}" value="{{td.effort3}}"/>
+          </td>
+          <td class="datacolumn Timesheetgriddata" [ngClass]="{'tddataActive' : td.freezeStatus4== 'false' && this.IsDaily}">
+            <input type="text" class="efforttextbox" (keypress)="EffortKeyPress($event,td.effort4)" [(ngModel)]="td.effort4" [disabled]="td.freezeStatus4!= 'false'"
+                   [ngClass]="{'borderclass' : mandatoryhourWed}" value="{{td.effort4}}"/>
+          </td>
+          <td class="datacolumn Timesheetgriddata" [ngClass]="{'tddataActive' : td.freezeStatus5== 'false' && this.IsDaily}">
+            <input type="text" class="efforttextbox" (keypress)="EffortKeyPress($event,td.effort5)" [(ngModel)]="td.effort5" [disabled]="td.freezeStatus5!= 'false'"
+                   [ngClass]="{'borderclass' : mandatoryhourThu}" value="{{td.effort5}}"/>
+          </td>
+          <td class="datacolumn Timesheetgriddata" [ngClass]="{'tddataActive' : td.freezeStatus6== 'false' && this.IsDaily}">
+            <input type="text" class="efforttextbox" (keypress)="EffortKeyPress($event,td.effort6)" [(ngModel)]="td.effort6" [disabled]="td.freezeStatus6!= 'false'"
+                   [ngClass]="{'borderclass' : mandatoryhourFri}" value="{{td.effort6}}"/>
+          </td>
+          <td class="datacolumn Timesheetgriddata" [ngClass]="{'tddataActive' : td.freezeStatus7== 'false' && this.IsDaily}">
+            <input type="text" class="efforttextbox" (keypress)="EffortKeyPress($event,td.effort7)" [(ngModel)]="td.effort7" [disabled]="td.freezeStatus7!= 'false'" value="{{td.effort7}}"/>
+          </td>
+          <td class="Timesheetgriddata trITSM"><input type="text" class="efforttextbox" [(ngModel)]="td.itsmEffort"  disabled/></td>
+          <td *ngIf="IsCognizant || (!IsCognizant && td.type === 'W')" class="Timesheetgriddata"><em class="fa fa-plus-circle clsdarkblue" title="{{'CopyRow' | translate}}" (click)="copygriddata(td)"></em></td>
+          <td class="Timesheetgriddata"><em class="fa fa-minus-circle clsdarkblue" title="{{'DeleteRow' | translate}}" (click)="deletegriddata(td, i)"></em></td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <div class ="norecords" *ngIf="NorecordMessage">
+      {{'NoRecordsFound' | translate}}
+    </div>
+  </div>
+</div>
+<div class="row thirdrow">
+  <div class="col-md-1"><button class="btnSaveDraft" [ngClass]= "{'f-8' : lang === 'ja' || lang === 'es'}"  [disabled] = "savebtn" (click)="savegriddata(ticketdetails, 1)">{{'SaveDraft' | translate}}</button></div>
+  <div class="col-md-1"><button class="btnSubmit"  [ngClass]= "{'f-8' : lang === 'ja' || lang === 'es'}" [disabled] = "submitbtn" (click)="savegriddata(ticketdetails, 2)">{{'Submit' | translate}}</button></div>
+  <div class="col-md-10">
+    <span class="divmandatehours">{{'MandatoryHours' | translate}} : {{MandatoryHours}}</span>
+    <span class="divmandatehours" [ngClass]="{'divmandatecog':hideworkItem,'divmandatecus': !hideworkItem}"><em class="fa fa-square" style="color:brown"></em>{{'Ticket' | translate}}</span>
+    <span class="divmandatehours" *ngIf="hideworkItem" [ngClass]="{'divmandatecog':hideworkItem,'divmandatecus': !hideworkItem}"><em class="fa fa-square" style="color:blue"></em>{{'WorkItem' | translate}}</span>
+    <span class="divmandatehours" [ngClass]="{'divmandatecog':hideworkItem,'divmandatecus': !hideworkItem}"><em class="fa fa-square" style="color:#00b140;"></em>{{'MandatoryAttributesCaptured' | translate}}</span>
+    <span class="divmandatehours" [ngClass]="{'divmandatecog':hideworkItem,'divmandatecus': !hideworkItem}"><em class="fa fa-square" style="color:#ff8f1c;"></em>{{'MandatoryAttributesMissing' | translate}}</span>
+    <span class="divmandatehours" [ngClass]="{'divmandatecog':hideworkItem,'divmandatecus': !hideworkItem}"><em class="fa fa-minus-circle clsdarkblue"></em>{{'DeleteRow' | translate}}</span>
+    <span class="divmandatehours" *ngIf = "hideworkItem" [ngClass]="{'divmandatecog':hideworkItem,'divmandatecus': !hideworkItem}"><em class="fa fa-plus-circle clsdarkblue"></em>{{'CopyRow' | translate}}</span>
+  </div>
+</div>
+
+<p-dialog [(visible)]="displayAttributes" [style]="{width: '75%'}" header= "{{'Attributes' | translate}}" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content"> 
+    <app-ticket-attributes [SelectedTicketDetails]="selectedTicketDetails" (getUpdatedStatus)="freezeDebtAttributes($event)" (freezeServiceStatus)="freezeTicketAttributes($event)" ></app-ticket-attributes>
+  </ng-template> 
+</p-dialog>
+
+<p-dialog [(visible)]="AddNonDeliverypopup" [style]="{width: '27%'}" header="{{'AddNonTicketActivity' | translate}}" [modal]="true" styleClass="p-fluid" [draggable] ="false">
+  <ng-template pTemplate="content">
+    <app-addnondelivery></app-addnondelivery>
+  </ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="AddWorkItempopup"  [style]="{width: '65%'}"   header="Add Work Item" 
+[modal]="true" styleClass="p-fluid" [draggable] ="false">
+  <ng-template pTemplate="content"> 
+    <app-addworkitem></app-addworkitem>
+  </ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="addTicketDialog" header="Add New Ticket" [style]="{width: '60%'}"
+          [modal]="true" styleClass="p-fluid" draggable="false">
+  <ng-template pTemplate="content" #template>
+    <app-add-ticket></app-add-ticket>
+  </ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="chooseTicketDialog" [style]="{width: '75%'}"
+  [header]="chooseticketheader"
+  [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content" #templatechoose>
+  <app-choose-workitem-ticket></app-choose-workitem-ticket>
+</ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="erroredTicketDialog" header= "{{'ErroredTickets' | translate}}"  [style]="{width: '75%'}"
+[modal]="true" styleClass="p-fluid" draggable="false">
+  <ng-template pTemplate="content" #template>
+    <app-errored-tickets (closeValue)="closeErrCorrectionModal($event)"></app-errored-tickets>
+  </ng-template> 
+</p-dialog>
+
+<p-dialog [(visible)]="infopopup" header="Weekly Summary"  [style]="{width: '35%'}"
+[modal]="true" styleClass="p-fluid" [draggable] ="false">
+  <ng-template pTemplate="content">
+    <app-infoicon></app-infoicon>
+  </ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="Deletepopup" header="{{'AreYouSureYouWantToDelete' | translate}}" [style]="{width: '35%'}" 
+          [modal]="true" styleClass="p-fluid" draggable="false">
+  <ng-template pTemplate="content" >
+    <div class="modal-footer deletecontent">
+      <button type="button" class="btn btn-danger" 
+              data-ng-click="ConformationNo()" (click) ="ConformationNo()">
+              {{'No' | translate}}
+      </button>
+      <button class="btn btn-primary"
+              data-ng-click="ConformationYes()" (click) ="ConformationYes()">
+              {{'Yes' | translate}}
+      </button>
+    </div>
+  </ng-template>
+</p-dialog>
+
+<!-- <app-dynamicgrid (getchartdetails)="getchartdetails($event)"></app-dynamicgrid> -->
+<!-- <div class="displaynone" (ngModelChange)="onChange($event)">
+ <app-effortgraph  [receivedPodDetails]="GetPodDetails" (getchartdetails)="getchartdetails"></app-effortgraph>
+</div> -->
+

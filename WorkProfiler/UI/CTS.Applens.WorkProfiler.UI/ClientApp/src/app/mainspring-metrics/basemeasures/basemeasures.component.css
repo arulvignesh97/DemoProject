@@ -1,0 +1,441 @@
+.fasuccessicon {
+  width: 35px;
+  background: #31708f;
+  margin-left: 10px;
+  height: 50px;
+}
+
+.faiconsucesscircle {
+  font-size: 30px;
+  margin-left: 5px;
+  margin-top: 10px;
+  color: #aab1cc73;
+}
+
+.faiconwidth {
+  position: absolute;
+  margin-top: 18px;
+  margin-left: -19px;
+  font-size: 13px;
+  color: white;
+}
+
+i.fa.fa.fa-info-circle.faiconwidth {
+  font-size: 16px;
+  margin-left: -20px;
+  margin-top: 17px;
+}
+
+.errorheader {
+  margin-top: 4px;
+  margin-left: 4px;
+  font-size: 14px;
+  color: black;
+  font-weight: bold;
+}
+
+.errorsuccessmsgbodywidth {
+  background: #d2e9ec;
+}
+
+.errorcontent {
+  color: #2D2926;
+  font-size: 12px;
+}
+
+.baseMeasure {
+  font-size: 11px;
+  height: 15px;
+  width: 45px;
+  position: relative;
+  padding: 0px;
+  float: left;
+  margin-left: 6px;
+  margin-top: 0px;
+}
+
+.LoadfactorCircle {
+  display: block;
+  box-sizing: border-box;
+  height: 20px;
+  width: 20px;
+  padding: 15px;
+  border: none;
+  outline: none;
+  text-align: center;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  background: #4cabea;
+  color: #FFF;
+}
+
+.LoadinnertCircle {
+  font-size: 21px;
+  margin-left: -8px;
+  margin-top: -10px;
+}
+
+.p-dialog-header {
+  border-bottom: 1px solid;
+}
+
+button#btnLoadFactor {
+  width: 77px;
+  height: 30px;
+  border-radius: 4px;
+  padding: 2px;
+  background: #0033A0;
+  font-size: 12px;
+  border: 1px #C8C9CB;
+  color: white;  
+  cursor: pointer;
+}
+
+.circle-menu {
+  margin-left: 88%;
+}
+
+  .circle-menu button, .circle-menu ul li a {
+    display: block;
+    box-sizing: border-box;
+    height: 20px;
+    width: 20px;
+    padding: 15px;
+    border: none;
+    outline: none;
+    text-align: center;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    background: #4cabea;
+    color: #FFF;
+  }
+
+  .circle-menu button {
+    position: relative;
+    z-index: 2;
+    -webkit-animation: appear 0.3s ease-out forwards;
+    -moz-animation: appear 0.3s ease-out forwards;
+    -o-animation: appear 0.3s ease-out forwards;
+    animation: appear 0.3s ease-out forwards;
+  }
+
+  .circle-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+    .circle-menu ul li {
+      margin-left: 92%;
+      margin-top: -6px;
+      position: absolute;
+      z-index: 1;
+      left: 0px;
+      bottom: auto;
+      -webkit-transition: all 0.2s;
+      -moz-transition: all 0.2s;
+      -o-transition: all 0.2s;
+      transition: all 0.2s;
+    }
+
+  .circle-menu[upgraded='true'] {
+    opacity: 1;
+  }
+
+.circle-menu-toggle {
+  margin-left: -159px !important;
+}
+
+.errormsgbodywidth {
+  background: #FBE8CC;
+}
+
+.errorheader {
+  margin-top: 4px;
+  margin-left: 0px;
+  font-size: 14px;
+  color: black;  
+  font-weight: bold;
+}
+
+.errorcontent {
+  margin-left: 4px;
+  color: #2D2926;
+  font-size: 12px;  
+}
+
+.errorbtn {
+  margin-left: 4px;
+  width: 37px;
+  height: 25px;
+  padding: 4px 4px 4px 4px !important;
+  background: #ed8c01;
+  font-size: 11px;
+  color: white;
+  border: none;
+  border-radius: 6px;
+}
+
+.erroeclose {
+  margin-left: 898px;
+  font-size: 12px;
+  color: #F28B36;
+  cursor: pointer;
+}
+
+.faiconwarning {
+  width: 37px;
+  height: 50px;
+  background: #ED8C01;
+}
+
+.faiconcircle {
+  font-size: 30px;
+  margin-left: 6px;
+  margin-top: 10px;
+  color: #f3bb6a;
+}
+
+.faiconwidth {
+  position: absolute;
+  margin-top: 18px;
+  margin-left: -19px;
+  font-size: 13px;
+  color: white;
+}
+
+
+#mandatory {
+  color: red !important;
+}
+
+button#btnSearchBaseMeasures {
+  width: 77px;
+  height: 30px;
+  border-radius: 4px;
+  padding: 2px;
+  background: #0033A0;
+  font-size: 12px;
+  border: 1px #C8C9CB;
+  color: white;  
+  cursor: pointer;
+}
+
+#searchpopup.p-dialog {
+  min-height: 300px !important;
+}
+
+.p-multiselect {
+  width: 170px !important;
+}
+
+.p-dropdown {
+  width: 100% !important;
+}
+
+  .circle-menu button, .circle-menu ul li a {
+    display: block;
+    box-sizing: border-box;
+    height: 20px;
+    width: 20px;
+    padding: 15px;
+    border: none;
+    outline: none;
+    text-align: center;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    background: #4cabea;
+    color: #FFF;
+  }
+
+  .circle-menu button {
+    position: relative;
+    z-index: 2;
+    -webkit-animation: appear 0.3s ease-out forwards;
+    -moz-animation: appear 0.3s ease-out forwards;
+    -o-animation: appear 0.3s ease-out forwards;
+    animation: appear 0.3s ease-out forwards;
+  }
+
+  .circle-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+    .circle-menu ul li {
+      margin-left: 92%;
+      margin-top: -6px;
+      position: absolute;
+      z-index: 1;
+      left: 0px;
+      bottom: auto;
+      -webkit-transition: all 0.2s;
+      -moz-transition: all 0.2s;
+      -o-transition: all 0.2s;
+      transition: all 0.2s;
+    }
+
+  .circle-menu[upgraded='true'] {
+    opacity: 1;
+  }
+.circlelabel {
+  width: 75px;
+  height: 14px;
+  font-size: 11px;
+  color: black;  
+  font-weight: 100;
+}
+
+.circleNonticketlabel {
+  width: 100px;
+  height: 14px;
+  font-size: 11px;
+  color: black; 
+  font-weight: 100;
+}
+
+.circletext {
+  width: 68px;
+  height: 14px;
+  font-size: 20px;
+  margin-top: -10px;
+  color: #01677E;  
+  font-weight: 100;
+  text-align: center;
+}
+.h-80 {
+  height: 80vh !important;
+}
+.circle-menu-toggle {
+    display: block;
+    box-sizing: border-box;
+    height: 20px;
+    width: 20px;
+    padding: 15px;
+    border: none;
+    outline: none;
+    text-align: center;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    background: #4cabea;
+    color: #FFF;
+}
+.w-20 {
+  width: 15% !important;
+}
+.count-text { 
+  font-size: 20px;
+}
+.hide {
+  opacity: 0 !important;
+}
+.show {
+  opacity: 1;
+}
+.base-measure-greater-70-count {
+  color: #67b167 !important;
+}
+.base-measure-greater-50-count {
+  color: orange !important;
+}
+.base-measure-greater-0-count {
+  color: #ff5c5c !important;
+}
+.alert p {
+  font-size: 14px;
+  font-weight: 600;
+}
+.ft-14 {
+  font-size: 14px !important;
+}
+.ft-18 {
+  font-size: 18px !important;
+}
+.pad-10 {
+  padding-top: 10px;  
+}
+.pad-13 {
+  padding-top: 13px;  
+}
+.counts {
+   font-size: 12px;
+   height: 50px;
+   font-weight: 600;
+   float: right;
+   padding-top: 0.15rem !important;
+   animation-name: countAnimation;
+   animation-duration: 2s;
+}
+
+@keyframes countAnimation {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@media screen and  (max-width: 1335px) {
+    .h-80 {
+       height: 85vh !important
+    }
+}
+@media screen and (min-width:1200px) and (max-width: 1300px) {
+  .fasuccessicon {
+    height: 60px !important;
+    }
+    .w-20 {
+      width: 13% !important;
+    }
+    .faiconsucesscircle {
+      margin-top: 15px;
+    }
+    i.fa.fa.fa-info-circle.faiconwidth {
+      margin-top: 22px;
+    }
+}
+
+.alertrow {
+    padding: 0.3rem 0rem;
+    width: 100%;
+    margin-left: 0%;
+    margin-bottom: 5px !important;
+}
+.ft-12 {
+  font-size: 12px !important;
+}
+.edit-count {
+  max-width: 4% !important;
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+  cursor: pointer;
+}
+.warn {
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+}
+.max-20 {
+  max-width: 20% !important;
+}
+.max-25 {
+  max-width: 25% !important;
+}
+
+:disabled{
+  opacity: 0.5;
+  cursor: not-allowed !important;
+}

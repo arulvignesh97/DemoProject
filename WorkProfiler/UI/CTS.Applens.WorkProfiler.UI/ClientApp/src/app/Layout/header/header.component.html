@@ -1,0 +1,175 @@
+<div style="width:101%">
+  <applens-header [HeaderSettings]="headerelement"   (ToggleButton)="SideNavToggle()" 
+  (ApplensLogo)="GetHomePage()"  (LogoutUser)="LogOutUser()"
+  (AvatarClick)="GetMyAssociateURL()"
+   (ModuleSelection)="switchCustomer($event.detail)"
+    (LanguageSelection)="switchLang($event.detail)"
+    (ProfileClick)= "openPreferenceModal()" >
+  </applens-header>
+</div>
+<div>
+    <applens-footer [IsHrVersion]="false"></applens-footer>
+</div>
+  <!--<nav class="imageheader header">
+    <div class="row" style="margin-right:0px!important;">
+      <div class="col-md-1" style="padding-top: 0em;">
+        <div style="float:left;padding-top: 3px;">
+          <span id="sidebarCollapse" *ngIf="sidebarExpandEnable==true" (click)="sidebarCollapse()"> <img style="height:16px; width:16px; margin-top: 5px;" src="./assets/images/Cross.png" /></span>
+          <span id="sidebarExpand" *ngIf="sidebarExpandEnable==false" (click)="sidebarExpand()">☰</span>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <a (click)="GetHomePage()"><img class="logo" src="./assets/cognizant.png" /></a>
+      </div>
+      <div class="col-md-1">
+        <a (click)="GetHomePage()"><img class="applenslogo" src="./assets/applens_logo.png" /></a>
+      </div>
+      <div class="col-md-3 ml-5">
+        <label id="lblHeaderCompWorkProfiler">
+          <h1 style="font-size: 21px;font-weight: 500;">{{header}}</h1>
+        </label>
+      </div>
+      <div class="col-md-2 lang-drop ml-0 pl-0" *ngIf="IsCustomerPresent">
+        <p-dropdown #selectedLang styleClass="langdropdown" [options]="languagedetails" optionLabel="language" [(ngModel)]="currentLang" emptyFilterMessage="No languages Found" (onChange)="switchLang(selectedLang.value)"></p-dropdown>
+      </div>
+  
+      <div class="col-md-1" [ngClass]="{'col-md-4':!IsCustomerPresent,'icon-width': IsCustomerPresent}">
+        <img src="./assets/ico_Award.png" data-lang-title="MyContribution" title="My Contribution" id="Mycontributionredirect" class="contribution-img" (click)="GetMyAssociateURL()" />
+      </div>
+  
+      <div class="col-md-2 dropdown-width" *ngIf="IsCustomerPresent">
+        <p-dropdown [filter]="true" [resetFilterOnHide]="true" #selectedCustomer styleClass="projectdropdown" [options]="customerdetails" optionLabel="customerName" [(ngModel)]="currentProject" emptyFilterMessage="No results found" (onChange)="switchCustomer($event)"></p-dropdown>
+  
+      </div>
+  
+      <div class="myactivity ml-5">
+        <notification-banner></notification-banner>
+      </div>
+  
+      <div class="col-md-1 icon-width" #userImage>
+        <a class="userphoto " title="Click here to see user details" role="button">
+          <img *ngIf="imagepresent" class="userimage" title="Click here to see user details" [src]="userimage" (click)="openPreferenceModal()" aria-haspopup="true" aria-expanded="false" id="dropdownMenuButton">
+          <img *ngIf="!imagepresent" title="Click here to see user details" class="userimage" src="./assets/User.png" (click)="openPreferenceModal()" aria-haspopup="true" aria-expanded="false" id="dropdownMenuButton">
+        </a>
+      </div>-->
+      <!-- KeyCloak LogOut UI -->
+      <!-- <div>
+        <span class="down-arrow ml-2" *ngIf="isKeycloakEnabled" (click)="op.toggle($event)">
+          <i class="fa fa-angle-down" title="LogOut"></i>
+        </span>
+      </div>
+      <div class="overlay-panel ml-4">
+        <p-overlayPanel #op>
+          <ng-template pTemplate>
+            <span class="logout-word" (click)="LogOutUser()" innerHTML="{{'LOGOUT'}}"></span>
+          </ng-template>
+        </p-overlayPanel>
+      </div> -->
+      <!-- KeyCloak LogOut UI End-->
+     <!--</div>
+</nav> -->
+  <div id="myModal" bsModal #preferenceModal="bs-modal" class="modal fade" role="dialog" aria-hidden="true">
+    <div class="notify-dialog" [ngStyle]="{'margin-left': userClicked ? getMargin() : '0px'}">
+      <!-- Modal content-->
+      <div class="notificationpopup" id="Mainpopupicon">
+        <i class="fa fa-caret-up" id="Mainipopupicon"></i>
+        <div class="notifyheader">
+          <div class="col-md-11">
+            <label id="divwelcome">Welcome {{employeeName}}</label>
+          </div>
+          <div class="col-md-1">
+            <button type="button" class="close notifyclose" data-dismiss="modal" (click)="preferenceModalClose()">&times;</button>
+          </div>
+        </div>
+        <div class="notifybody" id="notifydata">
+          
+          <div class="row">
+            <div class="clscolmd6reuse">
+              <label class="clkslbluser">Default Landing Page</label>
+            </div>
+            <div class="clscolmd6reuse pl-0">
+              <p-dropdown styleClass="clsdropdownuser" [options]="defaultPages" optionLabel="displayName" [(ngModel)]="defaultPage"></p-dropdown>
+            </div>
+          </div>
+  
+          <div class="row mt-3">
+            <div class="clscolmd6reuse">
+              <label class="clkslbluser">Project Name</label>
+            </div>
+            <div class="clscolmd6reuse pl-0">
+              <p-dropdown styleClass="clsdropdownuser" [options]="defaultProjects" optionLabel="projectName" [(ngModel)]="defaultProject" (onChange)="GetProjectLeadDetails(defaultProject.projectId, employeeId)"></p-dropdown>
+            </div>
+          </div>
+  
+          <div class="row mt-3" *ngIf="!displayExemptedMsg">
+            <div class="clscolmd6reuse">
+              <label class="clkslbluser">Timesheet Approver</label>
+            </div>
+            <div class="clscolmd6reuse">
+              <label class="clslabelrtuser" style="color:black;" id="lblProjectTSApprover">{{TSApprover}}</label>
+            </div>
+          </div>
+  
+          <div class="row mt-3" *ngIf="!displayExemptedMsg">
+            <div class="clscolmd6reuse">
+              <label class="clkslbluser">Manager</label>
+            </div>
+            <div class="clscolmd6reuse">
+              <label class="clslabelrtuser" style="color:black;" id="lblProjectManager">{{projectManager}}</label>
+            </div>
+          </div>
+  
+          <div class="row mt-3" *ngIf="!displayExemptedMsg">
+            <div class="clscolmd6reuse">
+              <label class="clkslbluser">Admin</label>
+            </div>
+            <div class="clscolmd6reuse" *ngIf="!displayExemptedMsg" >
+              <label class="clslabelrtuser" id="lblProjectAdmin">{{projectAdmin}}</label>
+            </div>
+          </div>
+          <div id="alert" class="alert alert-danger warningMessage mt-2 ftSize"  *ngIf="displayExemptedMsg" [innerHtml]="exemptedMsg"></div>
+          <div class="row mt-3 textaglign justify-content-center" >
+            <button type="submit" class="Saveuser col-md-2 m-0" (click)="SaveUserIconDetails()" [disabled]="displayExemptedMsg">Save</button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrapper">
+    <div *ngIf="refreshsidebar">
+      <app-navmenu [collapsed]="collapsedState" (collapseClicked)="collapseClicked($event)"></app-navmenu>
+    </div>
+    <div id="content">
+      <div *ngIf="IsAuth" id="contentbody">
+        <router-outlet></router-outlet>
+      </div>
+      <div *ngIf="!IsAuth" class="warning height">
+        <table style="margin-top: 22%; margin-left: 30%;">
+          <tbody>
+            <tr>
+              <td rowspan="2" style="background-color:#ED8C01; width:30px;text-align: center;">
+                <span>
+                  <i class="fa fa-exclamation-triangle" style="color: white;font-size: 12px;"></i>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td style="background-color:#FBE8CC;padding: 6px;">
+                <div class="errorheader" style="font-size: 12px">Warning Message</div>
+                <div class="errorcontent" style="font-size: 12px">
+                  Access denied: You do not have
+                  sufficient access
+                  to use this application.
+                </div>
+                <div class="errorcontent" style="font-size: 12px">
+                  Please contact your ESA Project
+                  Manager.
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      </div>
+      

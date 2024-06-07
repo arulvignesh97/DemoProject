@@ -1,0 +1,121 @@
+.searchlabel{
+    margin: .5%;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.cardheight{
+    height: 3rem;
+}
+
+.searchicon{
+    float: right;
+    margin: 8%;
+}
+
+::ng-deep .modal-dialog {
+    max-width: 80% !important;
+    margin-left: 17.5%;
+    margin-top: 5%;
+}
+
+.popupcontent{
+    display: flex;
+}
+
+.btnsearch{
+    border-radius: 6px;
+    color: white !important;
+    box-shadow: none !important;
+    border: none !important;
+    cursor: pointer;
+    font-size: small;
+}
+
+label.lblheader {
+    display: inline-block;
+    margin: inherit;
+    font-size: small;
+    font-weight: 500;
+}
+
+.linemargin{
+    margin-top: 1%;
+}
+
+.margintop{
+    width: 100%;
+    margin: 0%;
+    margin-top: 1%;
+}
+
+button.btnsearch.btn.btn-success {
+    background: #0033A0;
+    border-color: #0033A0;
+}
+
+button.btnsearch.btn.btn-info {
+    background-color: #0f5acf;
+    border-color: #0f5acf;
+}
+
+button.btnsearch.btn.btn-warning {
+    background: #1EADE9;
+    border-color: #1EADE9;
+}
+
+.labelcls {
+    margin-left: 4%;
+    margin-top: 4%;
+}
+
+label.u-text-label-size {
+    margin-left: 0.4rem;
+    margin-top: 0.3rem;
+    font-size: small;
+    font-weight: 500;
+}
+
+.alert {
+    position: relative;
+    padding: 0.25rem;
+    margin: 0;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+
+label.widthmsg {
+    margin-left: 40%;
+}
+
+span.Mandatory {
+    color: red;
+}
+
+.clearicon{
+    width: 80%;
+}
+
+
+i.pi.pi-times {
+    font-size: 12px !important; 
+    cursor: pointer;
+    margin-left: 3% !important;
+}
+.exemptedColor{
+    color: #0033A0 !important;
+}
+.nonexemptedColor{
+    color: black !important;
+}
+.exemptedMsgText {
+    font-size:14px;
+    margin-left: 2%;
+    color: red;
+  }
+.msgText{
+      text-align: center;
+      display: block;
+     }

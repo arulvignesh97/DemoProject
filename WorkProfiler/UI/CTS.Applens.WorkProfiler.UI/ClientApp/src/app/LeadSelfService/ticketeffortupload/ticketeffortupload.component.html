@@ -1,0 +1,394 @@
+<div class="container">
+  <div class="row page-titles">
+    <div class="col-md-8">
+      <h3 class="text-themecolor">{{'TicketUpload' | translate}}</h3>
+    </div>
+    <div class="col-md-4">
+      <select class="select" (change)=SetProject($event.target.value)>
+        <option *ngFor="let x of projectListData" [value]="x.projectId">{{x.projectName}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="row labelHeader">
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-2">
+          <div class="Tab" [ngClass]="{'TabSelected': ticketUploadShow == 1}" (click)="UploadSelection(1)">
+            Ticket Upload
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="Tab" [ngClass]="{'TabSelected': ticketUploadShow == 2}" (click)="UploadSelection(2)">
+            {{'EffortUpload' | translate}}
+          </div>
+        </div>
+        <div class="col-md-2" *ngIf = "debtShow">
+          <div class="Tab" [ngClass]="{'TabSelected': ticketUploadShow == 3}" (click)="UploadSelection(3)">
+           Debt Un-classified Tickets
+          </div>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <br />
+      <div class="alert alert-danger warningMessage" style="margin-left:-1%;margin-top: -2%;" *ngIf="errorMessageShow == true">
+        {{errorMessage}}
+      </div>
+      <div class="alert alert-success warningMessage" style="margin-left:-1%;margin-top: -2%;" *ngIf="successMessageShow == true">
+        {{successMessage}}
+      </div>
+    </div>
+
+    <div class="warning" *ngIf="ticketUploadShow == 2 && warningShow && !displayExemptedMsg">
+      <table style=" margin-left: 10%; margin-top: 3%;min-height: 5em;">
+        <tbody>
+          <tr>
+            <td rowspan="2" style="background-color:#ED8C01; width:30px;text-align: center;height: 5em;">
+              <span>
+                <i class="fa fa-exclamation-triangle" style="color: white;font-size: 12px;"></i>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color:#FBE8CC;padding: 6px;min-width: 45em;">
+              <div class="errorheader" style="font-size: 12px;margin-top: -3%;">
+                <b>{{'WarningMessage' | translate}}</b>
+              </div>
+              <div class="errorcontent" style="font-size: 12px;margin-top: 1%;">
+                {{warningMessage}}
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+    <div class="accodinBackground"  [ngClass]="{'accodinBackgroundHide':  (ticketUploadShow ==2 && warningShow && !displayExemptedMsg)}">
+      <label class="row" *ngIf="errITSMShow">
+        <span class="clsErrITSM" *ngIf="errITSMMandateColumn && !displayExemptedMsg">{{'SupportTypeProjectChanged' | translate}}</span>
+        <span class="clsErrITSM" *ngIf="errITSMPercentage && !displayExemptedMsg">{{'ITSMConfigurationHasNotYetCompleted' | translate}}</span>
+        <span class="clsErrITSM" *ngIf="errITSMManualOrAuto && !displayExemptedMsg">{{'CantAbleToDoManualUpload' | translate}}</span>
+      </label>
+      <label class="row" *ngIf="displayExemptedMsg">
+        <span class="clsErrITSM">{{exemptedMsg | translate}}</span>
+      </label>
+
+      <div class="row" style="width: 100%;overflow-y:auto;overflow-x: hidden;height: 40vh;">
+        <p-accordion expandIcon="pi pi-fw pi-plus" collapseIcon="pi pi-fw pi-minus" class="accodin">
+          <p-accordionTab *ngIf="ticketUploadShow === 1">
+            <p-header>
+              <span class="ClsAccordion">{{'TicketDownload&Upload' | translate}}</span>
+            </p-header>
+            <div class="row">
+              <div class="col-md-3" style="float: left;">
+              </div>
+              <div class="col-md-6 divUploadLayout" [ngClass]="{'divDisabled':displayExemptedMsg}">
+                <button class="btn btn-info" (click)="TicketDownload()" [disabled]="buttonDisable||displayExemptedMsg">
+                  <i class="fa fa-cloud-download"></i>
+                  <label class="space">{{'Download' | translate}}</label>
+                </button>
+                <button class="btn btn-warning fileinput-button" (click)="ticketDetails.click()"
+                        pTooltip="No File Chosen" [disabled]="buttonDisable||displayExemptedMsg">
+                  <i class="fa fa-upload"></i>
+                  <label class="space">{{'Upload' | translate}}</label>
+                  <input #ticketDetails type="file" accept=".xlsx" (click)="ticketDetails.value = null"
+                         (change)="TicketUpload($event)" style="display:none" />
+                </button>
+              </div>
+              <div class="col-md-3 clsDivUp">
+              </div>
+            </div>
+            <div class="row clsITSM" *ngIf="!displayExemptedMsg">
+              <div *ngIf="isTicketDescriptionOptedShow">
+                {{'Note' | translate}}<br /><br />
+                <p>
+                  {{'UploadNteMsg' | translate}}<span><b>{{spanTicketPath}}</b></span>&nbsp;<i class='fa fa-copy clsCopy' pTooltip="Copy Share Path"
+                                                                                               (click)="CopyPath(spanTicketPath)"></i>{{'UploadEndMsg' | translate}}
+                </p>
+                <p>{{'UsersNteMsg' | translate}}<span><b>{{spanTicketUsers}}</b></span></p>
+                <p>
+                  {{'NoteTicketDumpWithMoreThan2000TicketsCannotBeUploadedHerePleasePlaceTheDumpFilesInTicketSharePathForSuccessfulUpload' | translate}}&nbsp;&nbsp;{{'UploadTicketsWithWorkpatternSuccessfulupload' | translate}}
+                </p>
+              </div>
+              <div *ngIf="defaultTicketMessageShow">
+                {{'Note' | translate}}<br /><br />
+                <p>
+                  {{'UploadNteMsg' | translate}}<span><b>{{spanTicketPath}}</b></span>&nbsp;<i class='fa fa-copy clsCopy' pTooltip="Copy Share Path"
+                                                                                               (click)="CopyPath(spanTicketPath)"></i>{{'UploadEndMsg' | translate}}
+                </p>
+                <p>{{'UsersNteMsg' | translate}}<span><b>{{spanTicketUsers}}</b></span></p>
+                <p>
+                  {{'NoteTicketDumpWithMoreThan2000TicketsCannotBeUploadedHerePleasePlaceTheDumpFilesInTicketSharePathForSuccessfulUpload' | translate}}
+                </p>
+              </div>
+            </div>
+          </p-accordionTab>
+          <p-accordionTab *ngIf="(ticketUploadShow == 2 && !warningShow) || (ticketUploadShow == 2 && displayExemptedMsg ) ">
+            <p-header>
+              <span class="ClsAccordion"> Effort dump download</span>
+            </p-header>
+            <div class="row" *ngIf="ismaintenancedevtest && isCIS" >
+              <div class="col-md-4" style="float: left;">
+              </div>
+              <div class="col-md-5">
+                <div class="row">
+                  <div class="col-md-2">
+                    <label>Scope:</label>
+                  </div>
+                  <div>
+                    <input type="radio" class="radiobtn" id="rb_App" name="AppInfra" value="1" 
+                    [disabled]="displayExemptedMsg"
+                    (change)="RBChange($event)" checked="checked" />
+                  </div>
+                  <div class="col-md-6">
+                    <span class="radiotxt btn-lang-font">&nbsp;{{scopeValues | translate}}</span>
+                  </div>
+                  <div>
+                    <input type="radio" class="radiobtn" id="rb_Infra" name="AppInfra" 
+                    [disabled]="displayExemptedMsg"
+                    value="0" (change)="RBChange($event)" />
+                  </div>
+                  <div class="col-md-2">
+                    <span class="radiotxt btn-lang-font">&nbsp;CIS</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+              </div>
+            </div>
+            <div class="warning" *ngIf="EffortDivVisibilitywarningShow">
+              <table style="margin-top: 3%;min-height: 5em;">
+                <tbody>
+                  <tr>
+                    <td rowspan="2" style="background-color:#ED8C01; width:30px;text-align: center;height: 5em;">
+                      <span>
+                        <i class="fa fa-exclamation-triangle" style="color: white;font-size: 12px;"></i>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="background-color: #FBE8CC;min-width: 83em;padding: 21px 2px 0px 7px;">
+                      <div class="errorheader" style="font-size: 12px;margin-top: -3%;">
+                        <b>{{'WarningMessage' | translate}}</b>
+                      </div>
+                      <div class="errorcontent" style="font-size: 12px;margin-top: 1%;">
+                        {{warningMessage}}
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="row" *ngIf="EffortDivVisibility">
+              <div class="col-md-3" style="float: left;">
+              </div>
+              <div class="col-md-6 divUploadLayout"  [ngClass]="{'divDisabled':displayExemptedMsg}">
+                <button (click)="EffortDownload()" class="btn btn-info" [disabled]="displayExemptedMsg">
+                  <i class="fa fa-cloud-download"></i>
+                  <label class="space">{{'Download' | translate}}</label>
+                </button>
+                <button class="btn btn-warning fileinput-button" (click)="effortDetails.click()"
+                        pTooltip="No File Chosen"  [disabled]="displayExemptedMsg">
+                  <i class="fa fa-upload"></i>
+                  <label class="space">{{'Upload' | translate}}</label>
+                  <input #effortDetails type="file" accept=".xlsx"
+                         (click)="effortDetails.value = null"
+                         (change)="effortUpload($event)" style="display:none" />
+                </button>
+              </div>
+            </div>
+            <div class="row clsITSM" id="EffortMsg" *ngIf="EffortDivVisibility && !displayExemptedMsg">
+              <div *ngIf="defaultEffortMessageShow">
+                {{'Note' | translate}}<br /><br /><p>{{'EffortNteMsg' | translate}}<span><b>{{spanEffortPath}}</b></span>&nbsp;<i class='fa fa-copy clsCopy' pTooltip="Copy Share Path" (click)="CopyPath(spanEffortPath)"></i>{{'UploadEndMsg' | translate}}</p><p>{{'UsersNteMsg' | translate}}<span><b>{{spanEffortUsers}}</b></span></p>
+              </div>
+            </div>
+          </p-accordionTab>
+          <p-accordionTab *ngIf="ticketUploadShow == 3">            
+            <p-header class="phead">
+              <div class="row">
+               <div class="col-md-11"> 
+              <span class="ClsAccordion">Debt Unclassified Tickets </span>
+            </div>
+            <div class="col-md-1">
+                
+                <i class="fa fa-question-circle fa-x closeicon"  (click)="showDebtDialog($event)" aria-hidden="true"></i>
+              </div> 
+              </div> 
+            </p-header>
+          <div class="row" *ngIf = "showRadiobuttons" >
+          <div class = "col-md-4"></div>
+          <div class = "col-md-2">
+            
+            <input type="radio" class="dappradiobtn"  id="db_App" name="dAppInfra" value="1" 
+            (change)="debtRBChange($event)" checked="checked" [disabled]="displayExemptedMsg"/>
+            <span class = "spnappbtn">Maintenance</span>
+          </div>
+          <div class = "col-md-2 infleft">
+          <input type="radio" class="dinfraradiobtn" id="db_Infra" name="dAppInfra" value="0"
+           (change)="debtRBChange($event)" [disabled]="displayExemptedMsg" />
+          <span class = "spninfrabtn">CIS</span>
+           </div>
+          <div class = "col-md-4"></div>
+          </div>
+
+          <form [formGroup]="debtunClassifiedlFG" >
+          <div class="row firstrow">
+              <div class="col-md-2">
+                <label class="closelabel">Closed Date From: <span class="mandatory">*</span> </label> 
+              </div>
+                <div class="col-md-2">
+                <p-calendar formControlName = "SelectedFromDate" class="closefromdate"  readonlyInput="readonlyInput" [disabled]="displayExemptedMsg"
+                (onSelect)="closedatefromchange(SelectedFromDate)"  [monthNavigator]="true"  appendTo="body" 
+                  [yearNavigator]="true" yearRange="{{startingyear}}:{{currentyear}}" 
+                  [minDate]="minclosedatefrom" [maxDate]="maxclosedatefrom" required="true"></p-calendar>
+              </div>
+              <div class="col-md-2">
+                <label class="closelabel">Closed Date To: <span class="mandatory">*</span> </label> 
+              </div>
+                <div class="col-md-2">
+                 <p-calendar formControlName = "SelectedToDate" class="closetodate"  readonlyInput="readonlyInput"
+                     (onSelect)="closedatetochange(SelectedToDate)" [monthNavigator]="true"  [disabled]="displayExemptedMsg" appendTo="body"
+                  [yearNavigator]="true" yearRange="{{startingyear}}:{{currentyear}}" 
+                  [minDate]="minclosedateto" [maxDate]="maxclosedateto" required="true"></p-calendar> 
+               
+              </div>
+              <div class="col-md-2">
+                <label class="closelabel">{{MasterHierarcyList[0].businessClusterName}}:</label> 
+              </div>
+                <div class="col-md-2">
+                <p-multiSelect id="ddlProjectnew" (onChange)="LoadHierarchy(0,'SelectedHierarchy0')"
+                [options]="HierarchyDropdownList[0].List" optionLabel="label" [resetFilterOnHide]="true"
+                optionValue="value" [disabled]="displayExemptedMsg"
+                 name="ddlProjectnew" [autoDisplayFirst]="false"
+                    placeholder=" Select" class="multiselectdebtclass" formControlName="SelectedHierarchy0" 
+                    [filter]="true">
+                </p-multiSelect>
+                </div>
+            </div>
+            <div class="row firstrow">
+              <div class="col-md-2">
+                <label class="closelabel">{{MasterHierarcyList[1].businessClusterName}}:</label> 
+              </div>
+                <div class="col-md-2">
+                <p-multiSelect id="ddlProjectnew" 
+                [options]="HierarchyDropdownList[1].List" optionLabel="label" (onChange)="LoadHierarchy(1,'SelectedHierarchy1')"
+                optionValue="value"  name="ddlProjectnew" [autoDisplayFirst]="false" [disabled]="displayExemptedMsg"
+                    placeholder=" Select" class="multiselectdebtclass" formControlName="SelectedHierarchy1"
+                    [filter]="true" [resetFilterOnHide]="true">
+                </p-multiSelect>
+                </div>
+                <div class="col-md-2">
+                  <label class="closelabel">{{MasterHierarcyList[2].businessClusterName}}:</label> 
+                </div>
+                  <div class="col-md-2">
+                  <p-multiSelect id="ddlProjectnew" name="ddlProjectnew" [autoDisplayFirst]="false" (onChange)="LoadHierarchy(2,'SelectedHierarchy2')"
+                  [options]="HierarchyDropdownList[2].List" optionLabel="label" optionValue="value"
+                      placeholder=" Select" class="multiselectdebtclass" formControlName="SelectedHierarchy2" [disabled]="displayExemptedMsg"
+                      [filter]="true">
+                  </p-multiSelect>
+                  </div>
+                  <div class="col-md-2" *ngIf = "ispureApp">
+                    <label class="closelabel">Application :  </label> 
+                  </div>
+                    <div class="col-md-2" *ngIf = "ispureApp">
+                    <p-multiSelect id="ddlProjectnew" name="ddlProjectnew" [autoDisplayFirst]="false"
+                    [options]="HierarchyDropdownList[3].List" optionLabel="label" optionValue="value" (onChange)="LoadHierarchy(3,'SelectedApplication')"
+                        placeholder=" Select" class="multiselectdebtclass" formControlName="SelectedApplication" [disabled]="displayExemptedMsg"
+                        [filter]="true">
+                    </p-multiSelect>
+                    </div>
+                    <div class="col-md-2"  *ngIf = "!ispureApp">
+                      <label class="closelabel">Tower :  </label> 
+                    </div>
+                      <div class="col-md-2" *ngIf = "!ispureApp">
+                      <p-multiSelect id="ddlProjectnew" [options]="HierarchyDropdownList[3].List" optionLabel="label" optionValue="value"
+                       name="ddlProjectnew" [autoDisplayFirst]="false" (onChange)="LoadHierarchy(3,'SelectedApplication')"
+                          placeholder=" Select"  class="multiselectdebtclass" formControlName="SelectedApplication" [disabled]="displayExemptedMsg"
+                          [filter]="true">
+                      </p-multiSelect>
+                      </div>
+            </div>
+             <div class = "row">
+               <div class="col-md-6 divUploadLayout divdebtlayout" style="float: left;">
+                 <button class="btn btn-info" (click)="DownloadDebtUnClassifiedTickets()" [disabled]="displayExemptedMsg">
+                   <i class="fa fa-cloud-download"></i>
+                   <label class="space">{{'Download' | translate}}</label>
+                 </button>
+
+
+               <button class="btn btn-warning fileinput-button" (click)="DebtDetails.click()" [disabled]="displayExemptedMsg"
+                      pTooltip="No File Chosen">
+                 <i class="fa fa-upload"></i>
+                 <label class="space">{{'Upload' | translate}}</label>
+                 <input #DebtDetails type="file" accept=".xlsm"
+                        (click)="DebtDetails.value = null"
+                        (change)="importFile($event)" style="display:none" />
+               </button>
+
+
+               </div>
+            </div>
+          </form>     
+
+          <div class="clsDebtnote" *ngIf="!displayExemptedMsg">
+              <p>Note&nbsp;&nbsp; : &nbsp;&nbsp;Maximum of 2000 tickets can be downloaded/uploaded for an iteration. Post upload, perform search again for the same filters 
+                to extract remaining tickets</p>
+          </div>
+    
+          </p-accordionTab>
+        </p-accordion>
+      </div>
+      <div class="row-fluid" style="margin-top:2%;margin-bottom: 2%;">
+        <div class="span12 text-center">
+          <span class="autoclassification"
+                *ngIf="ticketUploadShow == 1 && autoclassificationShow && autoClassificationMultilingual">{{'EligibleticketswillbeAutoclassifiedandLanguagetranslatewithin5minutesaftersuccessfulupload' | translate}}</span>
+          <span class="autoclassification"
+                *ngIf="ticketUploadShow == 1 && autoclassificationShow && autoClassification">{{'EligibleticketswillbeAutoclassifiedwithin5minutesaftersuccessfulupload' | translate}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dialog header="Debt Un-classified Tickets" [modal]="true" [(visible)]="displayDebtUnclassifiedPop">
+      <table class="helpcontent">
+        <tr>
+        <td>
+          <p>1. This is not a ticket upload feature and purpose of this feature is only to capture the debt information <br/>
+            for already uploaded and not debt classified tickets.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>2. Based on the filters applied, the data will get downloaded where the user needs to capture the <br/> missing information.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>3. The fields, Ticket ID, Ticket Description & Resolution remarks will be in non editable mode and 
+            only <br/> the remaining fields will be captured. </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>4. After capturing all the debt information for a ticket, validate the data by clicking Validate button and <br/>
+            after successful validation upload the same </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>5. During upload system will consider the uploaded data only for the tickets which are not met with <br/> grace period. If grace period is already met and user 
+            upload the debt information then those tickets <br/>
+            will be automatically ignored. Grace period of the project can be verified in Project Profiling ->
+            <br/> Debt Management -> Debt control.</p>
+          </td>
+      </tr>
+      </table>
+    
+</p-dialog>
+

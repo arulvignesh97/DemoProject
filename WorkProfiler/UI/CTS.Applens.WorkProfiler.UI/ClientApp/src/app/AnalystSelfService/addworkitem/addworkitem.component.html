@@ -1,0 +1,268 @@
+<div id="alert" class="alert alert-success successMessage" *ngIf="SuccessMessage != '' ">{{SuccessMessage}}
+</div>
+<form name="addSprintform" [formGroup]="addSprintform">
+    <div class="container sprcontainer" *ngIf="opensprint">
+        <div class="row sprintaccordian">
+            <label>Add Iteration/Sprint/MileStone</label>
+        </div>
+            <div id="alert" class="alert alert-danger warningMessage" *ngIf="ValidationMessage != '' "
+            [innerHtml]="ValidationMessage">
+            </div>
+            <div class="row top1margin">
+            <div class="col-md-4">
+                    <label class="lblworkitems">Iteration/Sprint/Milestone Name <span class="mandatory"></span> </label>
+                    <input type="text" id="txtISMName" class="txtISMName"
+                     [formControl]="wiISMName"
+                     [ngClass]="{'is-invalid': duplicatesprint || isSaveSprint && wiName || 
+                     isSaveSprint && wiISMName.errors }"
+                      (blur)="CheckSprintName()" maxlength="1000"/>
+                </div>
+                    <div class="col-md-3">
+                        <label class="lblworkitems">POD Name <span class="mandatory"></span></label>
+                        <p-dropdown class="displayflex" appendTo = "body" [options] = "podList" optionLabel="podName"
+                        placeholder = "--Select--" formControlName="wiPODName" 
+                        [virtualScroll]="true" itemSize="virtualItemSize"
+                        [ngClass]="{'p-invalid': isSaveSprint && wiPODName.errors}" [filter]="true"></p-dropdown>
+                    </div>
+                <div  id="StartDateSprint" class="col-md-2 workitem">
+                    <label class="lblworkitems">Start Date <span class="mandatory"></span></label>
+                    <p-calendar readonlyInput="readonlyInput" formControlName="wiStartDate" 
+                    id="dtStartDate" [monthNavigator]="true"
+                    [yearNavigator]="true" 
+                    yearRange="{{startingyear}}:{{currentyear}}" 
+                    [ngClass]="{'p-invalid': isSaveSprint && wiStartDate.errors || sprintDateError }"></p-calendar>
+                   </div>
+                <div  id="EndDateSprint"class="col-md-2 clsDteAlign workitem">
+                    <label class="lblworkitems">End Date <span class="mandatory"></span></label>
+                    <p-calendar readonlyInput="readonlyInput" formControlName="wiEndDate"
+                     id="dtEndDate" [monthNavigator]="true"
+                     [yearNavigator]="true" 
+                     yearRange="{{startingyear}}:{{currentyear}}" 
+                    [ngClass]="{'p-invalid': isSaveSprint && wiEndDate.errors || sprintDateError }"></p-calendar>
+                   </div>
+            </div>
+            <div class="row top1margin">
+                <div class="col-md-6 clsSprintDescription">
+                    <label class="lblworkitems">Iteration/Sprint/Milestone Description 
+                        <span class="mandatory"></span> </label>
+                    <textarea type="text" id="txtISMDescription" [formControl]="wiISMDescription"
+                    [ngClass]="{'is-invalid': isSaveSprint && wiISMDescription.errors || 
+                    isSaveSprint && wiDes }"class="txtISMDescription" maxlength="4000"></textarea>
+                </div>
+            </div>
+            <div class="row top1margin">
+                <div class="col-md-2">
+                    <button id="btnSaveSprint" title="Save Sprint"  (click)="SaveSprintDetails();">
+                        Save
+                    </button>
+                </div>
+                <div class="col-md-2">
+                    <button id="btnClearSprint" title="Clear" (click) = "ClearSprintValues()">
+                        Clear
+                    </button>
+                </div>
+                <div class="col-md-2">
+                    <button id="btnCloseSprint" title="Cancel" (click) = "CancelSprint()">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+            <br/>
+        </div>
+</form>
+<form name="addWorkItemform" [formGroup]="addWorkItemform">
+    <div class="container workitemcontainer top1margin">
+        <div [id]="'alert'" class="alert alert-danger warningMessage" *ngIf="wiValidationMessage != '' "
+        [innerHtml]="wiValidationMessage">
+        </div>
+        <div [id]="'alert'" class="alert alert-danger warningMessage" *ngIf="displayExemptedMsg"
+        [innerHtml]="exemptedMsg">
+        </div>
+        <div class="row top1margin">
+        <div class="col-md-3">
+            <label class="lblworkitems">Project <span [id]="'ProjectId'" class="mandatory"></span></label>
+            <p-dropdown class="displayflex"  appendTo = "body" [options] = "projectDetails" optionLabel="projectName"
+            placeholder = "--Select--" formControlName="ProjectId" (onChange) = "LoadMasterDetails($event.value)" 
+            [ngClass]="{'p-invalid': isSaveWorkItem && WorkitemValidate('HdnProjectId') }" [filter]="true"></p-dropdown>
+        </div>
+        <div class="col-md-3">
+            <label class="lblworkitems">Application <span  [id]="'Application'" class="mandatory"></span></label>
+            <p-dropdown class="displayflex" appendTo = "body"  
+            [options] = "applicationList" optionLabel="applicationName"
+            placeholder = "--Select--" formControlName="Application" (onChange) = "GetMandateAttributes($event.value)" 
+            [ngClass]="{'p-invalid': isSaveWorkItem && WorkitemValidate('HdnApplication') }" 
+            [filter]="true"></p-dropdown>
+        </div>
+        <div class="col-md-3">
+            <label class="lblworkitems">Work Item Type <span [id]="'WorkItemType'"></span></label>
+            <p-dropdown class="displayflex"  appendTo = "body" [options] = "worktypeList" optionLabel="workTypeName"
+            placeholder = "--Select--" formControlName="WorkItemType" 
+            (onChange) = "WorkTypeValidation($event.value)" 
+            [ngClass]="{'p-invalid': isSaveWorkItem && WorkitemValidate('HdnWorkItemType') }" 
+            [filter]="true"></p-dropdown>
+        </div>
+        <div class="col-md-3">
+            <label class="lblworkitems">Work Item ID <span [id]="'WorkItemId'"></span></label>
+            <input type ="text" class="txtworkitems" 
+            [ngClass]="{'is-invalid': isSaveWorkItem &&  WorkitemValidate('HdnWorkItemId')|| 
+            duplicateworkItemId}" (blur)="CheckWorkItemId()" 
+            [formControl]="WorkItemId" maxlength="100"/>
+        </div>
+    </div>
+    <div class="row top1margin">
+        <div class="col-md-3">
+            <label class="lblworkitems">Epic/WBS <span [id]="'EpicWBS'"></span></label>
+            <p-dropdown class="displayflex" appendTo = "body"  [options] = "epicList" optionLabel="workItemTitle"
+            placeholder = "--Select--" formControlName="EpicWBS" [filter]="true"></p-dropdown>
+        </div>
+        <div class="col-md-3">
+            <label class="lblworkitems">Iteration/Sprint/Milestone
+                <span [id]="'IterationSprintMilestone'"></span></label>
+            <p-dropdown class="displayflex"  appendTo = "body" [options] = "sprintList" optionLabel="sprintName"
+            placeholder = "--Select--" (onChange)="BindSprintStartEndDates($event.value)"
+             formControlName="IterationSprintMilestone" 
+             [filter]="true" [ngClass]="{'p-invalid': isSaveWorkItem && 
+             WorkitemValidate('HdnIterationSprintMilestone')}">
+            </p-dropdown>
+            <span *ngIf = "addSprint" class="clsSprintCreation clsDisplayInline" 
+            style="cursor :pointer" (click)="CreateISM()">✚</span>
+        </div>
+        <div class="col-md-3">
+            <label class="lblworkitems">User Story <span [id]="'UserStory'"></span></label>
+            <p-dropdown class="displayflex" appendTo = "body" [options] = "userstoryList" optionLabel="workItemTitle"
+            placeholder = "--Select--"  formControlName="UserStory" [filter]="true"></p-dropdown>
+        </div>
+        <div class="col-md-3">
+            <label class="lblworkitems">Assignee <span [id]="'Assignee'"></span></label>
+            <input type ="text" class="txtworkitems" [formControl]="Assignee"/>
+        </div>
+    </div>
+    <div class="row top1margin">
+        <div class="col-md-3">
+            <span class="lblworkitems" [innerHtml]="startDate" [id]="'IterationSprintMilestoneStartDate'"></span>
+            <input type ="text" class="txtworkitems" [formControl]="IterationSprintMilestoneStartDate" 
+            [ngClass]="{'is-invalid': isSaveWorkItem &&  WorkitemValidate('HdnIterationSprintMilestoneStartDate')}"/>
+        </div>  
+        <div class="col-md-3">
+            <span class="lblworkitems"[innerHtml]="endDate" [id]="'IterationSprintMilestoneEndDate'"></span>
+            <input type ="text" class="txtworkitems" [formControl]="IterationSprintMilestoneEndDate" 
+            [ngClass]="{'is-invalid': isSaveWorkItem &&  WorkitemValidate('HdnIterationSprintMilestoneEndDate')}"/>
+        </div>
+        <div id="PsdWorkItem"class="col-md-3 workitem">
+            <label class="lblworkitems">Planned Start Date<span [id]="'PlannedStartDate'"></span></label>
+            <p-calendar readonlyInput="readonlyInput" [formControl]="PlannedStartDate" 
+            [monthNavigator]="true"
+                  [yearNavigator]="true" 
+                  yearRange="{{startingyear}}:{{currentyear}}" 
+            [ngClass]="{'p-invalid': isSaveWorkItem && WorkitemValidate('HdnPlannedStartDate')}"></p-calendar>
+        </div>
+        <div id="PedWorkItem" class="col-md-3 workitem">
+            <label class="lblworkitems">Planned End Date<span [id]="'PlannedEndDate'"></span></label>
+           <p-calendar readonlyInput="readonlyInput" formControlName="PlannedEndDate"
+           [monthNavigator]="true"
+                  [yearNavigator]="true" 
+                  yearRange="{{startingyear}}:{{currentyear}}" 
+            [ngClass]="{'p-invalid': isSaveWorkItem && WorkitemValidate('HdnPlannedEndDate')}"></p-calendar>
+            
+        </div>
+    </div>
+     <div class="row top1margin">
+        <div class="col-md-3">
+            <label class="lblworkitems">Priority <span [id]="'Priority'"></span></label>
+            <p-dropdown class="displayflex" appendTo = "body"  [options] = "priorityList" optionLabel="priorityName"
+            placeholder = "--Select--" [filter]="true" formControlName="Priority"></p-dropdown>
+        </div>
+        <div class="col-md-3">
+            <label class="lblworkitems">Status <span [id]="'Status'" ></span></label>
+            <p-dropdown class="displayflex" appendTo = "body"  [options] = "statusList" optionLabel="statusName"
+            placeholder = "--Select--" formControlName="Status" 
+            [ngClass]="{'p-invalid': isSaveWorkItem && WorkitemValidate('HdnStatus')}"
+            [filter]="true"></p-dropdown>
+        </div>
+        <div class="col-md-3">
+            <label class="lblworkitems">Planned Effort<span [id]="'spanPlaneffinhrs'"> (in hrs)</span>
+                <span [id]="'PlannedEffort'"></span></label>
+            <input type ="text" class="txtworkitems" (keypress)="plannedEffortKeyPress($event)" 
+            (blur)= "bindeppe()"  [formControl]="PlannedEffort"
+            [ngClass]="{'is-invalid': isSaveWorkItem &&  WorkitemValidate('HdnPlannedEffort')}"/>
+        </div>
+        <div class="col-md-3">
+            <label class="lblworkitems">Estimation Points
+                <span  *ngIf="UOMApplicable" [id]="'spnUOMopen'" style="display: inline;">(UOM</span>
+                <i *ngIf="UOMApplicable" id="lblUOMEstimates" 
+                class="fa fa-info-circle iconestimate" style="display: inline-block;" 
+                title={{UOMtitle}}></i>
+                <span *ngIf="UOMApplicable" [id]="'spnUOMclose'" style="display: inline;"> ) </span>
+                <span [id]="'EstimationPoints'"></span></label>
+            <input type ="text" class="txtworkitems" [formControl]="EstimationPoints"
+            [ngClass]="{'is-invalid': isSaveWorkItem && WorkitemValidate('HdnEstimationPoints')}"
+            maxlength="100"/>
+        </div>
+    </div>
+
+    <div class="row top1margin">
+        <div class="col-md-3" *ngIf = "markasmilestone">
+            <!-- <label>{{mileStone}}
+                <span class="mandatory"></span>
+            </label> -->
+            <span [innerHtml]="mileStone" class="mandatory"></span>
+            <div class="row">
+                <div class="col-md-1"><input type="radio" class="radiobtn"  
+                    [formControl]="MarkasMilestone" [name]="'MarkasMilestone'" 
+                    [id]="'chkYes'" value="true" /></div>
+                <div class="col-md-2"><span class="radiotxt btn-lang-font">&nbsp;Yes</span></div>
+                <div class="col-md-1"><input type="radio" class="radiobtn"  
+                    [formControl]="MarkasMilestone" [name]="'MarkasMilestone'" 
+                    [id]="'chkNo'" value="false" /></div>
+                <div class="col-md-2"><span class="radiotxt btn-lang-font">&nbsp;No</span></div>
+            </div>
+        </div>
+        <div class="col-md-3" *ngIf = "bugPhase">
+            <label class="lblworkitems">Bug Phase <span [id]="'BugPhase'" class="mandatory"></span></label>
+            <p-dropdown class="displayflex" appendTo = "body"  [options] = "bugPhaseList" optionLabel="bugPhaseName"
+            placeholder = "--Select--" [filter]="true" formControlName="BugPhase" (onChange)="BindBugType($event.value)"
+            [ngClass]="{'p-invalid': isSaveWorkItem && WorkitemValidate('HdnBugPhase')}"
+            ></p-dropdown>
+        </div>
+        <div class="col-md-3" *ngIf = "bugType">
+            <label class="lblworkitems">Bug Type <span [id]="'BugType'" class="mandatory"></span></label>
+            <p-dropdown class="displayflex" appendTo = "body"  [options] = "bugTypeList" optionLabel="bugTypeName"
+            placeholder = "--Select--" [filter]="true" formControlName="BugType" 
+            [ngClass]="{'p-invalid': isSaveWorkItem && WorkitemValidate('HdnBugType')}"
+            ></p-dropdown>
+        </div>
+        <div class="col-md-3">
+            <label class="lblworkitems">Work Item Title<span [id]="'WorkItemTitle'"></span></label>
+            <input type ="text" class="txtworkitems" 
+            [ngClass]="{'is-invalid': isSaveWorkItem && WorkitemValidate('HdnWorkItemTitle')}" 
+            [formControl]="WorkItemTitle" maxlength="4000"/>
+        </div>
+        <div class="col-md-3">
+            <label class="lblworkitems">Description<span [id]="'Description'"></span></label>
+            <input type ="text" class="txtworkitems" [formControl]="Description" maxlength="4000"/>
+        </div>
+    </div>
+    <div class="row top1margin">
+        <span class="spnNote">Note : </span>
+        <p class="clsNoteMsg">1. Work Item can be created only for the projects 
+            which has scope as 'Development/Testing' and having ALM Tool other than Applens</p>
+        <p class="clsNoteMsgworktype">2. Creation can be done only for Work Items types 
+            for which Effort Tracking is enabled</p>
+    </div>
+    <div class="row" >
+        <div class="col-md-2">
+            <button id="btnSaveWorkItem" title="Save Work Item" (click) = "SaveWorkItem()"
+            [disabled]="displayExemptedMsg">
+                Save
+            </button>
+        </div>
+        <div class="col-md-2">
+            <button id="btnClearWorkItem" (click)="ClearWorkItemValues();"
+            [disabled]="displayExemptedMsg">
+                Clear
+            </button>
+        </div>
+    </div>
+    <br/>
+    </div>
+    </form>

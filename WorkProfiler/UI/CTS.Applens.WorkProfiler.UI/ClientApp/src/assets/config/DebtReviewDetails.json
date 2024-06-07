@@ -1,0 +1,2649 @@
+{
+    "DebtReviewList": [
+        {"EmployeeID":null,"ServiceName":"Known Error Resolution Services","TicketID":"Prod Sanity","CustomerID":7097,"ProjectID":10569,"AssignedTo":"674078","IsCognizant":1,"IsApproved":0,"TicketType":"","TicketDescription":"cFWSICWfWjmKJt2x2fFCj8sBWG2Bji8QuWGQzpgTOF0=","Application":"ADM PMO","DebtClassification":"Operational","NatureOfTheTicketName":"0","DebtClassificationID":1,"DebtClassificationMapID":1,"ResidualDebt":"No","ResidualDebtMapID":2,"AvoidableFlag":2,"ResolutionCodeMapID":34839,"ResolutionCode":"application cleanup","ResolutionID":34839,"CauseID":26767,"CauseCodeMapID":26767,"CauseCode":"Access Issue - Ticketing module","FlexField1":"","FlexField2":"","FlexField3":"","FlexField4":"","FlexField1ProjectWise":"0","FlexField2ProjectWise":"0","FlexField3ProjectWise":"0","FlexField4ProjectWise":"0","IsFlexField1Modified":null,"IsFlexField2Modified":null,"IsFlexField3Modified":null,"IsFlexField4Modified":null,"IsAHTagged":false}
+    ],
+    "ResidualMasterDropdown" : [{"ResidualDebtID":"1","ResidualDebtName":"Yes"},{"ResidualDebtID":"2","ResidualDebtName":"No"}],
+    "AvoidableMasterDropdown" : [{"AvoidableFlagID":"2","AvoidableFlagName":"Yes"},{"AvoidableFlagID":"3","AvoidableFlagName":"No"}],
+    "DebtMasterDropdown" : [{"DebtClassificationID":"1","DebtClassificationName":"Operational"},{"DebtClassificationID":"2","DebtClassificationName":"Technical"},{"DebtClassificationID":"3","DebtClassificationName":"Functional"},{"DebtClassificationID":"4","DebtClassificationName":"Knowledge"}],
+    "CauseCodeMasterDrodown": [
+        {
+           "CauseID":"29377",
+           "CauseCode":"A\u0026H Ticket - Getting duplicate"
+        },
+        {
+           "CauseID":"28984",
+           "CauseCode":"A\u0026H Tickets- Not able to assign to user ID\u0027s"
+        },
+        {
+           "CauseID":"28579",
+           "CauseCode":"A\u0026H-ChildMapStatus-Inactive"
+        },
+        {
+           "CauseID":"30437",
+           "CauseCode":"A/H - Not able to close the ticket with Problem ticket closed"
+        },
+        {
+           "CauseID":"32693",
+           "CauseCode":"A/H cleanup"
+        },
+        {
+           "CauseID":"29199",
+           "CauseCode":"A/H count mismatch with the Dashboard"
+        },
+        {
+           "CauseID":"29379",
+           "CauseCode":"A/H- Delink / re-mapping"
+        },
+        {
+           "CauseID":"36044",
+           "CauseCode":"A/H ticket - how/unable to update soft/hard dollar"
+        },
+        {
+           "CauseID":"30448",
+           "CauseCode":"A/H Tickets - Missing"
+        },
+        {
+           "CauseID":"27473",
+           "CauseCode":"A/H tickets - Need to cancel"
+        },
+        {
+           "CauseID":"27476",
+           "CauseCode":"A/H Tickets - Residual Flag Yes"
+        },
+        {
+           "CauseID":"32562",
+           "CauseCode":"A/H-Remap-Save issue"
+        },
+        {
+           "CauseID":"21778",
+           "CauseCode":"A/T - DuplicateHealTicketID"
+        },
+        {
+           "CauseID":"21784",
+           "CauseCode":"A/T - HealingTicket - Active/Inactive Mapping"
+        },
+        {
+           "CauseID":"21779",
+           "CauseCode":"A/T - HealTicketIdAsZero"
+        },
+        {
+           "CauseID":"29861",
+           "CauseCode":"Access for  AVMPMO ,Applens"
+        },
+        {
+           "CauseID":"26767",
+           "CauseCode":"Access Issue - Ticketing module"
+        },
+        {
+           "CauseID":"28369",
+           "CauseCode":"Access not revoked for NonESAAuthorized Users"
+        },
+        {
+           "CauseID":"19582",
+           "CauseCode":"Access Request"
+        },
+        {
+           "CauseID":"19798",
+           "CauseCode":"Access Request Admin"
+        },
+        {
+           "CauseID":"19862",
+           "CauseCode":"Access Request Others"
+        },
+        {
+           "CauseID":"19799",
+           "CauseCode":"Access Request Project"
+        },
+        {
+           "CauseID":"19796",
+           "CauseCode":"Access Request QlikSense"
+        },
+        {
+           "CauseID":"19797",
+           "CauseCode":"Access Request SharePath"
+        },
+        {
+           "CauseID":"21948",
+           "CauseCode":"Access Request Temp"
+        },
+        {
+           "CauseID":"29229",
+           "CauseCode":"Access revoked for NonESAAuthorized Users"
+        },
+        {
+           "CauseID":"30756",
+           "CauseCode":"Activity addition"
+        },
+        {
+           "CauseID":"20535",
+           "CauseCode":"Add New Functionality"
+        },
+        {
+           "CauseID":"28645",
+           "CauseCode":"Add Ticket - Support type unavailability"
+        },
+        {
+           "CauseID":"22001",
+           "CauseCode":"Add Ticket - Ticket ID Already Exist"
+        },
+        {
+           "CauseID":"29636",
+           "CauseCode":"Add ticket_ Project not listed"
+        },
+        {
+           "CauseID":"35539",
+           "CauseCode":"ADM PMO - special character issue"
+        },
+        {
+           "CauseID":"22082",
+           "CauseCode":"Admin Console Access Denied"
+        },
+        {
+           "CauseID":"27468",
+           "CauseCode":"Admin console -Project not listed"
+        },
+        {
+           "CauseID":"34131",
+           "CauseCode":"Admin Console Tile Disabled"
+        },
+        {
+           "CauseID":"29223",
+           "CauseCode":"Admin Console-Define support type- App \u0026infra support"
+        },
+        {
+           "CauseID":"26209",
+           "CauseCode":"Admin Console-oldProject listing in dropdown"
+        },
+        {
+           "CauseID":"29399",
+           "CauseCode":"Admin console-User management - User name is wrong."
+        },
+        {
+           "CauseID":"35840",
+           "CauseCode":"Admin Console-Work Profiler Configuration- Mandate atributes"
+        },
+        {
+           "CauseID":"28179",
+           "CauseCode":"Adoption - Remove project from applens"
+        },
+        {
+           "CauseID":"29117",
+           "CauseCode":"Adoption Report- Analysis"
+        },
+        {
+           "CauseID":"29391",
+           "CauseCode":"Adoption Report_Descope Project"
+        },
+        {
+           "CauseID":"29896",
+           "CauseCode":"Adoption-New Associate Report generation"
+        },
+        {
+           "CauseID":"26082",
+           "CauseCode":"AH Ticket creation issue"
+        },
+        {
+           "CauseID":"20536",
+           "CauseCode":"Analysis"
+        },
+        {
+           "CauseID":"29762",
+           "CauseCode":"App healer  issue"
+        },
+        {
+           "CauseID":"28885",
+           "CauseCode":"App Hierarchy - Backend update of old App Group"
+        },
+        {
+           "CauseID":"21805",
+           "CauseCode":"App Inventory - App Attr - ValidationMessage"
+        },
+        {
+           "CauseID":"21813",
+           "CauseCode":"App Inventory - App Hierarchhy - ValidationMsg"
+        },
+        {
+           "CauseID":"21675",
+           "CauseCode":"App Inventory - App Profiling"
+        },
+        {
+           "CauseID":"32137",
+           "CauseCode":"App Inventory - App Profiling - App group missing"
+        },
+        {
+           "CauseID":"21676",
+           "CauseCode":"App Inventory - Application Attributes"
+        },
+        {
+           "CauseID":"21677",
+           "CauseCode":"App Inventory - Project Mapping"
+        },
+        {
+           "CauseID":"28752",
+           "CauseCode":"App inventory -\u003eApp profiling -\u003e Duplicate applications"
+        },
+        {
+           "CauseID":"21771",
+           "CauseCode":"App Inventory Bulk Upload"
+        },
+        {
+           "CauseID":"32569",
+           "CauseCode":"App Inventory-hierarchy mismatch"
+        },
+        {
+           "CauseID":"26758",
+           "CauseCode":"app profiler"
+        },
+        {
+           "CauseID":"31897",
+           "CauseCode":"App Profiler - Application Missing"
+        },
+        {
+           "CauseID":"30208",
+           "CauseCode":"App Profiler - Assessment"
+        },
+        {
+           "CauseID":"32136",
+           "CauseCode":"App profiler - Unable to select BU"
+        },
+        {
+           "CauseID":"29294",
+           "CauseCode":"App profiler- Download option disabled"
+        },
+        {
+           "CauseID":"29911",
+           "CauseCode":"App Profiler-\u003e Duplicate applications"
+        },
+        {
+           "CauseID":"32293",
+           "CauseCode":"App profiling - Technology mapping"
+        },
+        {
+           "CauseID":"35844",
+           "CauseCode":"App/Infra Inventory-Date format issue"
+        },
+        {
+           "CauseID":"28957",
+           "CauseCode":"AppHealer_HealingPlan_HealingOpportunity_ PageLoading"
+        },
+        {
+           "CauseID":"29895",
+           "CauseCode":"AppInventory - Old Template- Upload fail"
+        },
+        {
+           "CauseID":"27423",
+           "CauseCode":"AppInventory upload-Duplicate Application"
+        },
+        {
+           "CauseID":"29130",
+           "CauseCode":"Applens - RHMS - DB sync issue"
+        },
+        {
+           "CauseID":"26908",
+           "CauseCode":"Applens basepack software"
+        },
+        {
+           "CauseID":"27602",
+           "CauseCode":"Applens -cost related query"
+        },
+        {
+           "CauseID":"29527",
+           "CauseCode":"Applens Mini-Home Screen loading issue"
+        },
+        {
+           "CauseID":"29782",
+           "CauseCode":"Applens Ticket Export- Assignee name blank"
+        },
+        {
+           "CauseID":"28289",
+           "CauseCode":"Application as inactive during migration"
+        },
+        {
+           "CauseID":"29781",
+           "CauseCode":"Application attribute-Download template- duplicate issue"
+        },
+        {
+           "CauseID":"20485",
+           "CauseCode":"Application Call Scheduled"
+        },
+        {
+           "CauseID":"32691",
+           "CauseCode":"Application hierarchy deletion"
+        },
+        {
+           "CauseID":"33051",
+           "CauseCode":"Application id null"
+        },
+        {
+           "CauseID":"27885",
+           "CauseCode":"Application Inventory-Application attributes -Upload"
+        },
+        {
+           "CauseID":"27808",
+           "CauseCode":"Application-disable"
+        },
+        {
+           "CauseID":"30194",
+           "CauseCode":"Application-Job details"
+        },
+        {
+           "CauseID":"28941",
+           "CauseCode":"AppProfiler_Upload issue"
+        },
+        {
+           "CauseID":"21689",
+           "CauseCode":"Approve / Unfreeze"
+        },
+        {
+           "CauseID":"21825",
+           "CauseCode":"Approve / Unfreeze - ActivityName"
+        },
+        {
+           "CauseID":"21777",
+           "CauseCode":"Approve / Unfreeze - Cause/ResolutionCode Swap"
+        },
+        {
+           "CauseID":"21798",
+           "CauseCode":"Approve / Unfreeze - EffortMismatch"
+        },
+        {
+           "CauseID":"21787",
+           "CauseCode":"Approve / Unfreeze - Performance - DefaultersList"
+        },
+        {
+           "CauseID":"23889",
+           "CauseCode":"Approve / Unfreeze - Unable to unfreeze the timesheet"
+        },
+        {
+           "CauseID":"33030",
+           "CauseCode":"approve unfreeze defaulter dropdown"
+        },
+        {
+           "CauseID":"33031",
+           "CauseCode":"Approve/Unfreeze - configured projects"
+        },
+        {
+           "CauseID":"32944",
+           "CauseCode":"Approve/Unfreeze - No data"
+        },
+        {
+           "CauseID":"22055",
+           "CauseCode":"Approve/Unfreeze Date Selection Graph"
+        },
+        {
+           "CauseID":"32790",
+           "CauseCode":"Auto classification issue"
+        },
+        {
+           "CauseID":"30048",
+           "CauseCode":"autoclassification-DD-Ticket Upload"
+        },
+        {
+           "CauseID":"19865",
+           "CauseCode":"Automation - Internal Request"
+        },
+        {
+           "CauseID":"29783",
+           "CauseCode":"automation workbench-appID length-not enough"
+        },
+        {
+           "CauseID":"32744",
+           "CauseCode":"Automation workbench-manual automation ticket creation"
+        },
+        {
+           "CauseID":"27411",
+           "CauseCode":"AVM PMO - CP % Refresh"
+        },
+        {
+           "CauseID":"32304",
+           "CauseCode":"AVM PMO - CWRBillingRate Update"
+        },
+        {
+           "CauseID":"32275",
+           "CauseCode":"AVM PMO - Mail trigger issue"
+        },
+        {
+           "CauseID":"28302",
+           "CauseCode":"AVM PMO - Red Project list update"
+        },
+        {
+           "CauseID":"28787",
+           "CauseCode":"AVM PMO - Report access"
+        },
+        {
+           "CauseID":"27811",
+           "CauseCode":"AVM PMO - Skill Mapping"
+        },
+        {
+           "CauseID":"32278",
+           "CauseCode":"AVM PMO - SO dump"
+        },
+        {
+           "CauseID":"32216",
+           "CauseCode":"AVM PMO Competency Mapping"
+        },
+        {
+           "CauseID":"32046",
+           "CauseCode":"AVM PMO Hygeiene Report"
+        },
+        {
+           "CauseID":"28537",
+           "CauseCode":"AVM PMO-Portal Access"
+        },
+        {
+           "CauseID":"28770",
+           "CauseCode":"AVM1CAPP- CPR Report"
+        },
+        {
+           "CauseID":"28771",
+           "CauseCode":"AVM1CAPP-Release FTE"
+        },
+        {
+           "CauseID":"28772",
+           "CauseCode":"AVM1CAPP-Release reason code"
+        },
+        {
+           "CauseID":"28768",
+           "CauseCode":"AVM1CAPP-WFD Daily report"
+        },
+        {
+           "CauseID":"28769",
+           "CauseCode":"AVM1CAPP-WFD Weekely report"
+        },
+        {
+           "CauseID":"26306",
+           "CauseCode":"AVMBID - Automation Analysis"
+        },
+        {
+           "CauseID":"26307",
+           "CauseCode":"AVMBID - Debt Analysis"
+        },
+        {
+           "CauseID":"26305",
+           "CauseCode":"AVMBID - Reports"
+        },
+        {
+           "CauseID":"26308",
+           "CauseCode":"AVMBID - Ticket Analysis"
+        },
+        {
+           "CauseID":"19642",
+           "CauseCode":"Backend Request"
+        },
+        {
+           "CauseID":"21995",
+           "CauseCode":"Backend Request - Delete Cause code"
+        },
+        {
+           "CauseID":"27246",
+           "CauseCode":"Backend Request - Enable Base measure"
+        },
+        {
+           "CauseID":"21961",
+           "CauseCode":"Backend Request - LoginMaster-CleanUp"
+        },
+        {
+           "CauseID":"21959",
+           "CauseCode":"Backend Request - Update Adoption project list"
+        },
+        {
+           "CauseID":"21960",
+           "CauseCode":"Backend Request - Update SO competencey"
+        },
+        {
+           "CauseID":"21996",
+           "CauseCode":"Backend Request - Update SO payrate"
+        },
+        {
+           "CauseID":"21957",
+           "CauseCode":"Backend Request - Update SO primary skills"
+        },
+        {
+           "CauseID":"21958",
+           "CauseCode":"Backend Request - Update SO status"
+        },
+        {
+           "CauseID":"21956",
+           "CauseCode":"Backend Request -Remove Role Access"
+        },
+        {
+           "CauseID":"32281",
+           "CauseCode":"Base Measure - Date not updated"
+        },
+        {
+           "CauseID":"31786",
+           "CauseCode":"Base measure screen -Page loading for a long time"
+        },
+        {
+           "CauseID":"29146",
+           "CauseCode":"BID - \"Sampling \u0026 Prediction -\u003e Prediction\"- Upload issue"
+        },
+        {
+           "CauseID":"30121",
+           "CauseCode":"BID - Access Request"
+        },
+        {
+           "CauseID":"27874",
+           "CauseCode":"BID - Debt manual classification - Job failure"
+        },
+        {
+           "CauseID":"28868",
+           "CauseCode":"BID - Debt manual classification - Job failure for file header"
+        },
+        {
+           "CauseID":"29582",
+           "CauseCode":"Bid - DWP report file ticket ID order mismatch"
+        },
+        {
+           "CauseID":"29228",
+           "CauseCode":"BID - no data found in the file"
+        },
+        {
+           "CauseID":"31670",
+           "CauseCode":"BID - RFP Analysis Summary Cleanup"
+        },
+        {
+           "CauseID":"32282",
+           "CauseCode":"BID - RFP grid clean up"
+        },
+        {
+           "CauseID":"29069",
+           "CauseCode":"BID - RFP Information - Opportunity ID value data type error"
+        },
+        {
+           "CauseID":"29068",
+           "CauseCode":"BID - Ticket Analysis - Job failure"
+        },
+        {
+           "CauseID":"29518",
+           "CauseCode":"BID - Ticket/Debt Analyze Report"
+        },
+        {
+           "CauseID":"29999",
+           "CauseCode":"BID - Ticket/Debt/Automation Analysis"
+        },
+        {
+           "CauseID":"28269",
+           "CauseCode":"Bid - User access details and tables"
+        },
+        {
+           "CauseID":"32746",
+           "CauseCode":"BID - Winzone ID"
+        },
+        {
+           "CauseID":"29583",
+           "CauseCode":"BID -APPLENS_PRECAT_WPA job got failed."
+        },
+        {
+           "CauseID":"28293",
+           "CauseCode":"Bid Report - User access details"
+        },
+        {
+           "CauseID":"28449",
+           "CauseCode":"BID-TicketDump-CaseSensitiveColumns"
+        },
+        {
+           "CauseID":"22145",
+           "CauseCode":"BM - Incorrect report - Updated Closed date"
+        },
+        {
+           "CauseID":"27475",
+           "CauseCode":"BOM"
+        },
+        {
+           "CauseID":"26430",
+           "CauseCode":"BOM - Access issues"
+        },
+        {
+           "CauseID":"28931",
+           "CauseCode":"BOM - App Mapping - File upload - App name mismatch"
+        },
+        {
+           "CauseID":"30461",
+           "CauseCode":"BOM - App Mapping - File upload - file read error"
+        },
+        {
+           "CauseID":"28980",
+           "CauseCode":"BOM - App Mapping -App Unmapped and not reflected my dashboard"
+        },
+        {
+           "CauseID":"28858",
+           "CauseCode":"BOM - Application Mapping - Account name Not Listed"
+        },
+        {
+           "CauseID":"28751",
+           "CauseCode":"BOM - Dashboard - App count mismatch"
+        },
+        {
+           "CauseID":"29067",
+           "CauseCode":"BOM - Dashboard - connection lost"
+        },
+        {
+           "CauseID":"28866",
+           "CauseCode":"BOM - file download for application mapping"
+        },
+        {
+           "CauseID":"27872",
+           "CauseCode":"BOM - Get Access Details API - Invalid data"
+        },
+        {
+           "CauseID":"27873",
+           "CauseCode":"BOM - Get Account Details SP - Incorrect data"
+        },
+        {
+           "CauseID":"28514",
+           "CauseCode":"BOM - My Accounts - Duplicate Accounts"
+        },
+        {
+           "CauseID":"28446",
+           "CauseCode":"BOM - Portal Access"
+        },
+        {
+           "CauseID":"29059",
+           "CauseCode":"BOM Dashboard Access - UAT link issue"
+        },
+        {
+           "CauseID":"28981",
+           "CauseCode":"BOM Dashboard-Access issue"
+        },
+        {
+           "CauseID":"29784",
+           "CauseCode":"BOM-Application auto unmap"
+        },
+        {
+           "CauseID":"28405",
+           "CauseCode":"BOM-file upload for application mapping"
+        },
+        {
+           "CauseID":"32018",
+           "CauseCode":"BOM-Unable to view the Account in the drop down"
+        },
+        {
+           "CauseID":"28448",
+           "CauseCode":"BOT Ticket"
+        },
+        {
+           "CauseID":"34090",
+           "CauseCode":"Brief case solution"
+        },
+        {
+           "CauseID":"26181",
+           "CauseCode":"Browser version issue"
+        },
+        {
+           "CauseID":"26566",
+           "CauseCode":"Business query"
+        },
+        {
+           "CauseID":"26214",
+           "CauseCode":"C2S issues"
+        },
+        {
+           "CauseID":"33838",
+           "CauseCode":"CCAP Issues"
+        },
+        {
+           "CauseID":"20",
+           "CauseCode":"Change Required"
+        },
+        {
+           "CauseID":"26216",
+           "CauseCode":"Close/Cancel A/H Tickets"
+        },
+        {
+           "CauseID":"17",
+           "CauseCode":"Code Issue"
+        },
+        {
+           "CauseID":"26223",
+           "CauseCode":"Cognizant Lean access"
+        },
+        {
+           "CauseID":"28786",
+           "CauseCode":"column mapping issue"
+        },
+        {
+           "CauseID":"18",
+           "CauseCode":"Configuration Issue"
+        },
+        {
+           "CauseID":"29880",
+           "CauseCode":"CRS report"
+        },
+        {
+           "CauseID":"21",
+           "CauseCode":"Dat"
+        },
+        {
+           "CauseID":"22003",
+           "CauseCode":"Data Dictionary - Download - IncorrectTemplate"
+        },
+        {
+           "CauseID":"21694",
+           "CauseCode":"Data Dictionary - Upload/Download"
+        },
+        {
+           "CauseID":"21814",
+           "CauseCode":"Data Dictionary - Upload/Download - LargeRecords"
+        },
+        {
+           "CauseID":"26513",
+           "CauseCode":"Data dictionary -\u003e Application"
+        },
+        {
+           "CauseID":"21986",
+           "CauseCode":"Data Issue  - ESAJob - Account"
+        },
+        {
+           "CauseID":"21985",
+           "CauseCode":"Data Issue  - ESAJob - Admin"
+        },
+        {
+           "CauseID":"21932",
+           "CauseCode":"Data Issue  - ESAJob - BusinessUnit"
+        },
+        {
+           "CauseID":"21970",
+           "CauseCode":"Data Issue  - ESAJob - Offline/Live Sync"
+        },
+        {
+           "CauseID":"21962",
+           "CauseCode":"Data Issue  - ESAJob - Project"
+        },
+        {
+           "CauseID":"21949",
+           "CauseCode":"Data Issue  - ESAJob - User"
+        },
+        {
+           "CauseID":"21823",
+           "CauseCode":"Data Issue  - IsNonESAAuthorized"
+        },
+        {
+           "CauseID":"21997",
+           "CauseCode":"Data Issue  - ProjectMismatch"
+        },
+        {
+           "CauseID":"21801",
+           "CauseCode":"Data Issue  - VerticalMismatch"
+        },
+        {
+           "CauseID":"21884",
+           "CauseCode":"Data Issue - ApplensTableViewData"
+        },
+        {
+           "CauseID":"22088",
+           "CauseCode":"Data Issue - Data miss during migration"
+        },
+        {
+           "CauseID":"19863",
+           "CauseCode":"Data Issue - Data Not Available in DB"
+        },
+        {
+           "CauseID":"21781",
+           "CauseCode":"Data Issue - Data Not Available in DB - ESAJob"
+        },
+        {
+           "CauseID":"21999",
+           "CauseCode":"Data Issue - Debt Mandatory Fields"
+        },
+        {
+           "CauseID":"21998",
+           "CauseCode":"Data Issue - Incorrect Applens TicketID"
+        },
+        {
+           "CauseID":"19864",
+           "CauseCode":"Data Issue - Incorrect Data in DB"
+        },
+        {
+           "CauseID":"22752",
+           "CauseCode":"Data Issue - Service ID update"
+        },
+        {
+           "CauseID":"33032",
+           "CauseCode":"Data Issue- Assignment group null tickets"
+        },
+        {
+           "CauseID":"21803",
+           "CauseCode":"Data Issue -DebtFieldAsZero"
+        },
+        {
+           "CauseID":"21820",
+           "CauseCode":"Data Issue -Master- InvalidServiceId"
+        },
+        {
+           "CauseID":"27396",
+           "CauseCode":"Data Issue- Special Character in Ticketid"
+        },
+        {
+           "CauseID":"28404",
+           "CauseCode":"Data Mismatch- Compliance Reports"
+        },
+        {
+           "CauseID":"28447",
+           "CauseCode":"Data mismatch during Migration - Effort Configured flag"
+        },
+        {
+           "CauseID":"21950",
+           "CauseCode":"DB - Slowness"
+        },
+        {
+           "CauseID":"35949",
+           "CauseCode":"DB Lock"
+        },
+        {
+           "CauseID":"21963",
+           "CauseCode":"DB Script Missing - SP"
+        },
+        {
+           "CauseID":"30755",
+           "CauseCode":"DB sync issue"
+        },
+        {
+           "CauseID":"32798",
+           "CauseCode":"DB-SP/View Alter"
+        },
+        {
+           "CauseID":"28828",
+           "CauseCode":"DCR reports"
+        },
+        {
+           "CauseID":"22115",
+           "CauseCode":"DD - Sign Off button"
+        },
+        {
+           "CauseID":"21822",
+           "CauseCode":"DD - Upload/Download - Copy/Paste"
+        },
+        {
+           "CauseID":"21806",
+           "CauseCode":"DD - Upload/Download - DisabledAppGroups"
+        },
+        {
+           "CauseID":"21810",
+           "CauseCode":"DD - Upload/Download - ResolutionCode"
+        },
+        {
+           "CauseID":"32571",
+           "CauseCode":"DD -Auto Classification not happening"
+        },
+        {
+           "CauseID":"31366",
+           "CauseCode":"DD- Conflicting records"
+        },
+        {
+           "CauseID":"29864",
+           "CauseCode":"Debt Analysis"
+        },
+        {
+           "CauseID":"31887",
+           "CauseCode":"debt attributes not auto populating"
+        },
+        {
+           "CauseID":"27632",
+           "CauseCode":"Debt control dashboard - Incorrect ticket status"
+        },
+        {
+           "CauseID":"21699",
+           "CauseCode":"Debt Dashboard -  Detailed/Summary View"
+        },
+        {
+           "CauseID":"31787",
+           "CauseCode":"Debt Dashboard - Alignment issue"
+        },
+        {
+           "CauseID":"21696",
+           "CauseCode":"Debt Dashboard _Calculation Logic"
+        },
+        {
+           "CauseID":"21797",
+           "CauseCode":"Debt Dashboard -Automation - PageLoading"
+        },
+        {
+           "CauseID":"28938",
+           "CauseCode":"Debt dashboard_ A/H workbench"
+        },
+        {
+           "CauseID":"21989",
+           "CauseCode":"Debt Enable"
+        },
+        {
+           "CauseID":"22117",
+           "CauseCode":"Debt Engine - Access"
+        },
+        {
+           "CauseID":"29834",
+           "CauseCode":"Debt engine guidance"
+        },
+        {
+           "CauseID":"26207",
+           "CauseCode":"Debt Engine-excel export-filter"
+        },
+        {
+           "CauseID":"27442",
+           "CauseCode":"debt identification-cost track-not updating"
+        },
+        {
+           "CauseID":"21684",
+           "CauseCode":"Debt Management - Debt Config"
+        },
+        {
+           "CauseID":"22111",
+           "CauseCode":"Debt management- Debt Identification - Error Msg"
+        },
+        {
+           "CauseID":"36101",
+           "CauseCode":"Debt Management-Blank Issue"
+        },
+        {
+           "CauseID":"26904",
+           "CauseCode":"Debt Reduction Page-slowness"
+        },
+        {
+           "CauseID":"27441",
+           "CauseCode":"Debt reduction plan-access"
+        },
+        {
+           "CauseID":"21693",
+           "CauseCode":"Debt Review \u0026 Override"
+        },
+        {
+           "CauseID":"27248",
+           "CauseCode":"DebtEngine-data mismatch"
+        },
+        {
+           "CauseID":"28443",
+           "CauseCode":"Defaulters mailer  queries"
+        },
+        {
+           "CauseID":"35800",
+           "CauseCode":"Delete file in Effort upload"
+        },
+        {
+           "CauseID":"28515",
+           "CauseCode":"Detailed TimeSheet Report- Account Id is missing in DropDown"
+        },
+        {
+           "CauseID":"28371",
+           "CauseCode":"Difference in ticketcount between Search ticket \u0026 Debt dashboard summary."
+        },
+        {
+           "CauseID":"28755",
+           "CauseCode":"Disable week end timesheet"
+        },
+        {
+           "CauseID":"30489",
+           "CauseCode":"Dormant tickets"
+        },
+        {
+           "CauseID":"26766",
+           "CauseCode":"Duplicate Day Check Box"
+        },
+        {
+           "CauseID":"21990",
+           "CauseCode":"Effort Upload"
+        },
+        {
+           "CauseID":"29185",
+           "CauseCode":"Effort Upload - Timesheet already approved"
+        },
+        {
+           "CauseID":"32629",
+           "CauseCode":"effort upload errorlog template issue"
+        },
+        {
+           "CauseID":"32690",
+           "CauseCode":"effort upload month end date issue"
+        },
+        {
+           "CauseID":"21968",
+           "CauseCode":"Effort Upload Request"
+        },
+        {
+           "CauseID":"30473",
+           "CauseCode":"Effort Upload Sharepath Access"
+        },
+        {
+           "CauseID":"35795",
+           "CauseCode":"Effort upload slowness"
+        },
+        {
+           "CauseID":"23896",
+           "CauseCode":"Effort Upload-auto access"
+        },
+        {
+           "CauseID":"27397",
+           "CauseCode":"Effort Upload-Auto submit"
+        },
+        {
+           "CauseID":"27399",
+           "CauseCode":"Effort upload-no mail trigger"
+        },
+        {
+           "CauseID":"29875",
+           "CauseCode":"Efforts download"
+        },
+        {
+           "CauseID":"27869",
+           "CauseCode":"EffortUpload - The parameter \u0027addresses\u0027 cannot be an empty Error"
+        },
+        {
+           "CauseID":"27870",
+           "CauseCode":"EffortUpload -Reading empty space into data-table"
+        },
+        {
+           "CauseID":"28843",
+           "CauseCode":"Elimination Plan_Deletion Request"
+        },
+        {
+           "CauseID":"27338",
+           "CauseCode":"Elimination plan-closed tickets not visible"
+        },
+        {
+           "CauseID":"27403",
+           "CauseCode":"Elimination Plan-SV-dependency -Map"
+        },
+        {
+           "CauseID":"26980",
+           "CauseCode":"Enable Mainspring Mandatory Attributes"
+        },
+        {
+           "CauseID":"19",
+           "CauseCode":"Environment Issue"
+        },
+        {
+           "CauseID":"21969",
+           "CauseCode":"Environment Issue - Home Network"
+        },
+        {
+           "CauseID":"21972",
+           "CauseCode":"Environment Issue - Network"
+        },
+        {
+           "CauseID":"28406",
+           "CauseCode":"ESA job issue"
+        },
+        {
+           "CauseID":"30435",
+           "CauseCode":"ESA Job Sync - Delay"
+        },
+        {
+           "CauseID":"20486",
+           "CauseCode":"FAQ Updated"
+        },
+        {
+           "CauseID":"19591",
+           "CauseCode":"Functional Queries"
+        },
+        {
+           "CauseID":"19590",
+           "CauseCode":"Genie Key Request"
+        },
+        {
+           "CauseID":"31714",
+           "CauseCode":"Heal Ticket Cancellation"
+        },
+        {
+           "CauseID":"32702",
+           "CauseCode":"Healing opportunity - Save btn not  working"
+        },
+        {
+           "CauseID":"30120",
+           "CauseCode":"Healparentchild-healticketdetail mismatch"
+        },
+        {
+           "CauseID":"31885",
+           "CauseCode":"Incorrect Statusmap id - Grace period Met tickets"
+        },
+        {
+           "CauseID":"31735",
+           "CauseCode":"Infra inventory - Add Technology Tower"
+        },
+        {
+           "CauseID":"35424",
+           "CauseCode":"Infra Ticket-Attribute Issue"
+        },
+        {
+           "CauseID":"33787",
+           "CauseCode":"Integration failure"
+        },
+        {
+           "CauseID":"29525",
+           "CauseCode":"IsBotGroup auto check"
+        },
+        {
+           "CauseID":"26210",
+           "CauseCode":"Issue in chrome version 74"
+        },
+        {
+           "CauseID":"28776",
+           "CauseCode":"ITSM - Column Mapping - External LoginID Msg"
+        },
+        {
+           "CauseID":"23890",
+           "CauseCode":"ITSM  Config- Priority"
+        },
+        {
+           "CauseID":"21679",
+           "CauseCode":"ITSM Config - Cause/Resolution Code"
+        },
+        {
+           "CauseID":"21681",
+           "CauseCode":"ITSM Config - Column Mapping"
+        },
+        {
+           "CauseID":"21680",
+           "CauseCode":"ITSM Config - Ticket Type Service Mapping"
+        },
+        {
+           "CauseID":"21678",
+           "CauseCode":"ITSM Config - Ticket Upload Config"
+        },
+        {
+           "CauseID":"21839",
+           "CauseCode":"ITSM Config -Service"
+        },
+        {
+           "CauseID":"26208",
+           "CauseCode":"ITSM config-Screen 11-status change"
+        },
+        {
+           "CauseID":"22153",
+           "CauseCode":"ITSM config-screen id 4 missing"
+        },
+        {
+           "CauseID":"30095",
+           "CauseCode":"ITSM Configuration - Service management - Track Activity Wise Efforts"
+        },
+        {
+           "CauseID":"29516",
+           "CauseCode":"ITSM configuration -\u003eStep10(Resolution code) Not loading."
+        },
+        {
+           "CauseID":"27337",
+           "CauseCode":"ITSM configuration -Assignment group"
+        },
+        {
+           "CauseID":"27868",
+           "CauseCode":"ITSM Configuration-100percent before configuring"
+        },
+        {
+           "CauseID":"22113",
+           "CauseCode":"ITSM integration with App Lens"
+        },
+        {
+           "CauseID":"28624",
+           "CauseCode":"ITSM -Service now configuration"
+        },
+        {
+           "CauseID":"28462",
+           "CauseCode":"ITSM-MPS services missing"
+        },
+        {
+           "CauseID":"19593",
+           "CauseCode":"Job Issue"
+        },
+        {
+           "CauseID":"19177",
+           "CauseCode":"Knowledge Issue"
+        },
+        {
+           "CauseID":"19866",
+           "CauseCode":"KT - Internal Request"
+        },
+        {
+           "CauseID":"30258",
+           "CauseCode":"KT - Navigator"
+        },
+        {
+           "CauseID":"22081",
+           "CauseCode":"Lead Self Service Missing"
+        },
+        {
+           "CauseID":"22750",
+           "CauseCode":"Lead self service-Not able to Approve/unfreeze"
+        },
+        {
+           "CauseID":"29786",
+           "CauseCode":"Lean report for all AVM onboarded projects"
+        },
+        {
+           "CauseID":"34160",
+           "CauseCode":"login issue"
+        },
+        {
+           "CauseID":"27247",
+           "CauseCode":"Mainspring - Data push - Job execution"
+        },
+        {
+           "CauseID":"29881",
+           "CauseCode":"Mainspring - Load Factor - Analysis"
+        },
+        {
+           "CauseID":"30203",
+           "CauseCode":"Mainspring - Load Factor - Report"
+        },
+        {
+           "CauseID":"32038",
+           "CauseCode":"Mainspring - Timestamp change"
+        },
+        {
+           "CauseID":"32023",
+           "CauseCode":"Mainspring data support"
+        },
+        {
+           "CauseID":"29664",
+           "CauseCode":"Mainspring Job Analysis"
+        },
+        {
+           "CauseID":"29663",
+           "CauseCode":"Mainspring metric report"
+        },
+        {
+           "CauseID":"29909",
+           "CauseCode":"Mainspring Metric-\u003eTicket summary report-\u003eIncorrect Project id inside report"
+        },
+        {
+           "CauseID":"21695",
+           "CauseCode":"Mainspring Metrics"
+        },
+        {
+           "CauseID":"21971",
+           "CauseCode":"MainSpringJob"
+        },
+        {
+           "CauseID":"31675",
+           "CauseCode":"MAS effort issue from mainspring push"
+        },
+        {
+           "CauseID":"28929",
+           "CauseCode":"Migration- Timesheet - Service list issue"
+        },
+        {
+           "CauseID":"28444",
+           "CauseCode":"Migration-Activity not listing"
+        },
+        {
+           "CauseID":"28479",
+           "CauseCode":"Migration-ITSM-MPS services missing"
+        },
+        {
+           "CauseID":"21690",
+           "CauseCode":"ML -  Initial Learning Review"
+        },
+        {
+           "CauseID":"29196",
+           "CauseCode":"ML - Insufficient tickets"
+        },
+        {
+           "CauseID":"28303",
+           "CauseCode":"ML - Noise cancellation - Rerun"
+        },
+        {
+           "CauseID":"27281",
+           "CauseCode":"ML Hadoop Job Issue-Initial Learning"
+        },
+        {
+           "CauseID":"27334",
+           "CauseCode":"ML -Regeneration -Ticket insufficient"
+        },
+        {
+           "CauseID":"28773",
+           "CauseCode":"MS Office- Environment issue"
+        },
+        {
+           "CauseID":"27335",
+           "CauseCode":"My dash board -debt dash board -Service health dash board issues"
+        },
+        {
+           "CauseID":"28480",
+           "CauseCode":"My Dashboard - Backlog Count - Mismatch"
+        },
+        {
+           "CauseID":"28294",
+           "CauseCode":"My Dashboard - Real estate button issue"
+        },
+        {
+           "CauseID":"28476",
+           "CauseCode":"My Dashboard _SDHD_Cal Logic"
+        },
+        {
+           "CauseID":"28295",
+           "CauseCode":"My Dashboard- Application landscape - Count Mismatch"
+        },
+        {
+           "CauseID":"27336",
+           "CauseCode":"My dashboard -DHD query"
+        },
+        {
+           "CauseID":"21878",
+           "CauseCode":"My Dashboard_Access Issue"
+        },
+        {
+           "CauseID":"28937",
+           "CauseCode":"My dashboard_Debt dashboard"
+        },
+        {
+           "CauseID":"28714",
+           "CauseCode":"My Dashboard_Performance"
+        },
+        {
+           "CauseID":"28354",
+           "CauseCode":"My Dashboard_Project not listed"
+        },
+        {
+           "CauseID":"30195",
+           "CauseCode":"MyDashboard - Incorrect BU Name"
+        },
+        {
+           "CauseID":"22116",
+           "CauseCode":"Mydashboard - Project is not listed"
+        },
+        {
+           "CauseID":"29529",
+           "CauseCode":"Mydashboard - Project Migration Impact"
+        },
+        {
+           "CauseID":"28180",
+           "CauseCode":"Need to delete the tickets from portal"
+        },
+        {
+           "CauseID":"28887",
+           "CauseCode":"Need to specify user shift"
+        },
+        {
+           "CauseID":"32277",
+           "CauseCode":"Negative Efforts - Ticket details"
+        },
+        {
+           "CauseID":"33131",
+           "CauseCode":"Network Issue_Password reset"
+        },
+        {
+           "CauseID":"21982",
+           "CauseCode":"New Analysis"
+        },
+        {
+           "CauseID":"21981",
+           "CauseCode":"New Report"
+        },
+        {
+           "CauseID":"21991",
+           "CauseCode":"No Issue in Portal"
+        },
+        {
+           "CauseID":"35801",
+           "CauseCode":"Non delivery activity issue"
+        },
+        {
+           "CauseID":"35802",
+           "CauseCode":"Non delivery fix in effort upload"
+        },
+        {
+           "CauseID":"30069",
+           "CauseCode":"NonDeliveryActivity issue - ServiceLevelmappinng with L3"
+        },
+        {
+           "CauseID":"28370",
+           "CauseCode":"NonESA flag is Null"
+        },
+        {
+           "CauseID":"28930",
+           "CauseCode":"not mapped services are listing by alphabetical search"
+        },
+        {
+           "CauseID":"29224",
+           "CauseCode":"ODC Restriction Flag Enable/Disable"
+        },
+        {
+           "CauseID":"32943",
+           "CauseCode":"onboarding and exempted project list"
+        },
+        {
+           "CauseID":"29785",
+           "CauseCode":"Onboarding summary dashboard-job refresh not happened"
+        },
+        {
+           "CauseID":"27341",
+           "CauseCode":"Online - Offline sync"
+        },
+        {
+           "CauseID":"27398",
+           "CauseCode":"Online - Offline sync with TimetickerID"
+        },
+        {
+           "CauseID":"34056",
+           "CauseCode":"OPL ESA Data Update"
+        },
+        {
+           "CauseID":"32552",
+           "CauseCode":"Org/BU Benchmark Queries"
+        },
+        {
+           "CauseID":"21848",
+           "CauseCode":"Performance Admin Console"
+        },
+        {
+           "CauseID":"21764",
+           "CauseCode":"Performance App Inventory"
+        },
+        {
+           "CauseID":"21765",
+           "CauseCode":"Performance Debt Reduction Plan"
+        },
+        {
+           "CauseID":"19581",
+           "CauseCode":"Performance Issue"
+        },
+        {
+           "CauseID":"27157",
+           "CauseCode":"Performance Issue - Search Ticket"
+        },
+        {
+           "CauseID":"21761",
+           "CauseCode":"Performance Qlik Reports"
+        },
+        {
+           "CauseID":"29874",
+           "CauseCode":"Performance Qliksense"
+        },
+        {
+           "CauseID":"21762",
+           "CauseCode":"Performance Ticket Upload"
+        },
+        {
+           "CauseID":"21766",
+           "CauseCode":"Performance Timesheet"
+        },
+        {
+           "CauseID":"21763",
+           "CauseCode":"Performance User Management"
+        },
+        {
+           "CauseID":"28181",
+           "CauseCode":"Predictive Analysis"
+        },
+        {
+           "CauseID":"27867",
+           "CauseCode":"Price of debt-not updating"
+        },
+        {
+           "CauseID":"22109",
+           "CauseCode":"Print issue"
+        },
+        {
+           "CauseID":"30204",
+           "CauseCode":"Prisize - Export Reports - Excel null value"
+        },
+        {
+           "CauseID":"32573",
+           "CauseCode":"problem ticket handling"
+        },
+        {
+           "CauseID":"29879",
+           "CauseCode":"Project list for adoption"
+        },
+        {
+           "CauseID":"21770",
+           "CauseCode":"Project Migration"
+        },
+        {
+           "CauseID":"26949",
+           "CauseCode":"Project onboarding"
+        },
+        {
+           "CauseID":"34197",
+           "CauseCode":"Project profiling - Adapters issue"
+        },
+        {
+           "CauseID":"34199",
+           "CauseCode":"Project profiling - BOM - percentage issue"
+        },
+        {
+           "CauseID":"34141",
+           "CauseCode":"Project profiling - Deselect project scope"
+        },
+        {
+           "CauseID":"34198",
+           "CauseCode":"Project profiling - Service catalog"
+        },
+        {
+           "CauseID":"34200",
+           "CauseCode":"Project profiling - Tools catalog - percentage issue"
+        },
+        {
+           "CauseID":"34138",
+           "CauseCode":"Project profiling - Unable to select the Project"
+        },
+        {
+           "CauseID":"34142",
+           "CauseCode":"Project profiling- Access denied"
+        },
+        {
+           "CauseID":"34139",
+           "CauseCode":"Projectprofiling"
+        },
+        {
+           "CauseID":"29912",
+           "CauseCode":"Qlick access DL issue"
+        },
+        {
+           "CauseID":"33748",
+           "CauseCode":"Qlik reports unavailable"
+        },
+        {
+           "CauseID":"27333",
+           "CauseCode":"Qliksense Access - Chrome settings"
+        },
+        {
+           "CauseID":"29656",
+           "CauseCode":"Query on Cold Fusion"
+        },
+        {
+           "CauseID":"19176",
+           "CauseCode":"Report"
+        },
+        {
+           "CauseID":"19861",
+           "CauseCode":"Report  1CAPP"
+        },
+        {
+           "CauseID":"27343",
+           "CauseCode":"Report - Basemeasure"
+        },
+        {
+           "CauseID":"26237",
+           "CauseCode":"Report - Mainspring Metrics"
+        },
+        {
+           "CauseID":"19867",
+           "CauseCode":"Report Adoption"
+        },
+        {
+           "CauseID":"19859",
+           "CauseCode":"Report Others"
+        },
+        {
+           "CauseID":"28374",
+           "CauseCode":"Report- Projectwise Ticketed and NonTicketed effort"
+        },
+        {
+           "CauseID":"19860",
+           "CauseCode":"Report Ticket Dump"
+        },
+        {
+           "CauseID":"22753",
+           "CauseCode":"Reports - Applens Productivity Report"
+        },
+        {
+           "CauseID":"21691",
+           "CauseCode":"Reports - Detailed Time Sheet"
+        },
+        {
+           "CauseID":"21817",
+           "CauseCode":"Reports - Detailed Time Sheet - DataMismatch"
+        },
+        {
+           "CauseID":"21802",
+           "CauseCode":"Reports - Detailed Time Sheet - TktTypeServMapping"
+        },
+        {
+           "CauseID":"23757",
+           "CauseCode":"Reports - Mainspring report"
+        },
+        {
+           "CauseID":"32661",
+           "CauseCode":"Reports - Smart Governance - Manual Inclusion"
+        },
+        {
+           "CauseID":"21692",
+           "CauseCode":"Reports - Time Sheet Compliance"
+        },
+        {
+           "CauseID":"21821",
+           "CauseCode":"Reports - Time Sheet Compliance - BlankNames"
+        },
+        {
+           "CauseID":"21774",
+           "CauseCode":"Reports - Time Sheet Compliance -DefaulterList"
+        },
+        {
+           "CauseID":"21877",
+           "CauseCode":"Reports Search Ticket"
+        },
+        {
+           "CauseID":"21954",
+           "CauseCode":"Reports- Timesheet/Compliance Data Refresh"
+        },
+        {
+           "CauseID":"35826",
+           "CauseCode":"Reports-AD Projects"
+        },
+        {
+           "CauseID":"29635",
+           "CauseCode":"Reports-Smart Governance -Approver"
+        },
+        {
+           "CauseID":"28712",
+           "CauseCode":"RHMS - UserRoleMapping - Analysis"
+        },
+        {
+           "CauseID":"30752",
+           "CauseCode":"Role access revoke"
+        },
+        {
+           "CauseID":"35803",
+           "CauseCode":"Role mismatch issue"
+        },
+        {
+           "CauseID":"32709",
+           "CauseCode":"SAST - Vulnerability Issue"
+        },
+        {
+           "CauseID":"28859",
+           "CauseCode":"Search Ticket - Fetches data for incorrect date range"
+        },
+        {
+           "CauseID":"28646",
+           "CauseCode":"Search Ticket - Loading time - Too long"
+        },
+        {
+           "CauseID":"28789",
+           "CauseCode":"Search ticket -LOB,Track -Deleted"
+        },
+        {
+           "CauseID":"27249",
+           "CauseCode":"search ticket-Data entry completion-not updated"
+        },
+        {
+           "CauseID":"28860",
+           "CauseCode":"search ticket-Duplicate tickets"
+        },
+        {
+           "CauseID":"27339",
+           "CauseCode":"search ticket-not considering prefix zero"
+        },
+        {
+           "CauseID":"32689",
+           "CauseCode":"Search Ticket-Unable to Add in Timesheet Grid"
+        },
+        {
+           "CauseID":"35827",
+           "CauseCode":"Search Ticket-unable to view work item details"
+        },
+        {
+           "CauseID":"19592",
+           "CauseCode":"Server Issue"
+        },
+        {
+           "CauseID":"29526",
+           "CauseCode":"Service Analytics - Assignee name empty"
+        },
+        {
+           "CauseID":"28475",
+           "CauseCode":"Service Analytics - Backlog"
+        },
+        {
+           "CauseID":"28886",
+           "CauseCode":"Service Analytics - Dashboard Chart text overlap"
+        },
+        {
+           "CauseID":"27406",
+           "CauseCode":"Service Analytics - Excel Icon - Issue"
+        },
+        {
+           "CauseID":"21697",
+           "CauseCode":"Service Analytics - Productivity"
+        },
+        {
+           "CauseID":"21698",
+           "CauseCode":"Service Analytics - Summary"
+        },
+        {
+           "CauseID":"28829",
+           "CauseCode":"Service analytics dashboard calculation logic"
+        },
+        {
+           "CauseID":"35829",
+           "CauseCode":"Service analytics-unable to view work item data"
+        },
+        {
+           "CauseID":"27871",
+           "CauseCode":"Service Anaytics-Blank LOB, Track \u0026 AppGroup values"
+        },
+        {
+           "CauseID":"22002",
+           "CauseCode":"Service Hidden"
+        },
+        {
+           "CauseID":"28775",
+           "CauseCode":"Sharepath access is getting revoked frequently"
+        },
+        {
+           "CauseID":"29873",
+           "CauseCode":"SharePath upload"
+        },
+        {
+           "CauseID":"32694",
+           "CauseCode":"sharepath upload performance tuning"
+        },
+        {
+           "CauseID":"27352",
+           "CauseCode":"Sharepath-job issue"
+        },
+        {
+           "CauseID":"35426",
+           "CauseCode":"Single Service-Attribute Issue"
+        },
+        {
+           "CauseID":"35852",
+           "CauseCode":"smart Assert -Role issue"
+        },
+        {
+           "CauseID":"34961",
+           "CauseCode":"Smart Execution - Error log clarifications"
+        },
+        {
+           "CauseID":"35833",
+           "CauseCode":"Smart Execution-Review-unable to edit work items"
+        },
+        {
+           "CauseID":"35832",
+           "CauseCode":"Smart Execution-Review-unable to view the sprints"
+        },
+        {
+           "CauseID":"35831",
+           "CauseCode":"Smart Execution-Unable to edit sprint details"
+        },
+        {
+           "CauseID":"32554",
+           "CauseCode":"Smart Governance  - Target Definition"
+        },
+        {
+           "CauseID":"32375",
+           "CauseCode":"Smart Governance - Access - Manual Inclusion"
+        },
+        {
+           "CauseID":"32377",
+           "CauseCode":"Smart Governance - AVMReleaseFramework"
+        },
+        {
+           "CauseID":"30436",
+           "CauseCode":"Smart Governance - BU level access issue"
+        },
+        {
+           "CauseID":"30753",
+           "CauseCode":"Smart Governance - Exemption request"
+        },
+        {
+           "CauseID":"28785",
+           "CauseCode":"Smart Governance - Login issue"
+        },
+        {
+           "CauseID":"34962",
+           "CauseCode":"Smart Governance - Smart Assert - Clarifications"
+        },
+        {
+           "CauseID":"32927",
+           "CauseCode":"Smart Governance _ SDM Access issue"
+        },
+        {
+           "CauseID":"32145",
+           "CauseCode":"Smart Governance- Revert Exemption"
+        },
+        {
+           "CauseID":"28477",
+           "CauseCode":"Smart Governance_Access Request"
+        },
+        {
+           "CauseID":"31999",
+           "CauseCode":"Smart Governance_Access_Closure Function"
+        },
+        {
+           "CauseID":"31730",
+           "CauseCode":"Smart Governance_Closure function"
+        },
+        {
+           "CauseID":"28267",
+           "CauseCode":"Smart governance_Exemption Issue"
+        },
+        {
+           "CauseID":"32144",
+           "CauseCode":"Smart Governance_Exemption Status"
+        },
+        {
+           "CauseID":"29398",
+           "CauseCode":"Smart Governence - On Board"
+        },
+        {
+           "CauseID":"33015",
+           "CauseCode":"Smart KEDB - K tickets query"
+        },
+        {
+           "CauseID":"28368",
+           "CauseCode":"SO _ need to update the status"
+        },
+        {
+           "CauseID":"32555",
+           "CauseCode":"SO update requester"
+        },
+        {
+           "CauseID":"21955",
+           "CauseCode":"SO_Unavailable"
+        },
+        {
+           "CauseID":"30119",
+           "CauseCode":"Space issue in cause code and resolution code"
+        },
+        {
+           "CauseID":"32120",
+           "CauseCode":"special characters in flex field"
+        },
+        {
+           "CauseID":"31631",
+           "CauseCode":"SP-Performance Tuning"
+        },
+        {
+           "CauseID":"27400",
+           "CauseCode":"Support Category - Junk Characters"
+        },
+        {
+           "CauseID":"19759",
+           "CauseCode":"Team Monitoring"
+        },
+        {
+           "CauseID":"21983",
+           "CauseCode":"Temp Portal Access"
+        },
+        {
+           "CauseID":"35647",
+           "CauseCode":"Test Cause code"
+        },
+        {
+           "CauseID":"30280",
+           "CauseCode":"Ticket creation - description format error"
+        },
+        {
+           "CauseID":"27342",
+           "CauseCode":"Ticket creation - Trim - Prefix and suffix"
+        },
+        {
+           "CauseID":"26217",
+           "CauseCode":"Ticket description - Translation"
+        },
+        {
+           "CauseID":"29910",
+           "CauseCode":"Ticket Detail - TimeTickerID - Duplicate issue"
+        },
+        {
+           "CauseID":"30408",
+           "CauseCode":"Ticket Id- Space/Special Character in Mid"
+        },
+        {
+           "CauseID":"23897",
+           "CauseCode":"Ticket Type-Special characters"
+        },
+        {
+           "CauseID":"22099",
+           "CauseCode":"Ticket Upload - Effort Upload"
+        },
+        {
+           "CauseID":"21688",
+           "CauseCode":"Ticket Upload - Manual"
+        },
+        {
+           "CauseID":"21769",
+           "CauseCode":"Ticket Upload - Manual - ErrorLog"
+        },
+        {
+           "CauseID":"21815",
+           "CauseCode":"Ticket Upload - Manual - IntermediateTable"
+        },
+        {
+           "CauseID":"21824",
+           "CauseCode":"Ticket Upload - Manual - LengthMismatch"
+        },
+        {
+           "CauseID":"21796",
+           "CauseCode":"Ticket Upload - Manual - LengthMismatch/Main"
+        },
+        {
+           "CauseID":"21768",
+           "CauseCode":"Ticket Upload - Manual - Template"
+        },
+        {
+           "CauseID":"28729",
+           "CauseCode":"Ticket Upload - Manual- Exception-Invalid Hyperlink: Malformed URI is embedded as a hyperlink in the document"
+        },
+        {
+           "CauseID":"28478",
+           "CauseCode":"Ticket Upload - Share path - Job Failed"
+        },
+        {
+           "CauseID":"21808",
+           "CauseCode":"Ticket Upload - SharePath -ErrorLog"
+        },
+        {
+           "CauseID":"30093",
+           "CauseCode":"Ticket Upload - Template -All Ticket id return 0"
+        },
+        {
+           "CauseID":"22751",
+           "CauseCode":"Ticket upload -Effort upload missing"
+        },
+        {
+           "CauseID":"32276",
+           "CauseCode":"Ticket Upload- Manual- Date format issue"
+        },
+        {
+           "CauseID":"21687",
+           "CauseCode":"Ticket Upload- Share Path"
+        },
+        {
+           "CauseID":"21816",
+           "CauseCode":"Ticket Upload- Share Path - Intermediate"
+        },
+        {
+           "CauseID":"32570",
+           "CauseCode":"Ticket upload status mismatch"
+        },
+        {
+           "CauseID":"28580",
+           "CauseCode":"Ticket upload-Share path-Job failed-5K record"
+        },
+        {
+           "CauseID":"22114",
+           "CauseCode":"Ticketing Module - Change tracking method"
+        },
+        {
+           "CauseID":"32274",
+           "CauseCode":"Ticketing Module - Holiday Tracker Issue"
+        },
+        {
+           "CauseID":"28731",
+           "CauseCode":"Ticketing module - Mandatory activities"
+        },
+        {
+           "CauseID":"21685",
+           "CauseCode":"Ticketing Module Config - Mandate Attributes"
+        },
+        {
+           "CauseID":"31980",
+           "CauseCode":"Ticketing module config-Mandatory attributes -not saving"
+        },
+        {
+           "CauseID":"31731",
+           "CauseCode":"Ticketing Module User- Remove user"
+        },
+        {
+           "CauseID":"28445",
+           "CauseCode":"Tickets difference between search ticket \u0026 service Delivery Health Dashboard"
+        },
+        {
+           "CauseID":"28784",
+           "CauseCode":"TicketType ServiceMapping issue"
+        },
+        {
+           "CauseID":"34137",
+           "CauseCode":"Ticketuplaod Timezone"
+        },
+        {
+           "CauseID":"22152",
+           "CauseCode":"Ticketupload-Template-Different project id"
+        },
+        {
+           "CauseID":"31788",
+           "CauseCode":"Timesheet - Attribute popup keep loading"
+        },
+        {
+           "CauseID":"29096",
+           "CauseCode":"Timesheet - Closed tickets auto populated"
+        },
+        {
+           "CauseID":"29989",
+           "CauseCode":"Timesheet - daily timesheet- Change to Weekly"
+        },
+        {
+           "CauseID":"27575",
+           "CauseCode":"Timesheet - Status rollback"
+        },
+        {
+           "CauseID":"27471",
+           "CauseCode":"Timesheet - Unable to open attributes popup"
+        },
+        {
+           "CauseID":"22107",
+           "CauseCode":"Timesheet - Weekly timesheet- able to submit daily"
+        },
+        {
+           "CauseID":"34955",
+           "CauseCode":"Timesheet - WorkItem - Application not listed"
+        },
+        {
+           "CauseID":"34956",
+           "CauseCode":"Timesheet - WorkItem - Project not listed"
+        },
+        {
+           "CauseID":"29865",
+           "CauseCode":"Timesheet -Applications not listing"
+        },
+        {
+           "CauseID":"22106",
+           "CauseCode":"Timesheet- Compliance - Blank associate names"
+        },
+        {
+           "CauseID":"35828",
+           "CauseCode":"Timesheet compliance Report-unable to view work item data"
+        },
+        {
+           "CauseID":"32692",
+           "CauseCode":"Timesheet daily to weekly change"
+        },
+        {
+           "CauseID":"22105",
+           "CauseCode":"Timesheet -Date reflecting twice"
+        },
+        {
+           "CauseID":"29064",
+           "CauseCode":"Timesheet- Delete one Row- Existing data missing"
+        },
+        {
+           "CauseID":"22131",
+           "CauseCode":"Timesheet effort - Deployment issue"
+        },
+        {
+           "CauseID":"21686",
+           "CauseCode":"Timesheet Entry"
+        },
+        {
+           "CauseID":"21886",
+           "CauseCode":"Timesheet Entry  - ApplicationName-Duplicate"
+        },
+        {
+           "CauseID":"21812",
+           "CauseCode":"Timesheet Entry  - AutoDebtClassification"
+        },
+        {
+           "CauseID":"32952",
+           "CauseCode":"Timesheet Entry -  Calendar icon issue"
+        },
+        {
+           "CauseID":"21827",
+           "CauseCode":"Timesheet Entry  - DateSelectionInGraph"
+        },
+        {
+           "CauseID":"22135",
+           "CauseCode":"Timesheet entry - access denied"
+        },
+        {
+           "CauseID":"31908",
+           "CauseCode":"Timesheet entry - Assignee name blank for tickets"
+        },
+        {
+           "CauseID":"31227",
+           "CauseCode":"Timesheet Entry - Assignment group"
+        },
+        {
+           "CauseID":"21775",
+           "CauseCode":"Timesheet Entry - AutoSubmit"
+        },
+        {
+           "CauseID":"21786",
+           "CauseCode":"Timesheet Entry - AutoSubmit-FutureDate"
+        },
+        {
+           "CauseID":"21992",
+           "CauseCode":"Timesheet Entry - Debt Attributes"
+        },
+        {
+           "CauseID":"27631",
+           "CauseCode":"Timesheet entry - duplicate efforts"
+        },
+        {
+           "CauseID":"21994",
+           "CauseCode":"Timesheet Entry - Effort Tracking"
+        },
+        {
+           "CauseID":"30094",
+           "CauseCode":"Timesheet Entry - Emtpy -Ticket Description"
+        },
+        {
+           "CauseID":"31644",
+           "CauseCode":"Timesheet Entry - Grace period"
+        },
+        {
+           "CauseID":"28730",
+           "CauseCode":"Timesheet entry - Non Delivery activites"
+        },
+        {
+           "CauseID":"28403",
+           "CauseCode":"Timesheet Entry - Remove Duplicate ticket ID"
+        },
+        {
+           "CauseID":"21993",
+           "CauseCode":"Timesheet Entry - Service Attributes"
+        },
+        {
+           "CauseID":"21783",
+           "CauseCode":"Timesheet Entry - Validation - ApplicationName"
+        },
+        {
+           "CauseID":"21804",
+           "CauseCode":"Timesheet Entry - Validation - DebtAutoRefresh"
+        },
+        {
+           "CauseID":"21818",
+           "CauseCode":"Timesheet Entry - Validation - EmtpyDescription"
+        },
+        {
+           "CauseID":"21782",
+           "CauseCode":"Timesheet Entry - Validation - Mandate Attributes"
+        },
+        {
+           "CauseID":"21807",
+           "CauseCode":"Timesheet Entry - Validation - TicketsSubmitted"
+        },
+        {
+           "CauseID":"21826",
+           "CauseCode":"Timesheet Entry - Validation - Weekly"
+        },
+        {
+           "CauseID":"22154",
+           "CauseCode":"Timesheet Entry -AutoSave"
+        },
+        {
+           "CauseID":"31895",
+           "CauseCode":"Timesheet Entry- Grace period"
+        },
+        {
+           "CauseID":"36095",
+           "CauseCode":"Timesheet entry-duplicate efforts"
+        },
+        {
+           "CauseID":"22077",
+           "CauseCode":"Timesheet Login - Deployment Issue"
+        },
+        {
+           "CauseID":"32020",
+           "CauseCode":"Timesheet Page loading -Completion date time issue"
+        },
+        {
+           "CauseID":"31595",
+           "CauseCode":"Timesheet screen - Project not listed"
+        },
+        {
+           "CauseID":"29634",
+           "CauseCode":"Timesheet screen-\u003eClosed tickets-\u003eMandatory attributes are not reflecting"
+        },
+        {
+           "CauseID":"35425",
+           "CauseCode":"Timesheet Screen-Errored Tickets Issue"
+        },
+        {
+           "CauseID":"22102",
+           "CauseCode":"Timesheet Submission"
+        },
+        {
+           "CauseID":"22104",
+           "CauseCode":"Timesheet Ticket Creation"
+        },
+        {
+           "CauseID":"22103",
+           "CauseCode":"Timesheet Tickets not populating"
+        },
+        {
+           "CauseID":"29863",
+           "CauseCode":"Timesheet-Debt services"
+        },
+        {
+           "CauseID":"29866",
+           "CauseCode":"Timesheet-Non ESA Projects"
+        },
+        {
+           "CauseID":"28581",
+           "CauseCode":"Timesheet-Tickets more than 1000 Efforts- Not loading"
+        },
+        {
+           "CauseID":"29749",
+           "CauseCode":"Timesheet-Unfreeze-Service_Change"
+        },
+        {
+           "CauseID":"35767",
+           "CauseCode":"Timesheet-work item-Work item type not listed"
+        },
+        {
+           "CauseID":"35825",
+           "CauseCode":"Timesheet-WorkItem-Unable to view Epic"
+        },
+        {
+           "CauseID":"35824",
+           "CauseCode":"Timesheet-WorkItem-Unable to view/Add Sprint"
+        },
+        {
+           "CauseID":"28266",
+           "CauseCode":"Tools catalog access"
+        },
+        {
+           "CauseID":"34140",
+           "CauseCode":"Tools Catalog- Error message while clicking on save"
+        },
+        {
+           "CauseID":"27404",
+           "CauseCode":"Truncate - A/H Child Ticket Display"
+        },
+        {
+           "CauseID":"21908",
+           "CauseCode":"TS page -Round off error in the decimal values"
+        },
+        {
+           "CauseID":"30579",
+           "CauseCode":"TSAppover ID - Special Character"
+        },
+        {
+           "CauseID":"22080",
+           "CauseCode":"UM - Ticketing Module User - ExportToExcel"
+        },
+        {
+           "CauseID":"22112",
+           "CauseCode":"Unable to access AVM PMO"
+        },
+        {
+           "CauseID":"32169",
+           "CauseCode":"Unable to Add Appgroup manually"
+        },
+        {
+           "CauseID":"32660",
+           "CauseCode":"Unable to delete Appgroup"
+        },
+        {
+           "CauseID":"31490",
+           "CauseCode":"Unable to Find A/H Child Tickets"
+        },
+        {
+           "CauseID":"31491",
+           "CauseCode":"Unable to map child tickets - Performance issue"
+        },
+        {
+           "CauseID":"21988",
+           "CauseCode":"Unfreeze Request"
+        },
+        {
+           "CauseID":"28883",
+           "CauseCode":"Updating Ticketing module users -excel upload-limited to 1000 records"
+        },
+        {
+           "CauseID":"33091",
+           "CauseCode":"User Enquiry"
+        },
+        {
+           "CauseID":"21683",
+           "CauseCode":"User Management - Add User"
+        },
+        {
+           "CauseID":"30192",
+           "CauseCode":"User management - Employee Name Correction"
+        },
+        {
+           "CauseID":"35926",
+           "CauseCode":"User management - How/Unable to add POD"
+        },
+        {
+           "CauseID":"21682",
+           "CauseCode":"User Management - Ticketing Module User"
+        },
+        {
+           "CauseID":"21809",
+           "CauseCode":"User Management - Ticketing Module User - EditIcon"
+        },
+        {
+           "CauseID":"21885",
+           "CauseCode":"User Management  -TSApproverID"
+        },
+        {
+           "CauseID":"32022",
+           "CauseCode":"User Management -Ticketing module users-Blank Page"
+        },
+        {
+           "CauseID":"32942",
+           "CauseCode":"User management-Ticketing module users- Excel  download- special characters"
+        },
+        {
+           "CauseID":"31888",
+           "CauseCode":"User management-Ticketing module users page loading"
+        },
+        {
+           "CauseID":"29894",
+           "CauseCode":"UserManagement - Ticket module users - Keep loading"
+        },
+        {
+           "CauseID":"32710",
+           "CauseCode":"Veracode - Vulnerability issue"
+        },
+        {
+           "CauseID":"32793",
+           "CauseCode":"Visual board query"
+        },
+        {
+           "CauseID":"35830",
+           "CauseCode":"War room"
+        },
+        {
+           "CauseID":"29862",
+           "CauseCode":"Weekly Timesheet"
+        },
+        {
+           "CauseID":"36131",
+           "CauseCode":"Work Profile Configuration - unable to view 100%"
+        },
+        {
+           "CauseID":"34730",
+           "CauseCode":"WorkItem Upload"
+        },
+        {
+           "CauseID":"27353",
+           "CauseCode":"WPA Job Failed unclassified ticket data"
+        }
+     ],
+     "ResolutionCodeMasterDropdown": [
+        {
+           "ResolutionID":"21988",
+           "ResolutionCode":"Access Provided"
+        },
+        {
+           "ResolutionID":"23774",
+           "ResolutionCode":"Analysis Completed"
+        },
+        {
+           "ResolutionID":"23722",
+           "ResolutionCode":"Application Call Attended"
+        },
+        {
+           "ResolutionID":"34839",
+           "ResolutionCode":"application cleanup"
+        },
+        {
+           "ResolutionID":"22502",
+           "ResolutionCode":"Application/User Knowledge"
+        },
+        {
+           "ResolutionID":"25106",
+           "ResolutionCode":"Automation"
+        },
+        {
+           "ResolutionID":"22505",
+           "ResolutionCode":"Automation - Completed"
+        },
+        {
+           "ResolutionID":"18",
+           "ResolutionCode":"Code Fix"
+        },
+        {
+           "ResolutionID":"32347",
+           "ResolutionCode":"Configuration Update"
+        },
+        {
+           "ResolutionID":"22504",
+           "ResolutionCode":"CR - Accepted"
+        },
+        {
+           "ResolutionID":"22503",
+           "ResolutionCode":"CR - Rejected"
+        },
+        {
+           "ResolutionID":"21",
+           "ResolutionCode":"Data Fix"
+        },
+        {
+           "ResolutionID":"25105",
+           "ResolutionCode":"DB - Slowness Fixed"
+        },
+        {
+           "ResolutionID":"25110",
+           "ResolutionCode":"Db Script Added"
+        },
+        {
+           "ResolutionID":"25145",
+           "ResolutionCode":"DB Script Fix"
+        },
+        {
+           "ResolutionID":"35013",
+           "ResolutionCode":"Db script optimization"
+        },
+        {
+           "ResolutionID":"25144",
+           "ResolutionCode":"DB Update"
+        },
+        {
+           "ResolutionID":"24421",
+           "ResolutionCode":"Educated the user"
+        },
+        {
+           "ResolutionID":"25118",
+           "ResolutionCode":"Effort Upload Processed"
+        },
+        {
+           "ResolutionID":"23725",
+           "ResolutionCode":"FAQ Updated"
+        },
+        {
+           "ResolutionID":"35171",
+           "ResolutionCode":"flex field special characters cleanup"
+        },
+        {
+           "ResolutionID":"21999",
+           "ResolutionCode":"Genie Key Provided"
+        },
+        {
+           "ResolutionID":"34866",
+           "ResolutionCode":"Inactive Child Tickets"
+        },
+        {
+           "ResolutionID":"36061",
+           "ResolutionCode":"Information Provided"
+        },
+        {
+           "ResolutionID":"25120",
+           "ResolutionCode":"Intermediate table Cleared"
+        },
+        {
+           "ResolutionID":"30386",
+           "ResolutionCode":"Job Executed"
+        },
+        {
+           "ResolutionID":"20",
+           "ResolutionCode":"Job Monitor"
+        },
+        {
+           "ResolutionID":"19",
+           "ResolutionCode":"Job Restart"
+        },
+        {
+           "ResolutionID":"33913",
+           "ResolutionCode":"Job timing changed"
+        },
+        {
+           "ResolutionID":"21359",
+           "ResolutionCode":"Knowledge Transition"
+        },
+        {
+           "ResolutionID":"22506",
+           "ResolutionCode":"KT - Completed"
+        },
+        {
+           "ResolutionID":"31488",
+           "ResolutionCode":"Locks Cleared From DB Server"
+        },
+        {
+           "ResolutionID":"22376",
+           "ResolutionCode":"Mail Box and Ticketing Tool Monitoring"
+        },
+        {
+           "ResolutionID":"36780",
+           "ResolutionCode":"Middleware restart"
+        },
+        {
+           "ResolutionID":"35857",
+           "ResolutionCode":"Modified SP/View"
+        },
+        {
+           "ResolutionID":"32469",
+           "ResolutionCode":"New CR"
+        },
+        {
+           "ResolutionID":"30534",
+           "ResolutionCode":"New functionality will implement"
+        },
+        {
+           "ResolutionID":"25206",
+           "ResolutionCode":"Operational"
+        },
+        {
+           "ResolutionID":"37327",
+           "ResolutionCode":"password reset"
+        },
+        {
+           "ResolutionID":"35678",
+           "ResolutionCode":"problem ticket handling"
+        },
+        {
+           "ResolutionID":"29085",
+           "ResolutionCode":"Provided with POC details"
+        },
+        {
+           "ResolutionID":"21358",
+           "ResolutionCode":"Report"
+        },
+        {
+           "ResolutionID":"22501",
+           "ResolutionCode":"Report Provided"
+        },
+        {
+           "ResolutionID":"21990",
+           "ResolutionCode":"Resolution Provided"
+        },
+        {
+           "ResolutionID":"25117",
+           "ResolutionCode":"Retry"
+        },
+        {
+           "ResolutionID":"25116",
+           "ResolutionCode":"Retry in CTS Network"
+        },
+        {
+           "ResolutionID":"35783",
+           "ResolutionCode":"SAST - Vulnerability Fix"
+        },
+        {
+           "ResolutionID":"29503",
+           "ResolutionCode":"Server Restart"
+        },
+        {
+           "ResolutionID":"30452",
+           "ResolutionCode":"Settings updated"
+        },
+        {
+           "ResolutionID":"35110",
+           "ResolutionCode":"Support provided"
+        },
+        {
+           "ResolutionID":"23723",
+           "ResolutionCode":"Team Monitoring"
+        },
+        {
+           "ResolutionID":"32912",
+           "ResolutionCode":"Timesheet screen -\u003eclosed tickets -\u003e Mandatory attributes are not reflecting"
+        },
+        {
+           "ResolutionID":"32660",
+           "ResolutionCode":"Transfer to CRS team"
+        },
+        {
+           "ResolutionID":"31602",
+           "ResolutionCode":"Transfer To MainSpring"
+        },
+        {
+           "ResolutionID":"21987",
+           "ResolutionCode":"Troubleshooting Steps"
+        },
+        {
+           "ResolutionID":"39012",
+           "ResolutionCode":"Unlocked DB"
+        },
+        {
+           "ResolutionID":"36859",
+           "ResolutionCode":"User Clarification Provided"
+        },
+        {
+           "ResolutionID":"35784",
+           "ResolutionCode":"Veracode - Vulnerability Fix"
+        },
+        {
+           "ResolutionID":"22000",
+           "ResolutionCode":"Workaround Provided"
+        }
+     ],
+     "ProjectPortFolioDrodown":
+     {
+        "Project":[
+           {
+              "ProjectID":10569,
+              "ProjectName":"ADM CORE Platform E2E",
+              "SupportTypeId":0,
+              "IsDDAutoClassified":"Y",
+              "IsManual":"Y",
+              "IsTicketApprovalNeeded":"Y"
+           },
+           {
+              "ProjectID":10337,
+              "ProjectName":"AVM-OneAVM",
+              "SupportTypeId":0,
+              "IsDDAutoClassified":"Y",
+              "IsManual":"Y",
+              "IsTicketApprovalNeeded":"Y"
+           }
+        ],
+        "PortfolioName":"AppGroup"
+     },
+     "DebtOverrideReviewDictionary":
+     [
+        {
+           "EmployeeID":null,
+           "ServiceName":"Known Error Resolution Services",
+           "TicketID":"Prod Sanity",
+           "CustomerID":7097,
+           "ProjectID":10569,
+           "AssignedTo":"674078",
+           "IsCognizant":1,
+           "IsApproved":0,
+           "TicketType":"",
+           "TicketDescription":"cFWSICWfWjmKJt2x2fFCj8sBWG2Bji8QuWGQzpgTOF0=",
+           "Application":"ADM PMO",
+           "DebtClassification":"Operational",
+           "NatureOfTheTicketName":"0",
+           "DebtClassificationID":1,
+           "DebtClassificationMapID":1,
+           "ResidualDebt":"No",
+           "ResidualDebtMapID":2,
+           "AvoidableFlag":2,
+           "ResolutionCodeMapID":34839,
+           "ResolutionCode":"application cleanup",
+           "ResolutionID":34839,
+           "CauseID":26767,
+           "CauseCodeMapID":26767,
+           "CauseCode":"Access Issue - Ticketing module",
+           "FlexField1":"",
+           "FlexField2":"",
+           "FlexField3":"",
+           "FlexField4":"",
+           "FlexField1ProjectWise":"0",
+           "FlexField2ProjectWise":"0",
+           "FlexField3ProjectWise":"0",
+           "FlexField4ProjectWise":"0",
+           "IsFlexField1Modified":null,
+           "IsFlexField2Modified":null,
+           "IsFlexField3Modified":null,
+           "IsFlexField4Modified":null,
+           "IsAHTagged":false
+        }
+     ],
+     "CustomerDropdown":[{"CustomerID":"7097","CustomerName":"ADM Internal"}]
+}

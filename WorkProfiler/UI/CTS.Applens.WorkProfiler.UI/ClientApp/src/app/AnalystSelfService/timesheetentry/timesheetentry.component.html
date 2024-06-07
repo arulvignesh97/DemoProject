@@ -1,0 +1,11 @@
+<div class="col-md-12 timesheetentryheader">{{'TimesheetEntry' | translate}}</div>
+<div class="container" class="TimesheetContainer" style="overflow: scroll; overflow-x: hidden; height: 63vh;">
+  <marquee behavior="scroll" style="color:red;font-size:14px; " direction="left">Timesheet(s) for the current month can be Approved/Unfrozen till 4th calendar day of next month</marquee>
+<app-effortgraph></app-effortgraph>
+<div *ngIf="Dynamic" >
+  <app-dynamicgrid></app-dynamicgrid>
+</div>
+<div *ngIf="!Dynamic" >
+  <app-dynamicgrid></app-dynamicgrid>
+</div>
+</div>

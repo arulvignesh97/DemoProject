@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Implementation\Bot\**" />
+    <Compile Remove="Implementation\ExperienceBuilder\**" />
+    <Compile Remove="Implementation\InitialLearning\**" />
+    <Compile Remove="Implementation\Multilingual\**" />
+    <Compile Remove="Implementation\UseCase\**" />
+    <EmbeddedResource Remove="Implementation\Bot\**" />
+    <EmbeddedResource Remove="Implementation\ExperienceBuilder\**" />
+    <EmbeddedResource Remove="Implementation\InitialLearning\**" />
+    <EmbeddedResource Remove="Implementation\Multilingual\**" />
+    <EmbeddedResource Remove="Implementation\UseCase\**" />
+    <None Remove="Implementation\Bot\**" />
+    <None Remove="Implementation\ExperienceBuilder\**" />
+    <None Remove="Implementation\InitialLearning\**" />
+    <None Remove="Implementation\Multilingual\**" />
+    <None Remove="Implementation\UseCase\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Data.SqlClient">
+      <HintPath>..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\system.data.sqlclient\4.5.1\ref\netcoreapp2.1\System.Data.SqlClient.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Implementation\BaseDetails\" />
+    <Folder Include="Implementation\ExceptionLogging\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CTS.Applens.WorkProfiler.DAL\CTS.Applens.WorkProfiler.DAL.csproj" />
+    <ProjectReference Include="..\CTS.Applens.WorkProfiler.Entities\CTS.Applens.WorkProfiler.Entities.csproj" />
+  </ItemGroup>
+</Project>

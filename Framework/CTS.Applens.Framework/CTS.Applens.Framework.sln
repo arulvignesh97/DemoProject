@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CTS.Applens.Framework", "CTS.Applens.Framework\CTS.Applens.Framework.csproj", "{53A3DE0C-2584-4835-A554-8530AF945521}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{53A3DE0C-2584-4835-A554-8530AF945521}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53A3DE0C-2584-4835-A554-8530AF945521}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53A3DE0C-2584-4835-A554-8530AF945521}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53A3DE0C-2584-4835-A554-8530AF945521}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F91B1E1E-8A7F-4903-843D-4A65295FBDE0}
+	EndGlobalSection
+EndGlobal

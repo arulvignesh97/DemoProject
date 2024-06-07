@@ -1,0 +1,51 @@
+<div *ngIf = "(!isCognizant && isADMApplicableforCustomer) || isCognizant" class="row" >
+    <div id="ClosedTickets" class="col-md-4">
+        <label class="circlelabel">{{'ClosedTickets'| translate}}</label>
+        <div class="circletext"><span class="closed">{{ClosedTicket}}</span></div>
+    </div>
+    <div id="TicketedEffort" class="col-md-4">
+        <label class="circlelabel">{{'TicketedEffort'| translate}}</label>
+        <div class="circletext"><span class="ticketed">{{TicketedEffort}}</span></div>
+    </div>
+    <div id="NonTicketedEffort" class="col-md-4">
+        <label class="circlelabel">{{'NonTicketedEffort'| translate}}</label>
+        <div class="circletext"><span class="NonTicketedEffort">{{NonTicketedEffort}}</span></div>
+    </div>
+</div>
+<br>
+<div *ngIf = "(!isCognizant && isADMApplicableforCustomer) || isCognizant" class="row">
+    <div  id="ClosedWorkItems" class="col-md-4">
+        <label class="circlelabel">Closed Work Items</label>
+        <div class="circletext"><span class="Workclosed">{{ClosedWorkItem}}</span></div>
+    </div>
+    <div id="WorkItemEffort" class="col-md-4">
+        <label class="circlelabel">Work Item Effort</label>
+        <div class="circletext"><span class="WorkTicked">{{WorkItemEffort}}</span></div>
+    </div>
+    <div id="TotalEfforts" class="col-md-4">
+        <label class="circlelabel">{{'TotalEffort'| translate}}</label>
+        <div class="circletext"><span class="EffortsTotal">{{TotalEffort}}</span></div>
+    </div>
+</div>
+
+<div *ngIf = "!isCognizant && !isADMApplicableforCustomer" class="row" >
+    <div class="col-md-6">
+        <label class="circlelabelcustomer">{{'ClosedTickets'| translate}}</label>
+        <div class="circletextcustomer"><span class="closed">{{ClosedTicket}}</span></div>
+    </div>
+    <div  class="col-md-6">
+        <label class="circlelabelcustomer">{{'TicketedEffort'| translate}}</label>
+        <div class="circletextcustomer"><span class="ticketed">{{TicketedEffort}}</span></div>
+    </div>
+</div>
+<br>
+<div *ngIf = "!isCognizant && !isADMApplicableforCustomer" class="row">
+    <div class="col-md-6">
+        <label class="circlelabelcustomer">{{'NonTicketedEffort'| translate}}</label>
+        <div class="circletextcustomer"><span class="NonTicketedEffort">{{NonTicketedEffort}}</span></div>
+    </div>
+    <div  class="col-md-6">
+        <label class="circlelabelcustomer">{{'TotalEffort'| translate}}</label>
+        <div class="circletextcustomer"><span class="EffortsTotal">{{TotalEffort}}</span></div>
+    </div>
+</div>

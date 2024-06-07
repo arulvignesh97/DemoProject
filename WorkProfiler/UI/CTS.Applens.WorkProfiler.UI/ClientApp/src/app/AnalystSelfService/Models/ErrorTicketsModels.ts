@@ -1,0 +1,112 @@
+// Copyright (c) Applens. All Rights Reserved.
+export interface ErrorTicketModel{
+id: number;
+application: string
+applicationId: number
+assignee: string
+assignmentGroup: string
+assignmentGroupId: number
+avoidableFlag: string
+avoidableFlagId: number
+causeCode: string
+causeCodeId: number
+debtClassification: string
+debtClassificationId: number
+employeeId: string
+employeeName: string
+errorLogTicketDetails: string
+externalLoginId: string
+isAHTicket: boolean
+isDeleted: number
+isManual: number
+isPartiallyAutomated: number
+isTicketDescriptionModified: boolean
+mTicketDescription: string
+openDate: string
+openDate2: string
+priority: string
+priorityId: number
+projectId: string
+residualDebt: string
+residualDebtId: number
+resolutionCode: string
+resolutionId: number
+severity: string
+severityId: number
+status: string
+statusId: number
+ticketDescription: string
+ticketId: string
+ticketType: string
+ticketTypeId: number
+tower: string
+towerId: number
+}
+
+export interface SearchModel{
+  searchTicketId: string;
+  searchTicketDescription: string;
+  searchApplicationName: string;
+  searchTicketType: string;
+  searchPriority: string;
+  searchStatus: string;
+  searchOpenDate: string;
+  searchSeverity: string;
+  searchCauseCode: string;
+  searchResolutionCode: string;
+  searchDebtCategory: string;
+  searchAvoidable: string;
+  searchResidualDebt: string;
+  searchIsPartialAutomated: string;
+  searchTower: string;
+  searchAssignment: string;
+}
+export interface ErrorTicketPostModel{
+application: string
+applicationId: number
+assignee: string
+assignmentGroup: string
+assignmentGroupId: number
+avoidableFlag: string
+avoidableFlagId: number
+causeCode: string
+causeCodeId: number
+debtClassification: string
+debtClassificationId: number
+employeeId: string
+employeeName: string
+errorLogTicketDetails: string
+externalLoginId: string
+isAHTicket: boolean
+isDeleted: number
+isManual: number
+isPartiallyAutomated: number
+isTicketDescriptionModified: boolean
+mTicketDescription: string
+openDate: string
+openDate2: string
+priority: string
+priorityId: number
+projectId: string
+residualDebt: string
+residualDebtId: number
+resolutionCode: string
+resolutionId: number
+severity: string
+severityId: number
+status: string
+statusId: number
+ticketDescription: string
+ticketId: string
+ticketType: string
+ticketTypeId: number
+tower: string
+towerId: number
+}
+export interface ErroredTicketDetails{
+  CustomerId: number,
+  ProjectId: number, 
+  EmployeeId: string, 
+  SupportTypeId: number,
+  TicketDetails: string
+}

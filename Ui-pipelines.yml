@@ -1,0 +1,29 @@
+trigger: none 
+
+stages:
+- stage: UISecure_BuildStage
+  pool: 
+    name: Azure Pipelines
+    Image: ubuntu-latest
+  jobs:
+  - job: UISecure_BuildJob
+    steps:
+    - task: Npm@0
+      displayName: 'npm install'
+      inputs:
+        cwd: '$(workdirectory)'
+        command: 'install'
+        arguments: '--legacy-peer-deps'
+
+    - task: Npm@0
+      displayName: build
+      inputs:
+        cwd: '$(workdirectory)'
+        command: run
+        arguments: 'build'
+    
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish Artifact: drop'
+      inputs:
+        PathtoPublish: '$(workdirectory)\dist\'
+    

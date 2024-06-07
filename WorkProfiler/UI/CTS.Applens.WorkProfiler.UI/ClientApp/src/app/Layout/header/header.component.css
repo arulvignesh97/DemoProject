@@ -1,0 +1,548 @@
+/*header background image*/
+.imageheader {
+  width: 100vw;
+  height: 4.5vw;
+  font: arial, sans-serif;
+  align-items: right;
+  color:black;
+  background: black 0% 0% no-repeat padding-box;
+  padding-top: 19px;
+  background-color: #00004d;
+}
+/*{
+  margin: -8px;
+  border: unset !important;
+  border-radius: unset !important;
+  background-color: #2D2926 !important;
+  box-shadow: #000000 0px 3px 6px 0px;
+  background-position: right;
+  background-image: url('./assets/images/background_headerRight.png');
+  background-repeat: no-repeat;
+  margin-bottom: 0px !important;
+}*/
+
+#Roles {
+  padding: 5px;
+  padding-left: 10px;
+  margin-top: -10px;
+}
+.logo {
+  width: 203%;
+  height: 87%;
+  margin-top:4%;
+  margin-left: 0px;
+}
+/*user image*/
+.userimage {
+  /* display: inline-block; */
+  width: 42px;
+  /* margin-top: -30px; */
+  height: 42px;
+  border-radius: 50%;
+  float: right;
+  margin-right: 12%;
+  top: -1px;
+  left: 15px;
+  position: absolute;
+}
+
+/*sidebar*/
+#sidebarCollapse {
+  font-size: 16px;
+  cursor: pointer;
+  color: white;
+  margin-left: 20px;
+}
+
+#sidebarExpand {
+  font-size: 20px;
+  cursor: pointer;
+  color: white;
+  margin-left: 20px;
+  margin-top:10px
+}
+
+/*header*/
+.header {
+  position: relative;
+  /*overflow: hidden;*/
+  padding: 10px;
+  padding-left: 0px;
+  height: 60px;
+}
+
+.headertextdiv {
+  text-align: center;
+  padding: 0px 100px;
+  font-size: 24px;  
+}
+
+label#lblCognizant {
+  color: white;
+  font-weight: 800;
+  margin-top: 0px;
+}
+
+label#lblHeaderCompWorkProfiler {
+  color: white;
+  text-align: center;
+  margin-top: 6px;
+  font-size: 21px;
+  font-weight: 400;
+  margin-left:40%;
+  float: right;
+}
+
+.logo {
+  margin-top: -4px;
+  float: left;
+  height: 45px;
+}
+
+.applenslogo {    
+  height: 40px;
+  cursor: pointer;
+}
+
+/*headertext*/
+.headertext {
+  color: white;
+  clear: both;
+  display: inline-block;
+  /*overflow:hidden;*/
+  white-space: nowrap;  
+}
+
+@media screen and (max-width: 800px) {
+  .header {
+    display: flex;
+  }
+}
+
+:host ::ng-deep .ui-dropdown-trigger-icon {
+  font-size: 1em;
+}
+
+:host ::ng-deep .ui-dropdown-item.ui-state-highlight {
+  font-size: 12px;  
+}
+
+:host ::ng-deep .ui-dropdown:not(.ui-state-disabled).ui-state-focus {
+  box-shadow: none;
+}
+
+:host ::ng-deep .ui-dropdown {
+  box-shadow: none !important;
+  border: none !important;  
+}
+
+:host ::ng-deep .ui-dropdown-panel .ui-dropdown-item {
+  font-size: 12px;  
+}
+
+  .notify-dialog {
+    transition: transform .3s ease-out,-webkit-transform .3s ease-out;
+    max-width: 500px;
+    margin-top: 0;
+    margin-left: 32.5%;
+    transform: translate(0,-25%);
+ }
+ .notificationpopup {
+  /* margin-left: 112%; */
+  margin-left: 177%;
+  margin-top: 150px;
+  width: 75%;
+  background: white;
+  border-radius: 2%;
+}
+.notifyheader {
+  display: flex;
+  border-bottom-style: dotted;
+  align-items: flex-start;
+  -webkit-box-pack: justify;
+  border-color: #00000054;
+  padding: 1rem;
+  border-top-left-radius: .3rem;
+  border-top-right-radius: .3rem;
+}
+.notifybody {
+  position: relative;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 0.5rem 1rem;
+}
+.clscolmd6reuse {
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 50%;
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+.clkslbluser {
+  font-weight: 400;
+  color: black;
+  font-size: 11px;
+  display: inline;
+  padding: .2em .6em .3em;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+}
+
+i.fa.fa-caret-up {
+  position: absolute;
+  margin-left: 327px;
+  margin-top: -20px;
+  color: white;
+  font-size: xx-large;
+}
+.Saveuser {
+  margin-top: -7px;
+  margin-left: 127px;
+  background: #0031A0;
+  color: white;
+  padding: 4px 17px 4px 10px;
+  font-size: smaller;
+  border: 1px solid #0031A0;
+  border-radius: 5px !important;
+  /* z-index: 1002; */
+}
+.clslabelrtuser {
+  color: black;
+  margin-left: -48px;
+  font-weight: bolder;
+  font-size: 10px;
+  display: inline;
+  padding: .2em .6em .3em;
+  line-height: 1;
+  text-align: center;
+  white-space: normal;
+  vertical-align: baseline;
+  border-radius: .25em; 
+}
+button.close.notifyclose {
+  padding: 0px !important;
+  font-size: 21px !important;
+}
+#divwelcome {
+    font-weight: bolder;
+    color: black;   
+    font-size: 15px !important;
+}
+.contribution-img {
+  float: right;
+  cursor: pointer;
+  padding-top: 2px;
+}
+.userphoto {
+  
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+    display: block;
+    margin-top: -4px;
+    height: 20px;
+    width: 20px;
+    padding: 24px !important;
+    outline: none;
+    text-align: center;  
+    color: #FFF;
+}
+.icon-width {
+  max-width: 4% !important;
+  padding-right: 0 !important;
+}
+.dropdown-width {
+  max-width: 16% !important;
+  padding-right: 0 !important;
+  margin-left: 0.5%;
+  padding-top: 2px;
+}
+.lang-drop {
+  max-width: 12%;
+  padding-right: 0;
+  margin-left: 30px;
+  padding-top: 2px;
+}
+.wrapper {
+  display: flex;
+  /* overflow-y: auto; */
+  align-items: stretch;
+  margin-right: -15px;
+  height: 77vh;
+  /* margin-bottom: -8px; */
+}
+#content {
+  /* background-color: #2f61b3; */
+  background-image:url('src/assets/blueback.jpg');
+  background-repeat:no-repeat;
+  background-size:cover; 
+  height:100%;
+  width: 100%;
+  overflow:hidden; 
+}
+
+#contentbody{
+  padding:15px;
+  padding-bottom:10px !important;
+  min-height:100vh;
+  padding-top: 2%;
+}
+.height{
+  height: 300px;
+}
+.myactivity{
+  margin-top: 0.5%;
+  cursor: pointer;
+  margin-left: 38%;
+}
+/* KeYCloak Related Styles */
+.logout-word{
+  font-weight: bold;
+  cursor:pointer;
+  }
+  .down-arrow {
+  font-size: xx-large;
+  cursor:pointer;
+  color: white;
+  }
+  /* KeyCloak Stykes ENd */
+.text-blue{
+  color: #000348!important;
+  margin-top: 30%;
+}
+.Maintext{
+  text-align: center;
+  font: 600 20px/39px Gellix,sans-serif;
+  letter-spacing: 0px;
+  color: #000348;
+  opacity: 1;
+  margin-left: -37%;
+}
+/* .applensLogo{
+  width: 100px;
+  height: auto;
+  vertical-align: middle;
+  } */
+  .applenstrademark
+  {
+    margin-bottom: 0.5rem;
+    width: 6.9rem!important;
+    padding-left: 1rem!important;
+    cursor: pointer;
+    margin-left: 212%;
+    margin-top: -7px;
+  }
+  .downarrow{
+    cursor: pointer;
+    margin-bottom: 0px;
+    margin-right: 15px;
+    width: 38%;
+    margin-left: 45%;
+    padding-top: 15px;
+  }
+  ::ng-deep .logoutbgpopup .p-overlaypanel-content{
+    border-radius: 15px !important; 
+    padding: 0px !important;
+  }
+  ::ng-deep .logoutbgpopup:after {
+      display: none; 
+  }
+      
+  ::ng-deep .logoutbgpopup:before {
+      display: none;
+  }
+  ::ng-deep .logout .p-overlaypanel.p-component{
+    width:5rem !important;
+    border-radius: 0px !important;
+    font-size: 14px;
+    padding-top: .35rem;
+    padding-bottom: .35rem;
+    padding-left: .7rem;
+    margin-left: 20px;
+    }   
+    ::ng-deep .logoutbgpopup {
+      top: 7px !important;
+      left: unset !important;
+      border-radius: 15px !important;
+      right: 26px;
+      z-index: 9999 !important;
+      }
+
+.popover-block
+{
+  left: 1640px;
+  width: 200px;
+  height: 100px; 
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 0px 16px #00000029;
+  border-radius: 15px;
+  opacity: 1;
+}
+.highlight{
+  background-color: #92BBE6;
+  color: white;
+  cursor: pointer !important;
+  
+}
+
+.popover-title
+{
+  background: #92BBE6 0% 0% no-repeat padding-box;
+  color: #000348;
+  top: 17px;
+  left: 1640px;
+  width: 200px;
+  height: 54px;
+  padding: 7px 0px 7px 121px;
+  opacity: 1;
+  border-radius: 15px 15px 0 0;
+}
+
+.popover-icon
+{
+  height: 40px;
+  width: 40px;
+  position: static;
+}
+
+.popover-arrowicon
+{
+  width: 14px;
+  height: 7px;
+  position: static;
+  margin-left: 12px;
+  cursor: pointer;
+}
+
+.popover-content
+{
+  top: 17px;
+  left: 1640px;
+  width: 200px;
+  background: #FFFFFF 0% 0% no-repeat;
+  box-shadow: 0px 0px 16px #00000029;
+  border-radius: 15px;
+  opacity: 1;
+  padding: 0px 0px 0px 0px;
+}
+
+.ul-style
+{
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol;
+  font-weight: bold;
+  font-size: 12px;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+  list-style: none;
+  padding: 5px 0px 0px 0px;
+}
+
+.li-style-1 
+{
+  margin-top: 10px;
+  line-height: 20px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol;
+  font-weight: bold;
+  font-size: 12px;
+  color: #000000;    
+  cursor: pointer;
+}
+
+.li-border1 {
+  border-bottom: 1px solid #D0D0CE;
+  margin:3px;
+  margin-top: 0px;
+  margin-bottom: 0px; 
+}
+
+.li-style-2
+{
+  margin-top: 5px;
+  line-height: 30px;
+  padding-bottom:10px;
+  padding-left: 10px;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol;
+  font-weight: bold;
+  font-size: 12px;
+  color: #000000;
+}
+
+/* Myactivity */
+.notifimage{
+  position: fixed;
+  top: 2.5%;
+  right: 10%;
+  width: 25px;
+  height: 25px;
+}
+
+.count-info {
+  width: 14px;
+  position: fixed;
+  top: 2.5%;
+  right: 10%;
+}
+
+.total-notification-count {
+  color: black;
+  font-size: 6px;
+  position: fixed;
+  top: 3%;
+  right: 10.45%;
+  /* top: -6px; */
+  font-weight: bold;
+}
+
+.notificss{
+  font-size: 2rem;
+  color: #FFFFFF;
+}
+
+
+.my-activity-notify {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 800 !important;
+  font-size: 7px;
+  position: relative;
+  /* bottom: 0px; */
+  top: -11px;
+  margin-left: -6px;
+  height: 25px;
+  width: 25px;
+  text-align: center;
+  padding: 4px;
+  background-color: #04c3c8!important;
+  color: #000348!important;
+  border-radius:32px
+}
+
+.spacing{
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+.myactClass{
+cursor: pointer;
+}
+
+:disabled{
+  opacity: 0.5;
+  cursor: not-allowed !important;
+}
+
+.ftSize{
+  font-size: 12px;
+}

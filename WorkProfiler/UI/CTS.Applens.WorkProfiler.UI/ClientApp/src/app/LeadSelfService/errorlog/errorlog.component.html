@@ -1,0 +1,132 @@
+<div class="container">
+  <div class="row page-titles">
+    <div class="col-md-8">
+      <h3 class="text-themecolor">{{'ErrorLog' | translate}}</h3>
+    </div>
+    <div class="col-md-4">
+      <select class="select" (change)=SetProject($event.target.value)>
+        <option *ngFor="let x of projectListData" [value]="x.projectId">{{x.projectName}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="row labelHeader">
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-2">
+          <div class="Tab" *ngIf="ticketLogShow" [ngClass]="{'TabSelected': choice == 1}" (click)="Choice(1)">Ticket Upload</div>
+        </div>
+        <div class="col-md-2">
+          <div class="Tab" *ngIf="errorLogShow" [ngClass]="{'TabSelected': choice == 0}" (click)="Choice(0)">{{'EffortUpload' | translate}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="col-md-12">
+      <div class="alert alert-danger warningMessage" style="margin-left:-1%;margin-top:1%" *ngIf="errorMessageShow == true">{{errorMessage}}</div>
+    </div>
+    <div class="card"  style="overflow: scroll;height: 35vh;" *ngIf="choice==1 && !noData && !displayExemptedMsg">
+      <div class="card-body">
+        <p-table #ErrorLog [value]="errorLog" styleClass="p-datatable-sm p-datatable-gridlines">
+          <ng-template pTemplate="header" class="p-datatable-thead">
+            <tr>
+              <th class="header"><span *ngIf="isCognizant==1">{{'ProjectID' | translate}}</span><span *ngIf="isCognizant==0">Hierarchy</span></th>
+              <th class="header" style="width:25%">{{'FileName' | translate}}</th>
+              <th class="header">{{'UploadSource' | translate}}</th>
+              <th class="header">{{'UploadDate' | translate}}</th>
+              <th class="header">{{'Status' | translate}}</th>
+              <th class="header">{{'Noofloadedtickets' | translate}}</th>
+              <th class="header">{{'Noofreuploadedtickets' | translate}}</th>
+              <th class="header">{{'Noofrejectedtickets' | translate}}</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-errorLog>
+            <tr>
+              <td class="body">
+                {{errorLog.projectId}}
+              </td>
+              <td class="body" [ngClass]="{'link': errorLog.fileName != ''}" style="width:24%" (click)="ExportExcelClick(errorLog.fileName,choice)">
+                {{errorLog.fileName}}
+              </td>
+              <td class="body">
+                {{errorLog.uploadSource}}
+              </td>
+              <td class="body">
+                {{errorLog.uploadedDate}}
+              </td>
+              <td class="body">
+                {{errorLog.status}}
+              </td>
+              <td class="body">
+                {{errorLog.loadedTickets}}
+              </td>
+              <td class="body">
+                {{errorLog.reUploadedTickets }}
+              </td>
+              <td class="body">
+                {{errorLog.rejectedTickets}}
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+    <div class="card"  style="overflow: scroll;height: 35vh;" *ngIf="choice==0 && !noData &&!displayExemptedMsg">
+      <div class="card-body">
+        <p-table #ErrorLog tableStyle="width: auto; white-space: nowrap;" styleClass="p-datatable-sm p-datatable-gridlines" [value]="errorLog">
+          <ng-template pTemplate="header" class="p-datatable-thead">
+            <tr>
+              <th class="header">{{'ProjectID' | translate}}</th>
+              <th class="header" style="width:30%">{{'FileName' | translate}}</th>
+              <th class="header">{{'UploadDate' | translate}}</th>
+              <th class="header">{{'Status' | translate}}</th>
+              <th class="header">{{'NoofloadedRecords' | translate}}</th>
+              <th class="header">{{'NoofrejectedRecords' | translate}}</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-errorLog>
+            <tr>
+              <td class="body">
+                {{errorLog.projectId}}
+              </td>
+              <td class="body" [ngClass]="{'link': errorLog.fileName != ''}" style="width:22%" (click)="ExportExcelClick(errorLog.fileName,choice)">
+                {{errorLog.fileName}}
+              </td>
+              <td class="body">
+                {{errorLog.uploadedDate}}
+              </td>
+              <td class="body">
+                {{errorLog.status}}
+              </td>
+              <td class="body">
+                {{errorLog.loadedTickets}}
+              </td>
+              <td class="body">
+                {{errorLog.rejectedTickets}}
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+    <div class="card"  style="overflow: scroll;height: 35vh;" *ngIf="noData && !displayExemptedMsg" >
+      <div class="card-body">
+        <div>
+          <br><br><br>
+          <span class="nodata"><b>{{'NoDataFound' | translate}}</b></span>
+          <br><br><br>
+        </div>
+      </div>
+    </div>
+    <div class="card"  style="overflow: scroll;height: 35vh;" *ngIf="displayExemptedMsg" >
+      <div class="card-body">
+        <div>
+          <br><br><br>
+          <span class="exempted"><b>{{exemptedMsg | translate}}</b></span>
+          <br><br><br>
+        </div>
+      </div>
+    </div>
+  </div>

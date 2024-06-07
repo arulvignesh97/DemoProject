@@ -1,0 +1,25 @@
+#mandatory {
+  color: red !important;
+}
+button#btnSearchBaseMeasures {
+  width: 77px;
+  height: 30px;
+  border-radius: 4px;
+  padding: 2px;
+  background: #0033A0;
+  font-size: 12px;
+  border: 1px #C8C9CB;
+  color: white;
+  font-family: Proxima Nova, Regular !important;
+  cursor: pointer;
+}
+#searchpopup.p-dialog {
+  min-height: 300px !important;
+}
+ .p-multiselect
+ {
+     width:170px !important;
+ }
+.p-dropdown {
+  width: 100% !important;
+}

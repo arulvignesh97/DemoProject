@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.757
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CTS.Applens.Encryption", "CTS.Applens.Encryption\CTS.Applens.Encryption.csproj", "{00513B04-0B97-48D1-AEEA-F9A49969A9A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AVMCoE.Framework", "..\Framework\AVMCoE.Framework\AVMCoE.Framework.csproj", "{CCAC0644-77E9-48E7-B876-376777292745}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{00513B04-0B97-48D1-AEEA-F9A49969A9A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00513B04-0B97-48D1-AEEA-F9A49969A9A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00513B04-0B97-48D1-AEEA-F9A49969A9A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00513B04-0B97-48D1-AEEA-F9A49969A9A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCAC0644-77E9-48E7-B876-376777292745}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCAC0644-77E9-48E7-B876-376777292745}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCAC0644-77E9-48E7-B876-376777292745}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCAC0644-77E9-48E7-B876-376777292745}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {677D958E-DC55-439B-B79A-7DAEF706D6CB}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://ctsc01208639701:8080/tfs/globalmanagedservices
+		SccProjectUniqueName0 = ..\\Framework\\AVMCoE.Framework\\AVMCoE.Framework.csproj
+		SccProjectName0 = ../Framework/AVMCoE.Framework
+		SccLocalPath0 = ..\\Framework\\AVMCoE.Framework
+		SccLocalPath1 = .
+		SccProjectUniqueName2 = CTS.Applens.Encryption\\CTS.Applens.Encryption.csproj
+		SccProjectName2 = CTS.Applens.Encryption
+		SccLocalPath2 = CTS.Applens.Encryption
+	EndGlobalSection
+EndGlobal

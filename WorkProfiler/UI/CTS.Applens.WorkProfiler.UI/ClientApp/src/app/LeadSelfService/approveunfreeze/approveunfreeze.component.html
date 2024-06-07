@@ -1,0 +1,332 @@
+<div id="approveUnfreezegrid" class="container">
+  <p-toolbar styleClass="p-mb-2">
+    <ng-template pTemplate="left">
+      <div class="row">
+        <div class="col-md-3">
+          <h6>{{'Approve/Unfreeze'|translate}}</h6>
+        </div>
+        <div class="col-md-9">
+          <marquee behavior="scroll" style="color:red;font-size:14px;" direction="left">Timesheet(s) for the current
+            month can be Approved/Unfrozen till 4th calendar day of next month</marquee>
+        </div>
+      </div>
+    </ng-template>
+  </p-toolbar>
+  
+  <div class="background" style=" overflow:scroll;height: 55vh;">
+    <div class="filterheader">
+      <div class="row" style="margin:10px;">
+        <div *ngIf="isDaily" class="col-md-3 dailycal">
+          <div class="row">
+
+            <div class="col-md-6" style="margin-top:7px;margin-left:-12px;">
+
+
+
+
+
+              <p-calendar [(ngModel)]="selectstartdate" dateFormat="dd/mm/yy" (onSelect)="onstartChange($event)"
+                [showIcon]="true" [readonlyInput]="true" (ngModelChange)="onstartChange(selectstartdate)"
+                [minDate]="dailyFromMinDate" [maxDate]="dailyFromMaxDate"></p-calendar>
+
+
+            </div>
+
+            <div class="col-md-6" style="margin-top:7px;margin-left:12px">
+              <p-calendar id="endcal" [(ngModel)]="selectenddate" dateFormat="dd/mm/yy" [showIcon]="true"
+                (onSelect)="onendChange($event)" (ngModelChange)="onendChange(selectenddate)" [minDate]="dailyToMinDate"
+                [maxDate]="todaydate">
+              </p-calendar>
+
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!isDaily" class="col-md-3 weeklycal">
+         
+            <div style="margin-left: 6%;">
+              <input style="    z-index: 1;
+              position: absolute;
+              margin-right: 4%;
+              height: 36px;
+              padding-left: 4%;
+    padding-right: 10%;
+    margin-left: 1%;
+    width: 142px;
+    border: white;
+    height: 26px;
+    margin-top: 4.5%; 
+              " (click)="calendarPopup.toggle()" pInputText [(ngModel)]="specialWeekDate " class="calendarlabel1" readonly>
+
+            </div>
+            
+              
+
+          <div class="row" >
+            <div class="col-md-6" style="margin-top:7px;margin-left:12px" >
+              <p-calendar [(ngModel)]="selectweekdate"  dateFormat="dd/mm/yy" [showIcon]="true" #calendarPopup
+                inputId="icon" placement="bottom" (ngModelChange)="onWeekChange($event)" [readonlyInput]="true"
+                [minDate]="weeklyFromMinDate"
+                [maxDate]="weeklyToMaxDate">
+              </p-calendar>
+            </div>  
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="row" style="margin:7px">
+            <div class="col-md-4">
+              <span style="font-size:12px"> {{'Defaulters'|translate}}</span>
+            </div>
+            <div class="col-md-8">
+              <p-multiSelect [options]="defaultersList" (onChange)="defaulterschange()" appendTo="body"
+                [(ngModel)]="defaultselection" maxSelectedLabels="1" [resetFilterOnHide]="true"
+                [panelStyle]="{minWidth:'100px'}" defaultLabel="Select Options">
+              </p-multiSelect>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="row" style="margin:6px">
+            <div class="col-md-5">
+              <span style="font-size:12px"> {{'AllAssignees' |translate}}</span>
+            </div>
+            <div class="col-md-7">
+              <p-multiSelect [options]="assgineList" (onChange)="assignerschange()" appendTo="body"
+                [(ngModel)]="assigneselection" maxSelectedLabels="1" [resetFilterOnHide]="true"
+                [panelStyle]="{minWidth:'100px'}" defaultLabel="Select Options">
+              </p-multiSelect>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="row" style="margin:6px">
+            <div class="col-md-6">
+              <button id="btnsearch" style="cursor:pointer;background-color: #f8f9fa !important;border: none;"
+                (click)="searchTimesheets()">
+                <i class="fa fa-search" style="color: #7460ee;font-size:19px;"></i>
+              </button>
+            </div>
+            <div class="col-md-6">
+              <button id="ExportToExcel"
+                style="cursor:pointer;width: 30px; background-color: #f8f9fa !important;border: none;"
+                (click)="downloadTimesheetdate()">
+                <i class="fa-download fa" title="Excel download" style="cursor :pointer;color: green;"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 chart">
+      <canvas id="canvas" (click)="filterGrid($event)"></canvas>
+    </div>
+    <div *ngIf="isDaily">
+      
+      <div class="row">
+        <div class="col-md-12">
+          <p-table #dt [value]="approveunfreezedaily" [scrollable]="true" scrollHeight="300px" [style]="{width:'100%'}"
+            styleClass="p-datatable-sm p-datatable-gridlines">
+            <ng-template pTemplate="caption">
+              <div class="alert alert-danger mt-1 pt-2 pb-2" role="alert" *ngIf="isError">
+                <p class="mb-0">{{errorMessage}}</p>
+              </div>
+              <div class="alert alert-success mt-1 pt-2 pb-2" role="alert" *ngIf="isSuccess">
+                <p class="mb-0">{{successMessage}}</p>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="colgroup" let-columns>
+              <colgroup>
+                <col style="width:100px">
+                <col style="width:180px">
+                <col style="width:100px">
+                <col style="width:150px">
+                <col style="width:100px">
+                <col style="width:180px">
+                <col style="width:100px">
+                <col style="width:100px">
+              </colgroup>
+            </ng-template>
+            <ng-template pTemplate="header">
+              <tr>
+                <th hidden="hidden"></th>
+                <th class="cntrAlign">{{'UserID'|translate}}</th>
+                <th class="cntrAlign">{{'UserName'|translate}}</th>
+                <th class="cntrAlign">{{'Status'|translate}}</th>
+                <th class="cntrAlign">{{'Date'|translate}}</th>
+                <th class="cntrAlign">{{'TotalHours'|translate}}</th>
+                <th class="cntrAlign">{{'RejectionComments'|translate}}</th>
+                <th class="cntrAlign">{{'Approve'|translate}} <input type="checkbox" [disabled]="isApproveAll"
+                    [(ngModel)]="isApproveAllchk" [checked]="isApproveAllchk" name="approveall"
+                    (change)="checkboxapproveallValidation($event)"></th>
+                <th class="cntrAlign">{{'Unfreeze'|translate}} <input type="checkbox" [disabled]="isUnfreezeAll"
+                    [(ngModel)]="isUnfreezeAllchk" [checked]="isUnfreezeAllchk" name="unfreezeall"
+                    (change)="checkboxunfreezeallValidation($event)"></th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-i="rowIndex" let-dailydata>
+              <tr>
+                <td hidden="hidden">
+                  {{
+                  dailydata.timesheetId
+                  }}
+                </td>
+                <td class="cntrAlign">{{dailydata.employeeId }}</td>
+                <td class="cntrAlign"><label (click)="userTicketDetails(dailydata.employeeId,dailydata.timeSheetDate)"
+                    class="usernamecss">{{dailydata.employeeName}}</label> </td>
+                <td class="cntrAlign">{{dailydata.timeSheetStatus}}</td>
+                <td class="cntrAlign">{{dailydata.timeSheetDate | date:'MM/dd/yyyy h:mm:ss a'}}</td>
+                <td class="cntrAlign">{{dailydata.totalHours|number:'1.2-2'}}</td>
+                <td class="cntrAlign"><input type="text" value="{{dailydata.rejectionCommects}}" /></td>
+                <td class="cntrAlign"><input type="checkbox"
+                    [disabled]="(dailydata.timeSheetStatus| lowercase)!='submitted'" [(ngModel)]="dailydata.isApprove"
+                    (change)="checkboxApproveValidation(dailydata,$event)" />
+                <td class="cntrAlign"><input type="checkbox"
+                    [disabled]="(dailydata.timeSheetStatus| lowercase)!='submitted' && dailydata.isFreezed==false"
+                    [(ngModel)]="dailydata.isUnfreeze" (change)="checkboxUnfreezeValidation(dailydata,$event)" /></td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+              <tr>
+                <td [attr.colspan]="9">
+                  {{'NoRecordsFound'|translate}}
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </div>
+    <!-- Weekly Grid -->
+    <div *ngIf="!isDaily">
+      <div class="row">
+        <div class="col-md-12">
+          
+          <p-table #dt [value]="approveunfreezeweekly" [scrollable]="true" scrollHeight="300px" [style]="{width:'100%'}"
+            styleClass="p-datatable-sm p-datatable-gridlines">
+            <ng-template pTemplate="caption">
+              <div class="alert alert-danger mt-1 pt-2 pb-2" role="alert" *ngIf="isError">
+                <p class="mb-0">{{errorMessage}}</p>
+              </div>
+              <div class="alert alert-success mt-1 pt-2 pb-2" role="alert" *ngIf="isSuccess">
+                <p class="mb-0">{{successMessage}}</p>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="colgroup" let-columns>
+              <colgroup>
+                <col style="width:100px">
+                <col style="width:200px">
+                <col style="width:100px">
+                <col style="width:100px">
+                <ng-container *ngFor="let date of dailyTimeSheetData">
+                  <col style="width:65px">
+                </ng-container>
+                <col style="width:200px">
+                <col style="width:100px">
+                <col style="width:100px">
+              </colgroup>
+            </ng-template>
+            <ng-template pTemplate="header">
+              <tr>
+                <th class="cntrAlign">{{'UserID'|translate}}</th>
+                <th class="cntrAlign">{{'UserName'|translate}}</th>
+                <th class="cntrAlign">{{'Status'|translate}}</th>
+                <th class="cntrAlign">{{'TotalHours'|translate}}</th>
+                <ng-container *ngFor="let date of dailyTimeSheetData">
+                  <th id="thweekdates">
+                    {{date.timeSheetDate | date:'MM/dd/yyyy'}} - {{date.timeSheetDate | date:'EE'}}
+                  </th>
+                </ng-container>
+                <th class="cntrAlign">{{'RejectionComments'|translate}}</th>
+                <th class="cntrAlign">{{'Approve'|translate}} <input type="checkbox" id="approveall" name="approveall"
+                    [disabled]="isApproveAll" [(ngModel)]="isApproveAllchk" [checked]="isApproveAllchk"
+                    (change)="checkboxapproveallValidation($event)"></th>
+                <th class="cntrAlign">{{'Unfreeze'|translate}} <input type="checkbox" id="unfreezeall"
+                    name="unfreezeall" [disabled]="isUnfreezeAll" [(ngModel)]="isUnfreezeAllchk"
+                    [checked]="isUnfreezeAllchk" (change)="checkboxunfreezeallValidation($event)"></th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-i="rowIndex" let-dailydata>
+              <tr>
+                <td class="cntrAlign">{{dailydata.employeeId }}</td>
+                <td class="cntrAlign"><label (click)="userTicketDetails(dailydata.employeeId, '')"
+                    class="usernamecss">{{dailydata.employeeName}}</label> </td>
+                <td class="cntrAlign">{{dailydata.timeSheetStatus}}</td>
+                <td class="cntrAlign">{{dailydata.totalHours|number:'1.2-2'}}</td>
+                <ng-container *ngFor="let date of dailydata.dailyTimeSheetData">
+                  <td class="cntrAlign" id="tdweekdates">
+                    {{date.totalHours|number:'1.2-2'}}
+                  </td>
+                </ng-container>
+                <td class="cntrAlign"><input type="text" [(ngModel)]="dailydata.rejectionCommects" minlength="2" /></td>
+                <td class="textaligncenter cntrAlign"> <input type="checkbox"
+                    [disabled]="(dailydata.timeSheetStatus| lowercase)!='submitted'" binary="true"
+                    [(ngModel)]="dailydata.isApprove" (change)="checkboxApproveValidation(dailydata,$event)" /></td>
+                <td class="textaligncenter cntrAlign"><input type="checkbox"
+                    [disabled]="(dailydata.timeSheetStatus| lowercase)!='submitted' && dailydata.isFreezed==false"
+                    binary="true" [(ngModel)]="dailydata.isUnfreeze"
+                    (change)="checkboxUnfreezeValidation(dailydata,$event)" /></td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+              <tr>
+                <td [attr.colspan]="9">
+                  {{'NoRecordsFound'|translate}}
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin:10px;">
+      <div class="col-md-10"></div>
+      <div class="col-md-2" style="text-align:right">
+        <button id="btnSubmit" [ngClass]="{'btn': !enableSubmit}" [disabled]="!enableSubmit"
+          (click)="ApproveUnfreeze()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dialog [(visible)]="displayTicketDetails" [style]="{width: '65%'}" header="Ticket Details" [modal]="true"
+  styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <hr class="border" />
+    
+    <div class="row">
+      <button class="btnDownload" *ngIf="downloadButtonShow" style="margin-left: 2%;"
+        (click)="ExcelDownload()">{{'DownloadExcel' | translate}}</button>
+    </div>
+    <div id="ticketDetails" class="row" style="margin-top: 1%">
+      <p-table #ErrorLog [value]="ticketDetails" [columns]="cols" [rows]="5" [scrollable]="true" scrollHeight="200px"
+        style="width:100%;" [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,15,20]" [rowHover]="true"
+        [paginator]="true"
+        currentPageReportTemplate="{{'View' | translate}} {first} - {last} {{'of' | translate}} {totalRecords}"
+        styleClass="p-datatable-sm p-datatable-gridlines">
+        <ng-template pTemplate="header" class="p-datatable-thead" let-columns>
+          <tr>
+            <th class="header" pSortableColumn="{{col.field}}" *ngFor="let col of columns">{{col.header}}<p-sortIcon
+                class="icon" field="{{col.field}}"></p-sortIcon>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-project let-columns="columns">
+          <tr>
+            <td *ngFor="let col of columns" class="body">
+              {{project[col.field]}}
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td [attr.colspan]="9">
+              {{'NoDataFound'| translate}}
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <div class="row" style="margin-top: 3%">
+      <button class="btnDownload" style="margin-left: 87%;width: 10%" (click)="Close()">{{'Close' | translate}}</button>
+    </div>
+  </ng-template>
+</p-dialog>

@@ -1,0 +1,205 @@
+<div class="row">
+    <div class="col-md-4 inlinebox">
+        <div class="col-md-1"><input type="radio" class="radiobtn" value="1"
+                (change)="onTicketChange(1)" name="ApplensTicket" id="chkapplenstct" /></div>
+        <div class="col-md-10"><span class="radiotxt btn-lang-font" 
+            title="{{'AppLensTicket' | translate}}" data-lang="AppLensTicket">
+            {{'AppLensTicket' | translate}}</span></div>
+    </div>
+    <div class="col-md-4 inlinebox">
+        <div class="col-md-1"><input type="radio" class="radiobtn" value="0"
+                (change)="onTicketChange(0)" name="ApplensTicket" id="nonchkapplenstct" checked /></div>
+        <div class="col-md-10">
+            <span class="radiotxt btn-lang-font" title="{{'NonAppLensTicket' | translate}}" 
+            data-lang="NonAppLensTicket">
+            {{'NonAppLensTicket' | translate}}</span>
+        </div>
+    </div>
+    <div class="col-md-4 inlinebox">
+        <div class="col-md-12 btn-lang-font" data-lang="IndicatesMandatoryFields"
+          style="float: right;font-size: 12px;font-family: Proxima Nova,sans-serif, Regular;font-weight: 100;">
+          <span id="mandatory">*</span>{{'IndicatesMandatoryFields'| translate}} </div>
+    </div>
+</div>
+    <div class="container addTicketcontainer top1margin">
+        <div id="alert" class="alert alert-danger warningMessage margintop" 
+        *ngIf="ValidationMessage !== ''" [innerHtml]="ValidationMessage"></div>
+        <div id="alert" class="alert alert-danger warningMessage margintop" 
+        *ngIf="displayExemptedMsg" [innerHtml]="exemptedMsg"></div>
+
+        <form name="addTicketform" [formGroup]="addTicketform">
+           
+            <div class="row margintop">
+                <div class="col-md-3">
+                    <label class="lbladdTickets" title="{{'TicketID'| translate}}" 
+                    data-lang="TicketID">{{'TicketID'| translate}}<span id="mandatory">*</span></label>
+                    <input formControlName="cnTicketId"
+                    [ngClass]="{'is-invalid': otherValidation && cnTicketId.errors }" 
+                    type="text" class="txtaddTicket" autocomplete="off"
+                        id="txtTicketIdApp" maxlength="50" />
+                </div>
+                <div class="col-md-3" id="divprojectadd">
+                    <label class="lbladdTickets" title="{{'Project'| translate}}" 
+                    data-lang="Project">{{'Project'| translate}}
+                        <span id="mandatory">*</span></label>
+                    <p-dropdown id="ddlProjectnew" [ngClass]="{'p-invalid': submitted && cnProject.errors }" 
+                     [options]="projectList" name="ddlProjectnew" 
+                     [title]="cnProject.value?.projectName===undefined?'':cnProject.value?.projectName"
+                        formControlName="cnProject" placeholder = "--Select--" 
+                        appendTo="body" [autoDisplayFirst]="false"
+                        optionLabel="projectName" resetFilterOnHide="true" maxSelectedLabels="0" [filter]="true"
+                        (onChange)="ddlprojectchangeforadd(cnProject.value.projectId)">
+                    </p-dropdown>
+                    
+                </div>
+                <div class="col-md-3">
+                    <label class="lbladdTickets"  title="{{'SupportType'| translate}}"
+                    >{{'SupportType'| translate}}<span
+                            id="mandatory">*</span></label>
+                    <p-dropdown id="ddlSupportType" 
+                    [ngClass]="{'p-invalid': submitted && cnSupportType.errors }" 
+                    [options]="supportTypeList" name="ddlSupportType"
+                        formControlName="cnSupportType" placeholder = "--Select--" 
+                        appendTo="body" [autoDisplayFirst]="false"
+                        optionLabel="label" resetFilterOnHide="true" maxSelectedLabels="0" [filter]="true"
+                        (onChange)="supportTypeChange(cnSupportType.value.value)">
+                    </p-dropdown>
+                </div>
+                <div class="col-md-3">
+                    <label class="lbladdTickets" 
+                    title="{{'Application' | translate}}">{{'Application' | translate}}
+                    <span id="mandatory"
+                            class="conditionalmandate">#</span></label>
+                    <p-dropdown  appendTo="body"  id="ddlApplication"                   
+                    [itemSize]="virtualItemSize" placeholder = "--Select--"
+                    [ngClass]="{'p-invalid': otherValidation && cnApplication.errors }" 
+                    [options]="applicationList" name="ddlApplication"
+                        formControlName="cnApplication" [autoDisplayFirst]="false"
+                        optionLabel="applicationName" resetFilterOnHide="true" 
+                        maxSelectedLabels="0"
+                        [filter]="true" [virtualScroll]="getVirtualScroll(applicationList)">
+                    </p-dropdown>
+                </div>
+
+            </div>
+            <div class="row margintop">
+               
+                <div class="col-md-3">
+                    <label class="lbladdTickets" 
+                    title="{{'AssignmentGroup'| translate}}">
+                        {{'AssignmentGroup'| translate}}<span id="mandatory"
+                            class="conditionalmandate">#</span></label>
+                            <div class="row">
+                                <div class="assgrpdrpdwn">
+                                    <p-dropdown appendTo="body" 
+                                    [ngClass]="{'p-invalid': otherValidation && cnAssignmentGroup.errors }" 
+                                    id="ddlAssGrp" name="ddlAssGrp"
+                                    [options]="assignmentGroupAdd"  placeholder = "--Select--" 
+                                    (onChange)="AssignmentTowerMapping()"
+                                       formControlName="cnAssignmentGroup" [autoDisplayFirst]="false"
+                                       optionLabel="assignmentGroupName" resetFilterOnHide="true"
+                                       maxSelectedLabels="0" [filter]="true">
+                                   </p-dropdown>
+                                </div>
+                                <div class="hyperLink" [title]="AssignmentGroupHelp">
+                                    <a id="AssignmentGroupHelp"  
+                                     data-target="#id01">
+                                        <i class="fa fa-question-circle"></i>
+                                    </a>
+                                </div>
+                            </div>
+                </div>
+                <div class="col-md-3">  
+                    <label class="lbladdTickets" title="{{'Tower'| translate}}">
+                        {{'Tower'| translate}}<span id="mandatory"
+                            class="conditionalmandate">#</span></label>
+                    <p-dropdown [ngClass]="{'p-invalid': otherValidation && cnTower.errors }" 
+                    [options]="towerListAdd" appendTo="body" 
+                    id="ddlTower" name="ddlTower"
+                        formControlName="cnTower" [autoDisplayFirst]="false"
+                        optionLabel="towerName" resetFilterOnHide="true" placeholder = "--Select--"
+                        maxSelectedLabels="0" [filter]="true">
+                    </p-dropdown>
+                </div>
+                <div class="col-md-3">
+                    <label class="lbladdTickets" 
+                    title="{{'TicketType| translate'}}">{{'TicketType'| translate}}<span
+                            id="mandatory">*</span></label>
+                    <p-dropdown appendTo="body" [options]="ticketTypeList" 
+                     placeholder = "--Select--"
+                     id="ddlTktType" name="ddlTktType"
+                    [ngClass]="{'p-invalid': otherValidation && cnTicketType.errors }"                          
+                        formControlName="cnTicketType" [autoDisplayFirst]="false"
+                        optionLabel="ticketType" resetFilterOnHide="true" 
+                        maxSelectedLabels="0" [filter]="true">
+                    </p-dropdown>
+                </div>
+                <div class="col-md-3" id="Opendate"
+                     [class]="{'opendatedisable': isopendisable}">
+                  <label class="lbladdTickets" title="{{'OpenDate'|translate}}"
+                         data-lang="OpenDate">
+                    {{'OpenDate'|translate}}
+                    <span id="mandatory">*</span>
+                  </label>
+                  <p-calendar formControlName="cnOpenDate" [required]="true"  appendTo="body" 
+                  [monthNavigator]="true"
+                  [yearNavigator]="true" yearRange="{{startingyear}}:{{currentyear}}"
+                   [showSeconds]="true" 
+                  [ngClass]="{'p-invalid': otherValidation && cnOpenDate.errors }"  
+                  [style]="{'font-weight': '100','width':'75%'}"  
+                  (onSelect)="onModelChange($event)"
+                  showTime="true" hourFormat="12" dateFormat="d M yy"
+                  [maxDate]="maxdate"></p-calendar>
+                </div>
+            </div>
+            <div class="row margintop">
+                <div class="col-md-3">
+                    <label class="lbladdTickets" title="{{'Priority'|translate}}">{{'Priority'|translate}}
+                        <span id="mandatory">*</span></label>
+                    <p-dropdown  [ngClass]="{'p-invalid': otherValidation && cnPriority.errors }"
+                     [options]="priorityListAdd" 
+                     id="ddlPriority" name="ddlPriority"
+                        formControlName="cnPriority" placeholder = "--Select--" 
+                        appendTo="body" [autoDisplayFirst]="false" 
+                        optionLabel="priorityName" resetFilterOnHide="true" maxSelectedLabels="0" [filter]="true">
+                    </p-dropdown>
+                </div>
+                <div class="col-md-3">
+                    <label class="lbladdTickets" title="{{'Status'| translate}}">
+                        {{'Status'| translate}}<span id="mandatory">*</span></label>
+                    <p-dropdown  placeholder = "--Select--"
+                     [ngClass]="{'p-invalid': otherValidation && cnStatus.errors }" 
+                     [options]="statusListAdd"
+                        formControlName="cnStatus" appendTo="body" [autoDisplayFirst]="false"
+                        optionLabel="statusName" resetFilterOnHide="true" maxSelectedLabels="0" [filter]="true">
+                    </p-dropdown>
+                </div>
+                <div class="col-md-6">
+                    <label class="lbladdTickets" id="lblDescription" 
+                    title="{{'EnglishTicketDescription'| translate}}">
+                    {{'EnglishTicketDescription'| translate}}
+                        <span id="mandatory" class="conditionalmandate">#</span>
+                    </label>
+                    <textarea id="txtTicketDescription" class="txtaddTicketdesc"
+                    [ngClass]="{'is-invalid': otherValidation && cnDescription.errors }" 
+                    formControlName="cnDescription"
+                    ></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <button id="btnSaveAddTicket" title="{{'SaveTicketDetails' | translate}}" 
+                    (click)="saveAddTicket()" [disabled] = "clickdetected || displayExemptedMsg">
+                        {{'Save' | translate}}
+                    </button>
+                </div>
+                <div class="col-md-2">
+                    <button id="btnCloseAddTicket" title="Clear" 
+                    (click)="cancelAddTicket()" [disabled]="displayExemptedMsg">
+                    {{'Clear'| translate}}
+                    </button>
+                </div>
+            </div>
+            <br/>
+        </form>
+</div>

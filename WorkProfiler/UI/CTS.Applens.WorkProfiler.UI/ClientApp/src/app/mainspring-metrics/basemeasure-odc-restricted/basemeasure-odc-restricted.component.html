@@ -1,0 +1,133 @@
+<div class="workprofiler-table mt-1" style="overflow: scroll;height: 50vh;">   
+    <p-table #dtGrid [value]="basemeasures" [rows]="100" [paginator]="true"
+             [rowHover]="true" dataKey="id"
+            currentPageReportTemplate="{{'View' | translate}} {first} - {last} {{'of' | translate}} {totalRecords}" [showCurrentPageReport]="true" [rowsPerPageOptions]="[100,200,300,400]" [scrollable]="true" [scrollHeight]="scrollHeight" styleClass="p-datatable-sm p-datatable-gridlines" >
+            <ng-template pTemplate="caption">            
+                <div class="alert alert-danger mt-1 pt-2 pb-2" role="alert" *ngIf="isError">                
+                    <p class="mb-0">{{errorMessage}}</p>
+                </div>
+                <div class="alert alert-success mt-1 pt-2 pb-2" role="alert" *ngIf="isSuccess">               
+                    <p class="mb-0">{{successMessage}}</p>
+                  </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th class="data-header text-center" style="width:20%" pSortableColumn="serviceName">{{'ServiceName' | translate}}<p-sortIcon field="serviceName"></p-sortIcon></th>
+                    <th class="data-header text-center" style="width:20%" pSortableColumn="baseMeasureName">{{'BaseMeasureName' | translate}}<p-sortIcon field="baseMeasureName"></p-sortIcon>
+                    </th>
+                    <th class="data-header text-center" pSortableColumn="mainspringPriorityName">{{'MainspringPriorityName' | translate}}<p-sortIcon field="mainspringPriorityName"></p-sortIcon>
+                    </th>
+                    <th class="data-header text-center" style="width:15%" pSortableColumn="mainspringSupportCategoryName">{{'MainspringSUPPORTCATEGORYName' | translate}}<p-sortIcon field="mainspringSupportCategoryName"></p-sortIcon>
+                    </th> 
+                    <th class="data-header text-center" pSortableColumn="technology">{{'TechnologyLanguageNameShortDESC' | translate}}<p-sortIcon field="technology"></p-sortIcon></th>   
+                    <th class="data-header text-center" pSortableColumn="baseMeasureValue">{{'BaseMeasureValue' | translate}}<p-sortIcon field="baseMeasureValue"></p-sortIcon></th>   
+                    <th class="data-header text-center" pSortableColumn="uomDesc">{{'UOM_DESC' | translate}}<p-sortIcon field="uomDesc"></p-sortIcon></th>               
+                </tr>
+                <tr [hidden]="!toggleFilter" class="table-filter">               
+                  
+                  <th>
+                    <div class="p-inputgroup">                    
+                        <input type="text" [(ngModel)]="searchServiceName" pInputText (input)="dtGrid.filter($event.target.value, 'serviceName', 'startsWith')">   
+                        <span class="p-inputgroup-addon clear-filter" (click)="clearFilter('searchServiceName','serviceName','startsWith')"><i class="pi pi-times"></i></span>      
+                    </div>
+                  </th>
+                  <th>              
+                    <div class="p-inputgroup">                    
+                        <input type="text" [(ngModel)]="searchBaseMeasureName" pInputText (input)="dtGrid.filter($event.target.value, 'baseMeasureName', 'startsWith')">   
+                        <span class="p-inputgroup-addon clear-filter" (click)="clearFilter('searchBaseMeasureName','baseMeasureName','startsWith')"><i class="pi pi-times"></i></span>      
+                    </div>
+                  </th>
+                  <th>
+                    <div class="p-inputgroup">                    
+                        <input type="text" [(ngModel)]="searchMainspringPriorityName" pInputText (input)="dtGrid.filter($event.target.value, 'mainspringPriorityName', 'startsWith')">   
+                        <span class="p-inputgroup-addon clear-filter" (click)="clearFilter('searchMainspringPriorityName','mainspringPriorityName','startsWith')"><i class="pi pi-times"></i></span>      
+                    </div>
+                  </th>
+                  <th>
+                    <div class="p-inputgroup">                    
+                        <input type="text" [(ngModel)]="searchSupportCategory" pInputText (input)="dtGrid.filter($event.target.value, 'mainspringSupportCategoryName', 'startsWith')">   
+                        <span class="p-inputgroup-addon clear-filter" (click)="clearFilter('searchSupportCategory','mainspringSupportCategoryName','startsWith')"><i class="pi pi-times"></i></span>      
+                    </div>
+                  </th>
+                  <th>
+                    <div class="p-inputgroup">                    
+                        <input type="text" [(ngModel)]="searchTechnology" pInputText (input)="dtGrid.filter($event.target.value, 'technology', 'startsWith')">   
+                        <span class="p-inputgroup-addon clear-filter" (click)="clearFilter('searchTechnology','technology','startsWith')"><i class="pi pi-times"></i></span>      
+                    </div>
+                  </th>
+                  <th>
+                    <div class="p-inputgroup">                    
+                        <input type="text" [(ngModel)]="searchBaseMeasureValue" pInputText (input)="dtGrid.filter($event.target.value, 'baseMeasureValue', 'startsWith')">   
+                        <span class="p-inputgroup-addon clear-filter" (click)="clearFilter('searchBaseMeasureValue','baseMeasureValue','startsWith')"><i class="pi pi-times"></i></span>      
+                    </div>
+                  </th>
+                  <th>
+                    <div class="p-inputgroup">                    
+                        <input type="text" [(ngModel)]="searchUOMDESC" pInputText (input)="dtGrid.filter($event.target.value, 'uomDesc', 'startsWith')">   
+                        <span class="p-inputgroup-addon clear-filter" (click)="clearFilter('searchUOMDESC','uomDesc','startsWith')"><i class="pi pi-times"></i></span>      
+                    </div>
+                  </th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-basemeasure>
+                <tr class="table-body">
+                    
+                    <td class="text-center" style="width:20%" title="{{basemeasure.serviceName}}">
+                        {{basemeasure.serviceName}}
+                    </td>
+                    <td class="text-center base-measure" style="width:20%" [ngClass]="{'custom-measure': basemeasure.baseMeasureTypeId == 3}" title="{{basemeasure.baseMeasureName}}">
+                        {{basemeasure.baseMeasureName}}                        
+                    </td>
+                    <td class="text-center" title="{{basemeasure.mainspringPriorityName}}">
+                        {{basemeasure.mainspringPriorityName}}
+                    </td>
+                    <td class="text-center" style="width:15%" title="{{basemeasure.mainspringSupportCategoryName}}">
+                        {{basemeasure.mainspringSupportCategoryName}}
+                    </td>
+                    <td class="text-center" title="{{basemeasure.technology}}">
+                        {{basemeasure.technology}}
+                    </td>
+                    <td class="text-center base-measure-value"  title="{{basemeasure.baseMeasureValue}}">
+                        <!-- Decimal -->
+                        <input pInputText *ngIf="basemeasure.uomDataType == 'Decimal'"  type="text"  (keydown)="ValidateDecimalKeyPress($event)" (blur)="ValidateDecimalBlur($event)" class="allownumericwithdecimal"  placeholder="Enter Value" [(ngModel)]="basemeasure.baseMeasureValue" class="w-95"/>
+                        
+                        <!-- Rating -->
+                        <input pInputText *ngIf="basemeasure.uomDataType == 'Rating'" type="text"  (keydown)="ValidateRatingKeyPress($event)" (blur)="ValidateRatingBlur($event)" maxlength="1" class="allownumericwithoutdecimal1to5" placeholder="Enter 1 to 5" [(ngModel)]="basemeasure.baseMeasureValue" class="w-95"/>
+    
+                        <!-- Number -->
+                        <input pInputText *ngIf="basemeasure.uomDataType == 'Numeric'" type="text"  (keydown)="ValidateNumberKeyPress($event)" (blur)="ValidateNumberBlur($event)" class="allownumericwithoutdecimal" placeholder="Enter Value" [(ngModel)]="basemeasure.baseMeasureValue" class="w-95"/>
+    
+                        <!-- Date -->
+                        <!-- <input pInputText *ngIf="basemeasure.uomDataType == 'Date'" type="text" class="BaseMeasuretextboxdate" (keydown)="ValidateDateKeyPress($event)"   placeholder="Select Date"  [value]="basemeasure.baseMeasureValue"/> -->
+    
+                        <input *ngIf="basemeasure.uomDataType == 'Date'" placeholder="Select Date" pInputText bsDatepicker [(ngModel)]="basemeasure.baseMeasureValue" (ngModelChange)="dateValueUpdate($event,basemeasure)"  [bsConfig]="datePickerConfig" (keydown)="ValidateDateKeyPress($event)" [dateCustomClasses]="dateCustomClasses" placement="left" class="calendarlabel" class="w-95">
+    
+                    </td>
+
+                    <td class="text-center">                   
+                        {{basemeasure.uomDesc}}                     
+                    </td>       
+                </tr>
+                
+            </ng-template>
+            <ng-template pTemplate="paginatorleft" let-state>
+                <button class="w-80 h-30" type="button" pButton label="{{'Clear' | translate}}" (click)="clearAllFilters()"></button> &nbsp;
+                <button type="button" class="h-30" pButton [icon]="toggleicon" label="{{'ToggleSearch' | translate}}" (click)="toggle($event)"></button>
+            </ng-template>        
+            <ng-template pTemplate="emptymessage">
+              <tr>
+                  <td colspan="7" style="text-align: center;">{{'NoMatchingRecordsFound' | translate}}</td>
+              </tr>
+          </ng-template>
+        </p-table>
+        <div class="card" style="width: 100%;height: 50px;margin-top: 5px;" id="divUserFooter">
+            <div class="card-body" style="display:-webkit-box;margin-top: -10px;">
+                <div class="col-md-5" style="margin-top: 0px;font-size: 15px;font-weight: 600;" data-lang="NumberOfRecords">{{'NumberOfRecords' | translate}} <label id="hdnBaseMeasuresRecordsCount" style="font-size: 15px;font-weight: 600;"> &nbsp; {{basemeasures.length}}</label></div>
+                <div class="col-md-7" style="display: -webkit-box;margin-top: 2px;">                   
+                    <div class="col-md-4">
+                        <button type="button" class="data-button w-80 padding-unset" style="margin-left: 57px;margin-top: -4px;" pButton label="{{'Save' | translate}}" (click)="SaveBaseMeasureODC()"></button>
+                    </div>               
+                </div>
+            </div>
+        </div>
+    </div>

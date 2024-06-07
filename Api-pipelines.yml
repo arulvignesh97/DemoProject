@@ -1,0 +1,44 @@
+  jobs:
+  - job: ApiSecure_BuildJob
+    steps:
+    - task: DotNetCoreCLI@2
+      displayName: 'Nuget restore'
+      inputs:
+        command: restore
+        projects: |
+         $(workdirectory)**/*.csproj
+         $(frameworkdirectory)**/*.csproj
+        feedsToUse: config
+        nugetConfigPath: 'C:\Users\SAVMCOETFS\AppData\Roaming\NuGet\NuGet.Config'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'dotnet build'
+      inputs:
+        projects: |
+         $(workdirectory)**/*.csproj
+         $(frameworkdirectory)**/*.csproj
+        workingDirectory: ' $(workdirectory)'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Unit Test'
+      inputs:
+        command: test
+        projects: '$(workdirectory)**/*.Test.csproj'
+        arguments: '--configuration debug --collect:"XPlat Code Coverage" -- RunConfiguration.DisableAppDomain=true'
+        workingDirectory: ' $(workdirectory)'
+      continueOnError: true
+   
+    - task: DotNetCoreCLI@2
+      displayName: Publish
+      inputs:
+        command: publish
+        publishWebProjects: false
+        projects: |
+         $(workdirectory)**/*.csproj
+         $(frameworkdirectory)**/*.csproj
+         !$(workdirectory)**/*.Test.csproj
+        arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+        zipAfterPublish: false
+        modifyOutputPath: false
+        workingDirectory: '$(workdirectory)'
+    

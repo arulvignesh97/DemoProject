@@ -1,0 +1,53 @@
+<div *ngIf="(!isKeycloakEnabled && !IsAzureAdEnabled) || isUserLogin" style="position: fixed;width: 100%;">
+  <ng-template [ngIf]="displaySpinner">
+    <div class="spinnerLayout">
+      <!-- <img class="imgSize" src="./assets/loading.gif" /> Processing data... -->
+      <div class="spinner-border spinner-color" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Processing data...</span>
+      </div>
+    </div>
+  </ng-template>
+  <div [className]="displaySpinner == true?'modal-backdrop fade show': 'display: none'"></div>
+  <div appDisableRightClick>
+    <app-header></app-header>
+  </div>
+  <!--<p-toast preventOpenDuplicates="true" position="top-center" styleClass="data-toast"></p-toast>-->
+</div>
+<!-- KeyCloakConfigiration Related UI design -->
+<div class="keyCloakDialog" appDisableRightClick *ngIf="displayModal">
+  <p-dialog header={{header}} [(visible)]="displayPopup" (onHide)="CloseSessionDialog()"
+            [modal]="true" id="popupWidth" [draggable]="false" [resizable]="false"
+            styleClass="keyCloakDialog" [baseZIndex]="100001" [focusOnShow]="true"
+            [closeOnEscape]="false">
+    <div>
+      <span *ngIf="!timedOut">
+        Your session is about to expire due to inactivity.
+        You will be logged out in {{idleState}}
+        seconds.
+      </span>
+      <span *ngIf="timedOut">
+        Your session has expired. Please
+        <a href="javascript:void(0);" class="text-color" (click)="ReloadWindow()">
+          login
+        </a> to continue
+      </span>
+    </div>
+    <div class="mrgbtm">
+      <div class="col-12">
+        <button type="button" *ngIf="!timedOut" (click)="stayLogIn()"
+                class="btn btn-primary btn-sm mr-3 button-stay-logged-in ">
+          STAY LOGGED IN
+        </button>
+        <button type="button" *ngIf="!timedOut" (click)="LogOutUser()"
+                class="btn btn-primary btn-sm ms-3 button-stay-logged-out ">
+          <span innerHTML="{{'LOGOUT'}}"></span>
+        </button>
+        <button type="button" *ngIf="timedOut" class="btn btn-primary btn-sm button-stay-login "
+                (click)="LogOutUser()">
+          <span innerHTML="{{'Ok'}}"></span>
+        </button>
+      </div>
+    </div>
+  </p-dialog>
+</div>
+<!-- KeyCloak {Popup end} -->

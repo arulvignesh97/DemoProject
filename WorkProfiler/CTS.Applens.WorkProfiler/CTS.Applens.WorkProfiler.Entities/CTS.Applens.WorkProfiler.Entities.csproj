@@ -1,0 +1,57 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="BoT\**" />
+    <Compile Remove="ContinousLearning\**" />
+    <Compile Remove="ExperienceBuilder\**" />
+    <Compile Remove="InitialLearning\**" />
+    <Compile Remove="LearningWeb\**" />
+    <Compile Remove="Multilingual\**" />
+    <Compile Remove="UseCase\**" />
+    <EmbeddedResource Remove="BoT\**" />
+    <EmbeddedResource Remove="ContinousLearning\**" />
+    <EmbeddedResource Remove="ExperienceBuilder\**" />
+    <EmbeddedResource Remove="InitialLearning\**" />
+    <EmbeddedResource Remove="LearningWeb\**" />
+    <EmbeddedResource Remove="Multilingual\**" />
+    <EmbeddedResource Remove="UseCase\**" />
+    <None Remove="BoT\**" />
+    <None Remove="ContinousLearning\**" />
+    <None Remove="ExperienceBuilder\**" />
+    <None Remove="InitialLearning\**" />
+    <None Remove="LearningWeb\**" />
+    <None Remove="Multilingual\**" />
+    <None Remove="UseCase\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Utilities\Encrypter.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ExceptionLogging\" />
+    <Folder Include="Effortupload\" />
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Framework\CTS.Applens.Framework\CTS.Applens.Framework\CTS.Applens.Framework.csproj" />
+  </ItemGroup>
+
+</Project>

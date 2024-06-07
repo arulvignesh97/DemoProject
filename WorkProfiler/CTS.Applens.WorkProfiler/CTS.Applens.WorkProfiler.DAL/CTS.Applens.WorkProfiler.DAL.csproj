@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Bot\**" />
+    <Compile Remove="ExperienceBuilder\**" />
+    <Compile Remove="InitialLearning\**" />
+    <Compile Remove="Multilingual\**" />
+    <Compile Remove="UseCase\**" />
+    <EmbeddedResource Remove="Bot\**" />
+    <EmbeddedResource Remove="ExperienceBuilder\**" />
+    <EmbeddedResource Remove="InitialLearning\**" />
+    <EmbeddedResource Remove="Multilingual\**" />
+    <EmbeddedResource Remove="UseCase\**" />
+    <None Remove="Bot\**" />
+    <None Remove="ExperienceBuilder\**" />
+    <None Remove="InitialLearning\**" />
+    <None Remove="Multilingual\**" />
+    <None Remove="UseCase\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="DBContext.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="4.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Framework\CTS.Applens.Framework\CTS.Applens.Framework\CTS.Applens.Framework.csproj" />
+    <ProjectReference Include="..\CTS.Applens.WorkProfiler.Common\CTS.Applens.WorkProfiler.Common.csproj" />
+    <ProjectReference Include="..\CTS.Applens.WorkProfiler.Entities\CTS.Applens.WorkProfiler.Entities.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,22 @@
+.circlelabel{
+    font-weight: 500;
+    font-size: 12px;   
+}
+.circletext{    
+    font-size: 15px;
+    margin-left: 15%;
+    color: #0033A0;
+    font-weight: 600;
+}
+
+.circlelabelcustomer{
+    font-weight: 500;
+    font-size: 12px;   
+    margin-left: 24%;
+}
+.circletextcustomer{    
+    font-size: 15px;
+    margin-left: 25%;
+    color: #0033A0;
+    font-weight: 600;
+}

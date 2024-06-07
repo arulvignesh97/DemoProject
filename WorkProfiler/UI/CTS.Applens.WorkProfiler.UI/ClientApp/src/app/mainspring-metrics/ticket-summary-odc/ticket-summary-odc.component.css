@@ -1,0 +1,44 @@
+.base-measure {
+    color: black;
+}
+.custom-measure {
+    color: limegreen !important;
+}
+td {
+    color: black;
+}
+.table-filter input {
+    text-align: left !important;
+}
+input {
+    height: 25px;
+    text-align: center;
+}
+.base-measure-value {
+    background: #c0f57aa6 !important;
+}
+
+.clear-filter {
+    padding: 0 !important;    
+    min-width: 1.357rem !important;
+    color: red;
+    font-weight: bold;
+    cursor: pointer;
+    pointer-events: auto;
+}
+.clear-filter i {
+    font-size: 12px !important;
+}
+.data-button {
+    background: #0031A0 !important;
+    height: 30px;
+}
+.w-80 {
+    width: 90px !important;
+}
+.w-95 {
+    width: 95% !important;
+}
+.padding-unset {
+    padding: unset !important;
+}

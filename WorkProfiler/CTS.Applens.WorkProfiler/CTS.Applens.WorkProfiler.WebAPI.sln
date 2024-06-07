@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CTS.Applens.WorkProfiler.Common", "CTS.Applens.WorkProfiler.Common\CTS.Applens.WorkProfiler.Common.csproj", "{40C60F0A-73C3-4D85-A81F-A47AE4D8DAA9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CTS.Applens.WorkProfiler.DAL", "CTS.Applens.WorkProfiler.DAL\CTS.Applens.WorkProfiler.DAL.csproj", "{2549CE69-C44F-4DD1-8FE7-F2600889017D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CTS.Applens.WorkProfiler.Entities", "CTS.Applens.WorkProfiler.Entities\CTS.Applens.WorkProfiler.Entities.csproj", "{19075F1F-E4D9-456B-9ECB-C42343D281E1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CTS.Applens.WorkProfiler.Repository", "CTS.Applens.WorkProfiler.BL\CTS.Applens.WorkProfiler.Repository.csproj", "{04A8448D-DFF0-4363-AF4D-2779172F7A59}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CTS.Applens.WorkProfiler.API", "CTS.Applens.WorkProfiler.API\CTS.Applens.WorkProfiler.API.csproj", "{567FE1AF-C59D-47DB-99F9-E46B2B7B8F6A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CTS.Applens.Framework", "..\..\Framework\CTS.Applens.Framework\CTS.Applens.Framework\CTS.Applens.Framework.csproj", "{70A47E7E-295D-4405-B1D9-2389B714C969}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{40C60F0A-73C3-4D85-A81F-A47AE4D8DAA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40C60F0A-73C3-4D85-A81F-A47AE4D8DAA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40C60F0A-73C3-4D85-A81F-A47AE4D8DAA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40C60F0A-73C3-4D85-A81F-A47AE4D8DAA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2549CE69-C44F-4DD1-8FE7-F2600889017D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2549CE69-C44F-4DD1-8FE7-F2600889017D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2549CE69-C44F-4DD1-8FE7-F2600889017D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2549CE69-C44F-4DD1-8FE7-F2600889017D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19075F1F-E4D9-456B-9ECB-C42343D281E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19075F1F-E4D9-456B-9ECB-C42343D281E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19075F1F-E4D9-456B-9ECB-C42343D281E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19075F1F-E4D9-456B-9ECB-C42343D281E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04A8448D-DFF0-4363-AF4D-2779172F7A59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04A8448D-DFF0-4363-AF4D-2779172F7A59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04A8448D-DFF0-4363-AF4D-2779172F7A59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04A8448D-DFF0-4363-AF4D-2779172F7A59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{567FE1AF-C59D-47DB-99F9-E46B2B7B8F6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{567FE1AF-C59D-47DB-99F9-E46B2B7B8F6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{567FE1AF-C59D-47DB-99F9-E46B2B7B8F6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{567FE1AF-C59D-47DB-99F9-E46B2B7B8F6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70A47E7E-295D-4405-B1D9-2389B714C969}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70A47E7E-295D-4405-B1D9-2389B714C969}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70A47E7E-295D-4405-B1D9-2389B714C969}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70A47E7E-295D-4405-B1D9-2389B714C969}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2947EB9C-AA16-4F38-9CF8-DC54B1EAAA61}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://cpcinchdv010582:8080/tfs/globalmanagedservices
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = CTS.Applens.WorkProfiler.Common\\CTS.Applens.WorkProfiler.Common.csproj
+		SccProjectName1 = CTS.Applens.WorkProfiler.Common
+		SccLocalPath1 = CTS.Applens.WorkProfiler.Common
+		SccProjectUniqueName2 = CTS.Applens.WorkProfiler.DAL\\CTS.Applens.WorkProfiler.DAL.csproj
+		SccProjectName2 = CTS.Applens.WorkProfiler.DAL
+		SccLocalPath2 = CTS.Applens.WorkProfiler.DAL
+		SccProjectUniqueName3 = CTS.Applens.WorkProfiler.Entities\\CTS.Applens.WorkProfiler.Entities.csproj
+		SccProjectName3 = CTS.Applens.WorkProfiler.Entities
+		SccLocalPath3 = CTS.Applens.WorkProfiler.Entities
+		SccProjectUniqueName4 = CTS.Applens.WorkProfiler.BL\\CTS.Applens.WorkProfiler.Repository.csproj
+		SccProjectName4 = CTS.Applens.WorkProfiler.BL
+		SccLocalPath4 = CTS.Applens.WorkProfiler.BL
+		SccProjectUniqueName5 = CTS.Applens.WorkProfiler.API\\CTS.Applens.WorkProfiler.API.csproj
+		SccProjectName5 = CTS.Applens.WorkProfiler.API
+		SccLocalPath5 = CTS.Applens.WorkProfiler.API
+		SccProjectUniqueName6 = ..\\..\\Framework\\CTS.Applens.Framework\\CTS.Applens.Framework\\CTS.Applens.Framework.csproj
+		SccProjectName6 = ../../Framework/CTS.Applens.Framework/CTS.Applens.Framework
+		SccLocalPath6 = ..\\..\\Framework\\CTS.Applens.Framework\\CTS.Applens.Framework
+	EndGlobalSection
+EndGlobal

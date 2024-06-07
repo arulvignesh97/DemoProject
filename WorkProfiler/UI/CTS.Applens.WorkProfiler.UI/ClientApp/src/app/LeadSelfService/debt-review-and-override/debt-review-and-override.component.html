@@ -1,0 +1,351 @@
+<ng-template [ngIf]="displaySpinner">
+  <div class="spinnerLayout">
+      <img class="imgSize" src="./assets/loading.gif" /> Processing data...
+  </div>
+</ng-template>
+<div class="col-sm-12 p-0" id="debtContainer" style="height: 430px;">
+    <div class="col-sm-12 p-0">
+        <div class="card">
+            <div class="card-body paddingTitle">
+              {{'DebtReview&Override' | translate}}
+            </div>
+          </div>
+    </div>
+    <div class="col-sm-12 p-0">
+        <div class="card mt-1">
+            <div class="card-body paddingTitle" style="font-size: 1.3rem;background-color: #0031A0 !important;">
+                <div class="col-sm-12 p-0">
+                    <!-- <i style="color: #01677E;" *ngIf="!isExpanded" (click)="OpenDropdownPanel()" class="fa fa-chevron-circle-down"></i> -->
+                    <i class="fa fa-plus-circle" aria-hidden="true" style="color: white;" *ngIf="!isExpanded" (click)="OpenDropdownPanel()"></i>
+                    <!-- <i style="color: #01677E;" *ngIf="isExpanded" (click)="OpenDropdownPanel()" class="fa fa-chevron-circle-up"></i> -->
+                    <i class="fa fa-minus-circle" aria-hidden="true" style="color: white;" *ngIf="isExpanded" (click)="OpenDropdownPanel()"></i>
+                    &nbsp;<span style="color: white;">{{'SearchFilters' | translate}}</span>
+                </div>
+                <div *ngIf="isExpanded" [style.height.px]="cardHeight" class="pl-3 col-sm-12 pr-0 pt-3 pb-3 d-flex align-items-around border border-1 mt-1 p-0" style="background-color: white;">
+                    <ul class="list-group list-group-horizontal col-sm-3 align-items-center">
+                        <li class="list-group-item col-sm-3 border border-0 p-0">{{'Project' | translate}}</li>
+                        <li class="list-group-item col-sm-9 border border-0 p-0">
+                            <p-dropdown placeholder="Select Project" [options]="ProjectFilterDropdown" [(ngModel)]="selectedProjectFilterDropdown" (onChange)="switchProject()" [filter]="true" filterBy="label,value.name" autoWidth="false" [style]="{'minWidth':'100%'}"></p-dropdown>
+                        </li>
+                      </ul>
+                      <ul class="list-group list-group-horizontal col-sm-3 align-items-center" [disabled]="displayExemptedMsg">
+                          <li class="list-group-item col-sm-6 border border-0 p-0">{{'CloseDateFrom' | translate}}</li>
+                          <li class="list-group-item col-sm-6 border border-0 p-0">
+                            <p-calendar [maxDate]="maxdate" dateFormat="mm/dd/yy" [(ngModel)]="closedDateFrom" [readonlyInput]="true"></p-calendar>
+                          </li>
+                        </ul>
+                        
+                      <ul class="list-group list-group-horizontal col-sm-3 align-items-center" [disabled]="displayExemptedMsg">
+                        <li class="list-group-item col-sm-6 border border-0 p-0">{{'CloseDateTo' | translate}}</li>
+                        <li class="list-group-item col-sm-6 border border-0 p-0">
+                          <p-calendar [maxDate]="maxdate" dateFormat="mm/dd/yy" [(ngModel)]="closedDateTo" [readonlyInput]="true"></p-calendar>
+                        </li>
+                      </ul>
+                      <ul class="list-group list-group-horizontal col-sm-3 p-0 align-items-center">
+                          <li class="list-group-item col-sm-4 border border-0 p-0">{{'ReviewStatus' | translate}}</li>
+                          <li class="list-group-item col-sm-6 border border-0 p-0">
+                              <p-dropdown placeholder="Select Status" [options]="ReviewMasterDropdown" [(ngModel)]="SelectedReviewItems"  optionLabel="text"></p-dropdown>
+                          </li>&nbsp;&nbsp;
+                          <li class="list-group-item col-sm-1 border border-0 p-0">
+                              <button style="background-color: #0031A0 !important;color: white !important;" class="btn  float-right btn-sm" id="search-btn" [disabled] = "(selectedProjectFilterDropdown == 0) || displayExemptedMsg" (click)="FetchDebtReviewDetails()">{{'Search' | translate}}</button>
+                          </li>
+                        </ul>
+                </div>
+            </div>
+          </div>
+    </div>
+    <div class="col-sm-12 p-0" *ngIf="displayTable && isDebtEngineEnabled && debtReviewMasterList.length > 0 && !displayExemptedMsg">
+        <div class="card mt-1">
+            <div class="card-body col-sm-12 p-0 mt-1">
+              <!-- <span _ngcontent-opa-c27="" class="p-input-icon-left" style="float:left;">
+                Search &nbsp;<input pInputText type="text" [(ngModel)]="searchbox"
+                                    (input)="debtGrid.filterGlobal($event.target.value, 'contains')" maxlength="100"/>
+              </span> -->
+                <div class="col-sm-2 float-right d-flex align-items-center">                  
+                    <button *ngIf="!isReviewRecordsDisplayed" class="btn btn-success btn-sm" (click)="ApproveSelectedData()">{{'Approve' | translate}}</button>&nbsp;&nbsp;
+                    <i style="color: #01677E;font-size: 20px;" (click)="DownloadFile()" class="text-success fa fa-download"></i>&nbsp;&nbsp;
+                    <i  *ngIf="!isReviewRecordsDisplayed" (click)="ClickFileUpload()" style="color: #01677E;font-size: 18px;" class="text-success fa fa-upload"></i>
+                    <input #myInput style="visibility: hidden;" type="file" id="btnUpload" value="Upload" (change)="UploadFile($event)" class="upload" accept=".xlsx, .xls,.xlsm"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="updatedSucessMessage" class="alert alert-success" role="alert">
+      {{'DebtReviewUpdatedSucessfully' | translate}}
+    </div>
+    <div *ngIf="approvedSucessMessage" class="alert alert-success" role="alert">
+      {{'ApprovedTicketsSuccessfully' | translate}}
+    </div>
+    <div id="alert" class="alert alert-danger warningMessage margintop"  *ngIf="displayExemptedMsg" [innerHtml]="exemptedMsg"></div>
+    <div *ngIf="displayTable && !isDebtEngineEnabled && !displayExemptedMsg" id="alert" class="alert alert-danger warningMessage">{{'DebtReview&OverridenotEnabled' | translate}}</div>
+    <div *ngIf="displayTable && invalidDate" id="alert" class="alert alert-danger warningMessage">{{'FromDateShouldbeLessThanToDate' | translate}}</div>
+    <div *ngIf="(debtReviewMasterList.length == 0) && displayTable && isDebtEngineEnabled && !displayExemptedMsg" id="alert" class="alert alert-danger warningMessage">{{'NoMatchingRecordsFound' | translate}}</div>
+    <div *ngIf="selectItemsAlert" role="alert" class="alert alert-danger">{{'PleaseChooseAtleastOneTicket' | translate}}</div>
+    <div class="col-sm-12 p-0 bg-light" style="overflow-x: hidden; overflow-y: hidden;" *ngIf="(displayTable && isDebtEngineEnabled && debtReviewMasterList.length > 0 && !displayExemptedMsg)">
+     
+      <div #debtTableContainer class="workprofiler-table" style=" overflow-y: scroll !important;height: 285px;">
+        
+        <p-table (onFilter)="isEmpty($event)"  #debtGrid [value]="debtReviewMasterList" [rows]="100" [paginator]="true"
+            [rowHover]="true" currentPageReportTemplate="{{'View' | translate}} {first} - {last} {{'of' | translate}} {totalRecords}"
+             [showCurrentPageReport]="true" [rowsPerPageOptions]="[100,200,300,400]" [scrollable]="true" scrollHeight="100%" styleClass="p-datatable-sm p-datatable-gridlines error-width error-log" 
+              [globalFilterFields]="['ticketId','applicationName','ticketDescription',
+              'causeCode','resolutionCode','debtClassification',
+              'debtClassification','avoidableFlagText','residualDebt','serviceName','ticketType','assignedTo','flexField1'
+              ,'flexField2','flexField3','flexField4']" [loading]="errorLogloading" >
+            <ng-template pTemplate="colgroup" let-columns>              
+                <!-- <div *ngIf="noRecordMsgFlag">
+                  <p style="text-align: center;width: 1307px;">No record found</p>
+                </div>              -->
+                    <col class="error-width-xs" *ngIf="!isReviewRecordsDisplayed">
+                    <col class="error-width-sm">
+                    <col class="error-width-sm">
+                    <col class="error-width-sm">
+                    <col class="error-width-sm">
+                    <col class="error-width-sm">
+                    <col class="error-width-md">
+                    <col class="error-width-md">
+                    <col class="error-width-lg">
+                    <col class="error-width-lg">
+                    <col class="error-width-lg">
+                    <col class="error-width-lg" *ngIf="flexField1ProjectWise">
+                    <col class="error-width-lg" *ngIf="flexField2ProjectWise">
+                    <col class="error-width-lg" *ngIf="flexField3ProjectWise">
+                    <col class="error-width-lg" *ngIf="flexField4ProjectWise">       
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr class="error-log-headers">
+                  <th class="error-width-xs text-center" *ngIf="!isReviewRecordsDisplayed">
+                    <input type="checkbox" id="selectAllCheckBox" (change)="ToggleSelectAllStatus($event)">
+                  </th>
+                  <th class="error-width-lg text-center" pSortableColumn="ticketId">{{'Ticket ID' | translate}} <p-sortIcon field="ticketId"></p-sortIcon></th>
+                    <th class="error-width-lg text-center" pSortableColumn="applicationName">{{'Application' | translate}} <p-sortIcon field="applicationName"></p-sortIcon></th>
+                    <th class="error-width-lg text-center" pSortableColumn="ticketDescription">{{'Description' | translate}} <p-sortIcon field="ticketDescription"></p-sortIcon></th>
+                    <th class="error-width-sm text-center" pSortableColumn="causeCode">{{'CauseCode' | translate}}<p-sortIcon field="causeCode"></p-sortIcon></th>
+                    <th class="error-width-sm text-center" pSortableColumn="resolutionCode">{{'ResolutionCode' | translate}} <p-sortIcon field="resolutionCode"></p-sortIcon></th>
+                    <th class="error-width-sm text-center" pSortableColumn="debtClassification">{{'DebtClassification' | translate}} <p-sortIcon field="debtClassification"></p-sortIcon></th>               
+                    <th class="error-width-sm text-center" pSortableColumn="avoidableFlagText">{{'AvoidableFlag' | translate}} <p-sortIcon field="avoidableFlagText"></p-sortIcon></th>
+                    <th class="error-width-sm text-center" pSortableColumn="residualDebt">{{'ResidualDebt' | translate}}<p-sortIcon field="residualDebt"></p-sortIcon></th>
+                    <th *ngIf = "isCognizant != 0" class="error-width-sm text-center" pSortableColumn="serviceName">{{'Service' | translate}}<p-sortIcon field="serviceName"></p-sortIcon></th>
+                    <th *ngIf = "isCognizant == 0" class="error-width-sm text-center" pSortableColumn="ticketType">{{'TicketType' | translate}}<p-sortIcon field="ticketType"></p-sortIcon></th>
+                    <th class="error-width-sm text-center" pSortableColumn="assignedTo">{{'AssignedTo' | translate}}<p-sortIcon field="employeeId"></p-sortIcon></th>
+                    <th *ngIf="flexField1ProjectWise" class="error-width-sm text-center" pSortableColumn="flexField1">{{flexField1ProjectName | translate}}<p-sortIcon field="assignedTo"></p-sortIcon></th>
+                    <th *ngIf="flexField2ProjectWise" class="error-width-sm text-center" pSortableColumn="flexField2">{{flexField2ProjectName | translate}}<p-sortIcon field="assignedTo"></p-sortIcon></th>
+                    <th *ngIf="flexField3ProjectWise" class="error-width-sm text-center" pSortableColumn="flexField3">{{flexField3ProjectName | translate}}<p-sortIcon field="assignedTo"></p-sortIcon></th>
+                    <th *ngIf="flexField4ProjectWise" class="error-width-sm text-center" pSortableColumn="flexField4">{{flexField4ProjectName | translate}}<p-sortIcon field="assignedTo"></p-sortIcon></th>
+                </tr>
+                <tr [hidden]="!toggleErrorFilter" class="table-filter"> 
+                  <th class="error-width-xs text-center" *ngIf="!isReviewRecordsDisplayed">
+                  </th>    
+                  <th>
+                    <div class="p-inputgroup">                    
+                        <input type="text" [(ngModel)]="searchTicketID" pInputText (input)="debtGrid.filter(searchTicketID, 'ticketId', 'contains')">   
+                        <span class="p-inputgroup-addon clear-filter" (click)="clearErrorLogFilter('searchTicketID','ticketId','contains')"><i class="pi pi-times"></i></span>      
+                    </div>
+                 </th>              
+                    <th>
+                        <div class="p-inputgroup">                    
+                            <input type="text" [(ngModel)]="searchApplication" pInputText (input)="debtGrid.filter($event.target.value, 'application', 'contains')">   
+                            <span class="p-inputgroup-addon clear-filter" (click)="clearErrorLogFilter('searchApplication','application','contains')"><i class="pi pi-times"></i></span>      
+                        </div>
+                    </th>
+                    <th>              
+                      <div class="p-inputgroup">                    
+                          <input type="text" [(ngModel)]="searchDescription" pInputText (input)="debtGrid.filter($event.target.value, 'ticketDescription', 'contains')">   
+                          <span class="p-inputgroup-addon clear-filter" (click)="clearErrorLogFilter('searchDescription','ticketDescription','contains')"><i class="pi pi-times"></i></span>      
+                      </div>
+                    </th>                
+                    <th>              
+                      <div class="p-inputgroup">                    
+                          <input type="text" [(ngModel)]="searchCauseCode" pInputText (input)="debtGrid.filter($event.target.value, 'causeCode', 'contains')">   
+                          <span class="p-inputgroup-addon clear-filter" (click)="clearErrorLogFilter('searchCauseCode','causeCode','contains')"><i class="pi pi-times"></i></span>      
+                      </div>
+                    </th>
+                    <th>
+                      <div class="p-inputgroup">                    
+                          <input type="text" [(ngModel)]="searchResolutionCode" pInputText (input)="debtGrid.filter($event.target.value, 'resolutionCode', 'contains')">   
+                          <span class="p-inputgroup-addon clear-filter" (click)="clearErrorLogFilter('searchResolutionCode','resolutionCode','contains')"><i class="pi pi-times"></i></span>      
+                      </div>
+                    </th>
+                    <th>
+                      <div class="p-inputgroup">                    
+                          <input type="text" [(ngModel)]="searchDebtCategory" pInputText (input)="debtGrid.filter($event.target.value, 'debtClassification', 'contains')">   
+                          <span class="p-inputgroup-addon clear-filter" (click)="clearErrorLogFilter('searchDebtCategory','debtClassification','contains')"><i class="pi pi-times"></i></span>      
+                      </div>
+                    </th>
+                    <th>
+                      <div class="p-inputgroup">                    
+                          <input type="text" [(ngModel)]="searchAvoidableFlag" pInputText (input)="debtGrid.filter($event.target.value, 'avoidableFlagText', 'contains')">   
+                          <span class="p-inputgroup-addon clear-filter" (click)="clearErrorLogFilter('searchAvoidableFlag','avoidableFlagText','contains')"><i class="pi pi-times"></i></span>      
+                      </div>
+                    </th>                
+                    <th>
+                      <div class="p-inputgroup">                    
+                          <input type="text" [(ngModel)]="searchResidualDebt"  pInputText (input)="debtGrid.filter($event.target.value, 'residualDebt', 'contains')">   
+                          <span class="p-inputgroup-addon clear-filter" (click)="clearErrorLogFilter('searchResidualDebt','residualDebt','contains')"><i class="pi pi-times"></i></span>      
+                      </div>
+                    </th>
+                    <th *ngIf = "isCognizant != 0">
+                      <div class="p-inputgroup">                    
+                          <input type="text" [(ngModel)]="searchService"  pInputText (input)="debtGrid.filter($event.target.value, 'serviceName', 'contains')">   
+                          <span class="p-inputgroup-addon clear-filter" (click)="clearErrorLogFilter('searchService','serviceName','contains')"><i class="pi pi-times"></i></span>      
+                      </div>
+                    </th>
+                    <th *ngIf = "isCognizant == 0">
+                      <div class="p-inputgroup">                    
+                          <input type="text" [(ngModel)]="searchticketType"  pInputText (input)="debtGrid.filter($event.target.value, 'ticketType', 'contains')">   
+                          <span class="p-inputgroup-addon clear-filter" (click)="clearErrorLogFilter('searchticketType','ticketType','contains')"><i class="pi pi-times"></i></span>      
+                      </div>
+                    </th>
+                    <th>
+                      <div class="p-inputgroup">                    
+                          <input type="text" [(ngModel)]="searchAssignedTo"  pInputText (input)="debtGrid.filter($event.target.value, 'assignedTo', 'contains')">   
+                          <span class="p-inputgroup-addon clear-filter" (click)="clearErrorLogFilter('searchAssignedTo','assignedTo','contains')"><i class="pi pi-times"></i></span>      
+                      </div>
+                    </th>
+                    <th *ngIf="flexField1ProjectWise">
+                      <div class="p-inputgroup">                    
+                          <input type="text" [(ngModel)]="searchf1"  pInputText (input)="debtGrid.filter($event.target.value, 'flexField1', 'contains')">   
+                          <span class="p-inputgroup-addon clear-filter" (click)="clearErrorLogFilter('searchf1','flexField1','contains')"><i class="pi pi-times"></i></span>      
+                      </div>
+                    </th>
+                    <th *ngIf="flexField2ProjectWise">
+                      <div class="p-inputgroup">                    
+                          <input type="text" [(ngModel)]="searchf2"  pInputText (input)="debtGrid.filter($event.target.value, 'flexField2', 'contains')">   
+                          <span class="p-inputgroup-addon clear-filter" (click)="clearErrorLogFilter('searchf2','flexField2','contains')"><i class="pi pi-times"></i></span>      
+                      </div>
+                    </th>
+                    <th *ngIf="flexField3ProjectWise">
+                      <div class="p-inputgroup">                    
+                          <input type="text" [(ngModel)]="searchf3"  pInputText (input)="debtGrid.filter($event.target.value, 'flexField3', 'contains')">   
+                          <span class="p-inputgroup-addon clear-filter" (click)="clearErrorLogFilter('searchf3','flexField3','contains')"><i class="pi pi-times"></i></span>      
+                      </div>
+                    </th>
+                    <th *ngIf="flexField4ProjectWise">
+                      <div class="p-inputgroup">                    
+                          <input type="text" [(ngModel)]="searchf4"  pInputText (input)="debtGrid.filter($event.target.value, 'flexField4', 'contains')">   
+                          <span class="p-inputgroup-addon clear-filter" (click)="clearErrorLogFilter('searchf4','flexField4','contains')"><i class="pi pi-times"></i></span>      
+                      </div>
+                    </th>
+                </tr>
+                <div *ngIf="noRecordMsgFlag">
+                  <p style="text-align: center;width: 1307px;">No record found</p>
+                </div>     
+            </ng-template>                      
+            <ng-template pTemplate="body" let-debtDetails>           
+                <tr>
+                  <td class="error-width-xs text-center" title="{{(debtDetails.isAHTagged == true)?'Cannot modify the information, as the ticket is already tagged to an A/H/K ticket': null}}"  *ngIf="!isReviewRecordsDisplayed">
+                    <input type="checkbox" [disabled]="(debtDetails.isAHTagged == true)" id="{{debtDetails.id}}" (change)="ToggleSelectStatus($event,debtDetails)" >
+                  </td>
+                  <td class="error-width-sm text-center" title="{{debtDetails.ticketId}}">{{debtDetails.ticketId}}</td>
+                    <td class="error-width-sm text-center" title="{{debtDetails.applicationName}}">{{debtDetails.application}}</td>
+                    <td class="error-width-sm text-center" title="{{debtDetails.ticketDescription}}">{{debtDetails.ticketDescription}}</td>
+                    <td class="error-width-sm text-center" title="{{getTitle(CauseCodeDropdown,debtDetails.causeId)}}">
+                      <!-- <p-dropdown appendTo="body" placeholder="Select CauseCode" [options]="CauseCodeDropdown" [(ngModel)]="error.causeId"></p-dropdown> -->
+                      <select class="form-control" [(ngModel)]="debtDetails.causeCodeMapId" disabled id="CauseCode{{debtDetails.id}}">
+                        <option [selected]="(debtDetails.causeCodeMapId == causeDetails.value)" [value]="causeDetails.value" *ngFor="let causeDetails of CauseCodeDropdown">{{causeDetails.text}}</option>
+                      </select>
+                    </td>
+                    <td class="error-width-sm text-center" title="{{getTitle(ResolutionCodeDropdown,debtDetails.resolutionId)}}">
+                      <select class="form-control"  [(ngModel)]="debtDetails.resolutionId" disabled id="resolutionCode{{debtDetails.id}}">
+                        <option [selected]="(debtDetails.resolutionId == resolutionDetails.value)" [value]="resolutionDetails.value" *ngFor="let resolutionDetails of ResolutionCodeDropdown">{{resolutionDetails.text}}</option>
+                      </select>
+                    </td>
+                    <td class="error-width-md text-center" title="{{getTitle(DebtOverrideReviewDropdown,debtDetails.debtClassificationId)}}">
+                      <select class="form-control" [(ngModel)]="debtDetails.debtClassificationId" disabled id="debtClassification{{debtDetails.id}}">
+                        <option [selected]="(debtDetails.debtClassificationId == debtOverrideDetails.value)" [value]="debtOverrideDetails.value" *ngFor="let debtOverrideDetails of DebtOverrideReviewDropdown">{{debtOverrideDetails.text}}</option>
+                      </select>
+                    </td>
+                    <td class="error-width-md text-center" title="{{getTitle(AvoidableMasterDropdown,debtDetails.avoidableFlag)}}">
+                      <select [(ngModel)]="debtDetails.avoidableFlag" id="avoidableFlag{{debtDetails.id}}" disabled class="col-sm-12 pl-0 form-control">
+                        <option [selected]="(debtDetails.avoidableFlag == avoidableFlagDetails.value)" [value]="avoidableFlagDetails.value" *ngFor="let avoidableFlagDetails of AvoidableMasterDropdown">{{avoidableFlagDetails.text}}</option>
+                      </select>
+                    </td>
+                    <td class="error-width-lg text-center" title="{{debtDetails.residualDebt}}">
+                      <select [(ngModel)]="debtDetails.residualDebtMapId" disabled id="residualDetails{{debtDetails.id}}" class="col-sm-12 pl-0 form-control">
+                        <option [selected]="(debtDetails.residualDebtMapId == residualDetails.value)" [value]="residualDetails.value" *ngFor="let residualDetails of ResidualMasterDropdown">{{residualDetails.text}}</option>
+                      </select>
+                    </td>
+                    <td  *ngIf = "isCognizant != 0" class="error-width-lg text-center" title="{{debtDetails.serviceName}}">{{debtDetails.serviceName}}</td>
+                    <td  *ngIf = "isCognizant == 0"class="error-width-lg text-center" title="{{debtDetails.ticketType}}">{{debtDetails.ticketType}}</td>
+                    <td class="error-width-lg text-center" title="{{debtDetails.employeeId}}">{{debtDetails.employeeId}}</td>
+                    <td *ngIf="(debtDetails.flexField1ProjectWise == 'Flex1')" class="error-width-lg text-center" title="{{debtDetails.flexField1}}">
+                      <input type="text" [(ngModel)]="debtDetails.flexField1" disabled id="flexField1{{debtDetails.id}}" class="col-sm-12 pl-0 form-control" (input)="debtDetails.isFlexField1Modified = true;">
+                    </td>
+                    <td *ngIf="(debtDetails.flexField2ProjectWise == 'Flex2')" class="error-width-lg text-center" title="{{debtDetails.flexField2}}">
+                      <input type="text" [(ngModel)]="debtDetails.flexField2" disabled id="flexField2{{debtDetails.id}}" class="col-sm-12 pl-0 form-control" (input)="debtDetails.isFlexField2Modified = true;">
+                    </td>
+                    <td *ngIf="(debtDetails.flexField3ProjectWise == 'Flex3')" class="error-width-lg text-center" title="{{debtDetails.flexField3}}">
+                      <input type="text" [(ngModel)]="debtDetails.flexField3" disabled id="flexField3{{debtDetails.id}}" class="col-sm-12 pl-0 form-control" (input)="debtDetails.isFlexField3Modified = true;">
+                    </td>
+                    <td *ngIf="(debtDetails.flexField4ProjectWise == 'Flex4')" class="error-width-lg text-center" title="{{debtDetails.flexField4}}">
+                      <input type="text" [(ngModel)]="debtDetails.flexField4" disabled id="flexField4{{debtDetails.id}}" class="col-sm-12 pl-0 form-control" (input)="debtDetails.isFlexField4Modified = true;">
+                    </td>         
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="paginatorleft" let-state>
+                <button class="w-80" type="button" pButton label="{{'Clear' | translate}}" (click)="ClearFilterData()"></button> &nbsp;
+                <button type="button" pButton [icon]="toggleErroricon" label="{{'ToggleSearch' | translate}}" (click)="toggleErrorLog($event)"></button>
+            </ng-template>        
+              <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td colspan="7" style="text-align: center;">{{'NoMatchingRecordsFound' | translate}}</td>
+                </tr>
+            </ng-template>
+        </p-table>   
+        
+    </div>    
+      
+    </div>
+    <!-- <div class="col-sm-12 card p-1 pt-1" style="background-color: #0031A0 !important;color: white !important;" *ngIf="debtReviewMasterList.length > 0">
+      <div class="card-body d-flex p-0">
+        <div class="col-sm-3 filter-Buttons">
+          <button type="button" (click)="ClearFilterData();" class="tFooterBtn btn btn-link text-dark text-decoration-none btn-sm">Clear</button> &nbsp;
+          <button type="button" (click)="showSearchBox = !showSearchBox" class="tFooterBtn btn btn-link text-dark text-decoration-none btn-sm">
+            <i class="fa fa-toggle-on" *ngIf="showSearchBox"></i>
+          <i class="fa fa-toggle-off" *ngIf="!showSearchBox"></i> &nbsp;
+          Toggle Search
+        </button>
+        </div>
+        <div class="col-sm-9 tableFooterPagination d-flex">
+          <ul class="list-group list-group-horizontal col-sm-12 align-items-center justify-content-end">
+            <li class="list-group-item col-sm-2 border border-0 p-0">
+              View {{currentPage}} - {{currentPage}} of {{totalPages}}
+            </li>
+            <li class="list-group-item col-sm-1 border border-0 p-0"><i class="fa fa-fast-backward" (click)="LoadFirstPage()"></i>&nbsp;
+              <i class="fa fa-backward" (click)="LoadPreviousPage()"></i>&nbsp;
+            </li>
+            <li class="list-group-item col-sm-1 border border-0 p-0">
+              <input style="font-size: 12px;text-align: center;background-color:  #2196F3 !important;color: white;" value="{{currentPage}}" readonly class="form-control form-control-sm" type="text">
+            </li>
+            <li class="list-group-item col-sm-1 border border-0 p-0">&nbsp;
+              <i class="fa fa-forward" (click)="LoadNextPage()"></i>&nbsp;
+              <i class="fa fa-fast-forward" (click)="LoadLastPage()"></i>&nbsp;
+            </li>
+            <li class="list-group-item col-sm-1 border border-0 p-0">
+              <select (change)="ChangeItemsPerPage($event)" class="form-control" style="font-size: 0.8rem;padding: 5px;">
+                <option *ngFor="let items of itemsPerPageDropdown" [value] = "items">{{items}}</option>
+              </select>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div> -->
+    <!-- <table class="col-sm-12" *ngIf="(debtReviewMasterList.length == 0 || debtReviewViewList.length == 0) && displayTable">
+      <tr>
+          <td style="background-color:#ED8C01; width:30px;text-align: center;" rowspan="2">
+              <span>
+                  <i style="color: white;font-size: 15px;" class="fa fa-exclamation-triangle"></i>
+              </span>
+          </td>
+      </tr>
+      <tr>
+          <td style="background-color:#FBE8CC;padding: 6px; font-size: 12px;">
+              <div>
+                  <div class="errorheader" style="font-family: Robota, Helvetica, sans-serif;font-weight:700;font-size: 14px">Warning Message</div>
+                  <div _ngcontent-uwh-c4 class="errorcontent" style="font-family: Robota, Helvetica, sans-serif; font-size: 12px; color:#2d2926">{{'DebtReview&OverridenotEnabled' | translate}}</div>
+              </div>
+
+          </td>
+      </tr>
+  </table> -->
+</div>

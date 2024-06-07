@@ -1,0 +1,257 @@
+/*#sidebar{
+    min-width: 220px;
+    max-width: 220px;
+    background: #2D2926;
+    color: #fff;
+    transition: all;
+    height:100%;    
+    padding-top: 8px;
+}*/
+
+#sidebar
+{
+    min-width: 220px;
+    max-width: 220px;
+    background-color: black;
+    height: 100%;    
+    width: 5vw;
+    /*overflow-x: scroll!important;*/
+    opacity: 1;
+    scroll-behavior: smooth;
+    margin-top: -2%;
+    /* position: relative; */
+}
+
+#sidebar .sidebar-header {
+    padding-bottom: 4px;
+    margin-left:5%;
+    padding-top:10%
+}
+
+  #sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: none;
+    padding-top:0px;
+    margin-top:1%;
+}
+
+#sidebar ul li {
+    border-bottom: 2px ;
+    padding:7px;    
+    font-size:14px!important;
+    color: white; 
+    text-decoration: none;
+    cursor: pointer;
+    outline:none; 
+    /* font-family:  "Segoe UI" !important; */
+    text-align: left;
+}
+
+#sidebar.active {
+    
+    min-width: 65px;
+    max-width: 70px;
+}
+
+#sidebar.active ul li .submenutext{
+    display:none;
+    margin-left:15px;
+ 
+}
+
+.link-active{
+    /* background: #00B140; */
+    color: #2D2926;
+}
+.menutext{
+    float:right;
+    margin-right:50px;
+    font-size:20px;    
+}
+
+/* Toggling the sidebar header content, hide the big heading [h3] and showing the small heading [strong] and vice versa*/
+
+#sidebar.active .sidebar-header{
+    margin-left:15px;
+}
+
+/*------------------------------------------*/
+@media (max-width: 768px) {
+    /* 80px and its content aligned to centre. Pushing it off the screen with the
+       negative left margin
+    */
+    #sidebar.active {
+        min-width: 50px;
+        max-width: 50px;
+        text-align: center;
+        margin-left: -80px !important;
+        align-items: center;
+           
+
+    }
+
+
+    /* Reappearing the sidebar on toggle button click */
+    #sidebar {
+        margin-left: 0;
+    }
+    
+    /* Toggling the sidebar header content, 
+       hide the big heading [h3] and showing the small heading [strong] and vice versa
+    */
+    #sidebar .sidebar-header strong {
+        display: none;
+    }
+    #sidebar.active .sidebar-header h3 {
+        display: none;
+    }
+    #sidebar.active .sidebar-header strong {
+        display: block;
+    }
+}
+
+/*To avoid .collapsing stage of .collapse (boostrap)*/
+.collapsing {
+    -webkit-transition: none;
+    transition: none;
+    display: none;
+}
+
+.list-unstyled
+{
+    padding:30px;
+   
+}
+/*#navmenu-element{
+    padding-left:40px;
+    padding-top:3%;
+    padding-bottom:1%; 
+    font-size: 12px;
+}*/
+
+/*CSS FOR TOOLTIP*/
+
+
+.onhover {
+  position: relative;
+  display: inline-block;
+  }
+#sidebar .tooltiptext{
+    display:none;
+}
+#sidebar.active .tooltiptext{
+    display:block;
+}
+
+
+#sidebar.active .onhover .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+#sidebar.active .onhover .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -25px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+#sidebar.active .onhover:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+#subMenuExpand{
+    float:right;
+    margin-top:5px;
+    cursor:pointer;
+}
+#subMenuCollapse{
+    float:right;
+    margin-top:5px;
+   cursor:pointer;
+}
+#sidebar.active .sidebar-header .menutext{
+    display: none;
+    width: 114px;
+    height: 22px;
+}
+.selectedMainMenuClass {
+  background-color: #285cf0;
+  color: #fff;
+  min-width: 103.5%;
+  min-height: 50px;
+  padding-top: 10px;
+  font-family: Arial,Helvetica,sans-serif !important;
+  font-size: 12px !important;
+}
+
+.sidebar-header-text {
+  background-color: #285cf0;
+  color: #fff;
+  min-width: 103.5%;
+  min-height: 40px;
+  padding-top: 10px;
+  font-weight: bold;
+  /* padding-left: 40px; */
+  /* font-family: Arial,Helvetica,sans-serif !important; */
+  font-size: 12px !important;
+  text-align: center;
+}
+
+.unSelectedSubMenuClass
+{
+    min-width: 103.5%;
+    min-height: 25px;
+    padding-top: 10px;    
+    padding-left: 60px;    
+}
+
+.navmenu-element {
+  padding-left: 20px;
+  padding-top: 3%;
+  padding-bottom: 1%;
+  font-family: Arial,Helvetica,sans-serif !important;
+  font-size: 12px !important;
+  width:100% !important;
+}
+
+.navmenu-element-selected {
+  border-radius: 5px;
+  background-color: #285cf0;
+  color: #fff;
+  min-width: 103.5%;
+  min-height: 25px;
+  padding-top: 5px;
+  font-family: Arial,Helvetica,sans-serif !important;
+  font-size: 12px !important;
+}
+
+.navmenu-element:hover {
+  border-radius: 5px;
+  background-color: #285cf0;
+  color: #fff;
+  min-width: 103.5%;
+  min-height: 25px;
+  padding-top: 5px;
+  font-family: Arial,Helvetica,sans-serif !important;
+  font-size: 12px !important;
+}
+.Padding_3 {
+    margin-left: 5%;
+}

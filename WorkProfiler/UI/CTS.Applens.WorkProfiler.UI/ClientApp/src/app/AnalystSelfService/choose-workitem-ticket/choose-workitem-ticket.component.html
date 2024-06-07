@@ -1,0 +1,348 @@
+<div>
+    <div class="row radiobuttonalign" [ngClass]="{'headerdisplay':IsOnlyTicket}">
+        <div class="col-md-4 inlinebox" id="divchkticket">
+            <div class="col-md-2">
+                <input id="chkradioticket" [formControl]="cntktorwrkitm"
+                type="radio" class="radiobtn" name="TicketWorkitem"
+                    (change)="btnchange($event.target.value)" value="T" checked/></div>
+            <div class="col-md-10"><label class="rdoticketworkitem">Ticket</label>
+            </div>
+        </div>
+        <div class="col-md-4 inlinebox" id="divchkworkitem">
+            <div class="col-md-2">
+                <input id="chkradioworkitem" [formControl]="cntktorwrkitm"
+                 type="radio" (change)="btnchange($event.target.value)" class="radiobtn"
+                    name="TicketWorkitem" value="W"/></div>
+            <div class="col-md-10">
+                <label class="rdoticketworkitem">Work Item</label></div>
+        </div>
+        <div class="col-md-5">
+        </div>
+    </div>
+    <div class="row" *ngIf="ticket" id="Searchapplensmessage">
+        <div class="col-md-3 align-self-center;">
+            <input id="chkbox" name="SearchDARTTicket" [formControl]="cnSearchapplens"
+            type="checkbox" (click)="chkboxchange($event.target.checked)"/>
+            &nbsp;<label class="lang-jap-font">Search Applens Ticket</label></div>
+        <div class="col-md-9 align-self-center;">
+            <marquee behavior="scroll"
+            style="color: #ce6161 !important;font-size: 12px;font-weight: 350 !important;margin-top: 5px;margin-left: 184px;"
+            direction="Left">
+            Tickets closed before 15 days will not be listed in timesheet for effort tracking.</marquee>
+        
+        </div>
+    </div>
+    <form name="chooseTicketform" [formGroup]="chooseTicketform" class="container addTicketcontainer top1margin">
+        <div id="alert" class="alert alert-danger warningMessage" 
+        *ngIf="displayExemptedMsg" [innerHtml]="exemptedMsg">
+        </div>
+        <div id="ticketrow1" class="row">
+            <div class="col-md-3" id="divProject" style="margin-top: -6px;">
+                <label class="lbladdTickets"><span style="color:red">*</span>{{'Project'| translate}}</label>
+                <p-dropdown id="ddlProjectnew" [options]="projectList" 
+                [ngClass]="{'p-invalid': highlight}"
+                name="ddlProjectnew" [autoDisplayFirst]="false"
+                    formControlName="cnProject" placeholder=" Select" optionLabel="projectName" resetFilterOnHide="true"
+                    maxSelectedLabels="0" [filter]="true" appendTo="body" (onChange)="onSelectProject(cnProject.value.projectId)">
+                </p-dropdown>
+            </div>
+            <div class="col-md-3" *ngIf="workItem"  id="divapplication">
+                <label class="lbladdTickets"><span style="color:red">*</span>{{'Application'| translate}}</label>
+                <p-multiSelect id="ddlProjectnew" class="multiselectclasschtkt" 
+                [options]="applicationList" [ngClass]="{'p-multiinvalid': highlightapp}"
+                    name="ddlProjectnew" placeholder=" Select" formControlName="cnApplication"
+                    optionLabel="applicationName" [filter]="true" appendTo="body"> 
+                </p-multiSelect>
+            </div>
+            <div class="col-md-3" *ngIf="ticket" id="divticketid">
+                <label class="lbladdTickets">{{'TicketID'| translate}}</label>
+                <input type="text" class="txtaddTicket" [formControl]="cnTicketId" id="txtTicketID" />
+            </div>
+            <div class="col-md-3" *ngIf="workItem" id="divworkitemid">
+                <label class="lbladdTickets">{{'WorkItemID'| translate}}</label>
+                <input type="text" class="txtaddTicket" [formControl]="cnworkitemId" maxlength="100" id="txtWorkItemID" />
+            </div>
+            <div class="col-md-3">
+                <label class="lbladdTickets">{{'AssigneeID'| translate}}</label>
+                <input type="text" class="txtaddTicket" [formControl]="cnAssigneeId" maxlength="50" id="txtAssigneeID" />
+            </div>
+            <div class="col-md-3" *ngIf="ticket" id="divAssignmentGrp">
+                <label class="lbladdTickets">{{'AssignmentGroup'| translate}}</label>
+                <p-multiSelect maxSelectedLabels="1" [options]="assignmentGroupAdd" styleClass="search-filter-multi"
+                    class="multiselectclasschtkt" optionLabel="assignmentGroupName" formControlName="cnAssignmentGroup">
+                </p-multiSelect>
+                <span id="brforassignmentgrp"></span>
+            </div>
+        </div>
+
+
+        <div id="ticketrow2" class="row">
+
+            <div class="col-md-3" *ngIf="ticket" [ngClass]="{'movestatus' : workItem }" id="divapplication">
+                <label class="lbladdTickets">{{'Application'| translate}}</label>
+
+                <p-multiSelect id="ddlProjectnew" class="multiselectclasschtkt" [options]="applicationList"
+                    name="ddlProjectnew" placeholder=" Select" formControlName="cnApplication"
+                    optionLabel="applicationName" [filter]="true">
+                </p-multiSelect>
+            </div>
+
+            <div class="col-md-3" *ngIf="ticket" id="divtower">
+                <label class="lbladdTickets">{{'Tower'| translate}} </label>
+
+                <p-multiSelect id="ddlProjectnew" [options]="towerlist" name="ddlProjectnew" [autoDisplayFirst]="false"
+                    class="multiselectclasschtkt" placeholder=" Select" optionLabel="towerName" [filter]="true"
+                    formControlName="cnTower">
+                </p-multiSelect>
+
+            </div>
+
+            <div class="col-md-3 datepicker" *ngIf="ticket" id="colopendatefrom">
+                <label class="lbladdTickets">{{'OpenDateFrom'| translate}}</label>                
+                <p-calendar formControlName="cnOpendatefrom"  
+                  (ngModelChange)="openfromchange()"     
+                  [monthNavigator]="true"
+                  [yearNavigator]="true" 
+                  yearRange="{{startingyear}}:{{currentyear}}"     
+                [maxDate]="openfrommaxdate"></p-calendar>
+                <!-- <input type="date" pInputText formControlName="cnOpendatefrom" 
+                class="datepicker txtaddTicket"
+                  (ngModelChange)="openfromchange()" 
+                  max="{{openfrommaxdate| date: 'yyyy-MM-dd'}}"  id="dtOpenDateFrom" /> -->
+            </div>
+            <div class="col-md-3 datepicker" *ngIf="ticket" id="colopendateto">
+                <label class="lbladdTickets">{{'OpenDateTo'| translate}}</label>
+                <p-calendar formControlName="cnOpendateto"  
+                (ngModelChange)="opentochange()" 
+                appendTo="body"
+                [monthNavigator]="true"
+                  [yearNavigator]="true" 
+                  yearRange="{{startingyear}}:{{currentyear}}"      
+                [minDate]="opentomindate"></p-calendar>
+                <!-- <input type="date" pInputText class="datepicker txtaddTicket" formControlName="cnOpendateto"
+                (ngModelChange)="opentochange()" min="{{opentomindate| date: 'yyyy-MM-dd'}}" id="dtOpenDateTo" /> -->
+            </div>
+
+
+        </div>
+
+        <div id="ticketrow3" class="row">
+            <div class="col-md-3 datepicker" *ngIf="workItem" id="colcreatedddatefrom">
+                <label class="lbladdTickets">{{'CreatedDateFrom'| translate}}</label>
+                <p-calendar formControlName="cnCreatedDatefrom"   
+                     (ngModelChange)="createfromchange()" 
+                     [monthNavigator]="true"
+                  [yearNavigator]="true" 
+                  yearRange="{{startingyear}}:{{currentyear}}"      
+                [maxDate]="createfrommaxdate"></p-calendar>
+                <!-- <input type="date" pInputText class="datepicker txtaddTicket" formControlName="cnCreatedDatefrom"
+                (ngModelChange)="createfromchange()" max="{{createfrommaxdate | date: 'yyyy-MM-dd'}}" id="dtCreatedDateFrom" /> -->
+            </div>
+            <div class="col-md-3 datepicker" *ngIf="workItem" id="colcreateddateto">
+                <label class="lbladdTickets">{{'CreatedDateTo'| translate}}</label>
+                <p-calendar formControlName="cnCreatedDateTo"  
+                (ngModelChange)="createtochange()" 
+                [monthNavigator]="true"
+                  [yearNavigator]="true" 
+                  yearRange="{{startingyear}}:{{currentyear}}"      
+                [minDate]="createtomindate"></p-calendar>
+                <!-- <input type="date" pInputText class="datepicker txtaddTicket" formControlName="cnCreatedDateTo"
+                (ngModelChange)="createtochange()" min="{{createtomindate| date: 'yyyy-MM-dd'}}" id="dtCreatedDateTo" /> -->
+            </div>
+            <div class="col-md-3" *ngIf="workItem" id="colworkitemstatus">
+                <label class="lbladdTickets">{{'Status'| translate}}</label>
+                <p-multiSelect id="ddlProjectnew" [options]="StatusList" name="ddlProjectnew" [autoDisplayFirst]="false"
+                    placeholder=" Select" optionLabel="statusName" class="multiselectclasschtkt" formControlName="cnStatus"
+                    [filter]="true">
+                </p-multiSelect>
+            </div>
+            <div class="col-md-3" *ngIf="ticket" id="colstatus">
+                <label class="lbladdTickets">{{'TicketStatus'| translate}}</label>
+
+                <p-multiSelect id="ddlProjectnew" [options]="ticketStatusList" name="ddlProjectnew"
+                    [autoDisplayFirst]="false" placeholder=" Select" optionLabel="statusName"
+                    formControlName="cnTicketstatus" class="multiselectclasschtkt" [filter]="true">
+                </p-multiSelect>
+            </div>
+
+            <div class="col-md-3 datepicker" *ngIf="ticket" id="colclosedatefrom">
+                <label class="lbladdTickets">{{'CloseDateFrom'| translate}}</label>
+                <p-calendar formControlName="cnClosedatefrom"  
+                   (ngModelChange)="closefromchange()"  
+                   [monthNavigator]="true"
+                  [yearNavigator]="true" 
+                  yearRange="{{startingyear}}:{{currentyear}}"     
+                [maxDate]="closefrommaxdate"></p-calendar>
+                <!-- <input type="date" pInputText class="datepicker txtaddTicket" formControlName="cnClosedatefrom"
+                (ngModelChange)="closefromchange()" max="{{closefrommaxdate| date: 'yyyy-MM-dd'}}" id="dtCloseDateFrom" /> -->
+            </div>
+            <div class="col-md-3 datepicker" *ngIf="ticket" id="colclosedateto">
+                <label class="lbladdTickets">{{'CloseDateTo'| translate}}</label>
+                <p-calendar formControlName="cnClosedateto"   
+                 (ngModelChange)="closetochange()"   
+                 [monthNavigator]="true"
+                  [yearNavigator]="true" 
+                  yearRange="{{startingyear}}:{{currentyear}}"    
+                [minDate]="closetomindate"></p-calendar>
+                <!-- <input type="date" pInputText class="datepicker txtaddTicket" formControlName="cnClosedateto"
+                (ngModelChange)="closetochange()" min="{{closetomindate| date: 'yyyy-MM-dd'}}" id="dtCloseDateTo" /> -->
+
+            </div>
+            <div class="col-md-9"></div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-4" style="display:-webkit-inline-box;margin-left: -3.1%;">
+                <div class="col-md-4" style="margin-left: 11px;">
+                    <button id="btnSearchTicket" title="{{'SearchTickets'| translate}}"
+                        (click)="searchClick()"
+                        [disabled]="displayExemptedMsg">{{'Search'| translate}}
+                    </button>
+                </div>
+                <div class="col-md-4">
+                    <button id="btnClearTicket" (click)='clearpopupdata()' 
+                    title="{{'Clear'| translate}}"
+                        data-lang-title="Clear" [disabled]="displayExemptedMsg">
+                        {{'Clear'| translate}}
+                    </button>
+                </div>
+                <div class="col-md-4">
+                    <button id="btnOkTicket" (click)='bindSelectedTickets()' 
+                    *ngIf="okenable" title="{{'ChooseTickets'| translate}}">
+                        {{'OK'| translate}}
+                    </button>
+                </div>
+
+            </div>
+            <div class="col-md-3"></div>
+            <div class="col-md-5">
+
+            </div>
+        </div>
+        <br />
+        <div id="alert" class="alert alert-danger warningMessage" 
+        *ngIf="ValidationMessage !== ''" [innerHtml]="ValidationMessage">
+        </div>
+        <div class="row workprofiler-table" *ngIf="IsticketgridDisplay">
+            <p-table #dtticketGrid [value]="tickets" [rows]="10" [paginator]="true"
+                currentPageReportTemplate="View {first} - {last} of {totalRecords}" [showCurrentPageReport]="true"
+                [scrollable]="true" [scrollHeight]="scrollHeight"
+                styleClass="p-datatable-sm p-datatable-gridlines" [loading]="dictionaryloading">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th id="Selection_ID" class="tableheaderselection">Selection</th>
+                        <th id="TicketNumber_ID" class="tableheader" pSortableColumn="ticketNumber">Ticket Number <p-sortIcon
+                                field="ticketNumber"></p-sortIcon>
+                        </th>
+                        <th id="Description_ID" class="tableheader" pSortableColumn="ticketDescription">Description <p-sortIcon
+                                field="ticketDescription"></p-sortIcon>
+                        </th>
+                        <th  id="AssigneeName_ID" class="tableheader" pSortableColumn="assigneeName">Assignee Name<p-sortIcon
+                                field="assigneeName"></p-sortIcon>
+                        </th>
+                        <th id="AssignmentGroup_ID" class="tableheader" pSortableColumn="assignmentGroupName">Assignment Group <p-sortIcon
+                                field="assignmentGroupName"></p-sortIcon>
+                        </th>
+                        <th class="tableheader" pSortableColumn="statusName">Ticket Status <p-sortIcon
+                                field="statusName"></p-sortIcon>
+                        </th>
+                        <th class="tableheader" pSortableColumn="applicationName">Application Name<p-sortIcon
+                                field="applicationName"></p-sortIcon>
+                        </th>
+                        <th class="tableheader" pSortableColumn="towerName">Tower<p-sortIcon field="towerName">
+                            </p-sortIcon>
+                        </th>
+                        <th class="tableheader" pSortableColumn="openDateTime">Open Date Time<p-sortIcon
+                                field="openDateTime"></p-sortIcon>
+                        </th>
+                        <th class="tableheader" pSortableColumn="closeddate">Close Date<p-sortIcon field="closeddate">
+                            </p-sortIcon>
+                        </th>
+                        <th class="tableheader" pSortableColumn="supportTypeName">Support Type<p-sortIcon
+                                field="supportTypeName"></p-sortIcon>
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-product>
+                    <tr class="table-body">
+                        <td style="width: 3rem;">
+                            <p-tableCheckbox [disabled]="product.disableflag"  [title]="product.toolTip"
+                                (click)="chkChoose_change(product, e.checked)" #e [value]="product"></p-tableCheckbox>
+                        </td>
+                        <td class="text-center" title="{{product.ticketNumber}}">{{product.ticketNumber}}</td>
+                        <td class="text-center" title="{{product.ticketDescription}}">
+                            {{product.ticketDescription}}</td>
+                        <td class="text-center" title="{{product.assigneeName}}">{{product.assigneeName}}</td>
+                        <td class="text-center" title="{{product.assignmentGroupName}}">{{product.assignmentGroupName}}
+                        </td>
+                        <td class="text-center" title="{{product.statusName}}">{{product.statusName}}</td>
+                        <td class="text-center" title="{{product.applicationName}}">{{product.applicationName}}</td>
+                        <td class="text-center" title="{{product.towerName}}">{{product.towerName}}</td>
+                        <td class="text-center" title="{{product.openDateTime}}">{{product.openDateTime}}</td>
+                        <td class="text-center" title="{{product.closeddate}}">{{product.closeddate}}</td>
+                        <td class="text-center" title="{{product.supportTypeName}}">{{product.supportTypeName}}</td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="paginatorleft" let-state>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="7" style="text-align: center;">No records found.</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+        <div class="row workprofiler-table" *ngIf="IsWorkitemDisplay">
+            <p-table #dtWorkitemGrid [value]="Workitems" [rows]="10" [paginator]="true"
+                currentPageReportTemplate="View {first} - {last} of {totalRecords}" 
+                (onLazyLoad)="loadWorkitems($event)" [totalRecords]="totalRecords" 
+                [scrollable]="true" [scrollHeight]="scrollHeight"
+                styleClass="p-datatable-sm p-datatable-gridlines" [loading]="loading">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th class="tableheader">
+                            Selection </th>
+                        <th class="tableheader" pSortableColumn="workItemId">Work Item ID
+                            <p-sortIcon field="workItemId"></p-sortIcon>
+                        </th>
+                        <th class="tableheader" pSortableColumn="description">Description
+                            <p-sortIcon field="description"></p-sortIcon>
+                        </th>
+                        <th class="tableheader" pSortableColumn="application">Application
+                            <p-sortIcon field="application"></p-sortIcon>
+                        </th>
+                        <th class="tableheader" pSortableColumn="assignee">Assignee
+                            <p-sortIcon field="assignee"></p-sortIcon>
+                        </th>
+                        <th class="tableheader" pSortableColumn="status">Status
+                            <p-sortIcon field="status"></p-sortIcon>
+                        </th>
+                        <th class="tableheader" pSortableColumn="createdDate">Created Date
+                            <p-sortIcon field="createdDate"></p-sortIcon>
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-product>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox (click)="chkChoose_change(product, $event)" [value]="product">
+                            </p-tableCheckbox>
+                        </td>
+                        <td>{{product.workItemId}}</td>
+                        <td>{{product.description}}</td>
+                        <td>{{product.application}}</td>
+                        <td>{{product.assignee}}</td>
+                        <td>{{product.status}}</td>
+                        <td>{{product.createdDate}}</td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="7" style="text-align: center;">No records found.</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+        <br />
+    </form>
+</div>

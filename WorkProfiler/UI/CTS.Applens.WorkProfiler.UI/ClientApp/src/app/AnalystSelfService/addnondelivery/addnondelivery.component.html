@@ -1,0 +1,76 @@
+    <form name="nondeliveryTicket" [formGroup]="nondeliveryTicket">
+      <div class="row" class="alert alert-danger" *ngIf="NonDeliveryValidationMessage != ''">
+        {{NonDeliveryValidationMessage}}
+      </div>
+      <div class="row" class="alert alert-danger" *ngIf="displayExemptedMsg">
+        {{exemptedMsg}}
+      </div>
+      <div class="row" style="display: flex; margin-top: 3%;">
+        <div class="col-md-5">
+          <label class="nondeliverylables">{{'ProjectName' | translate}}<span class="mandatroy">*</span></label>
+        </div>
+        <div class="form-group col-md-7">
+          <p-dropdown id="drpproject" [options]="ProjectDropdown" 
+          [(ngModel)]="selectedProjectDropdown" 
+          name="ddlProjectnew"
+          formControlName="ProjectName"
+              [autoDisplayFirst]="false"
+              placeholder="-Select--"
+              resetFilterOnHide="true" maxSelectedLabels="0" [filter]="true" 
+              (onChange)="LoadActivityDetails()" appendTo= "body"
+              [ngClass]="{ 'p-invalid' :nondeliveryTicket.get('HdnProjectName').value.IsInvalid && SaveCalled }">
+            </p-dropdown>
+
+        </div>
+      </div>     
+      <div class="row" style="display: flex; ">
+        <div class="col-md-5">
+          <label class="nondeliverylables">{{'Activity' | translate}} <span class="mandatroy">*</span></label>
+        </div>
+        <div class="form-group col-md-7">
+          <p-dropdown id="activity" [options]="ActivityDropdown" name="ddlProjectnew" appendTo= "body"
+          [(ngModel)] = "selectedActivityDropdown"
+          formControlName="Activity"
+              [autoDisplayFirst]="false"
+              placeholder="--Select--"
+              resetFilterOnHide="true" maxSelectedLabels="0" [filter]="true" 
+              (onChange)="SuggestedActivityValidation($event.value)"
+              [ngClass]="{ 'p-invalid' :nondeliveryTicket.get('HdnActivity').value.IsInvalid && SaveCalled }">
+            </p-dropdown>
+        </div>
+      </div>    
+      <div class="row" style="display: flex;">
+        <div class="col-md-5">
+          <label class="nondeliverylables">{{'SuggestedActivity' |  translate}}<span class="mandatroy">#</span></label>
+        </div>
+        <div class="col-md-7">
+          <input type="text" id="SuggestedActivity" minlength="4" maxlength="50"
+                 formControlName="SuggestedActivity" class="form-control txtSuggestedActivity"
+                 [ngClass]="{ 'red' :nondeliveryTicket.get('HdnSuggestedActivity').value.IsInvalid }"
+                 (keypress)="ExcludeSpecialCharacters($event)"/>
+        </div>
+      </div>     
+      <div class="row" class="top5margin" style="display: flex;">
+        <div class="col-md-5 leftmarginarea">
+          <label class="nondeliverylables">{{'Remarks'  | translate}} <span class="mandatroy">#</span></label>
+        </div>
+
+        <div class="form-group col-md-7 leftmargin">
+          <textarea maxlength="250"
+                    formControlName="Remarks" class="form-control textareaRemarks"
+                    [ngClass]="{ 'red' :nondeliveryTicket.get('HdnRemarks').value.IsInvalid }"></textarea>
+        </div>
+      </div>
+
+      <div class="row" style="display: flex;">
+        <div class="col-md-6">
+          <button title="Save Non Ticket Details" class="btnSave" 
+          (click)="Savenondelivery(nondeliveryTicket)"
+          [disabled]="displayExemptedMsg">{{'Save' | translate}}</button>
+        </div>
+        <div class="col-md-6">
+          <button title="Clear" class="btnCancel" [disabled]="displayExemptedMsg"
+          (click) = "clearnondelivery()">{{'Clear' | translate}}</button>
+        </div>
+      </div>
+    </form>

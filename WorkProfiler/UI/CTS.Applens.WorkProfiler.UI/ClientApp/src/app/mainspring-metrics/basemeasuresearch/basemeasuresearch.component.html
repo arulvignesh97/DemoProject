@@ -1,0 +1,150 @@
+<div class="container" id="basemeasuresearch">
+  <div *ngIf="basemeasurecomp.odcRadiobtn" id="ODCRadiobtn">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="radio">
+          <label><input type="radio" name="manualradio" id="rbBaseMeasure" value="Y" (checked)="basemeasurecomp.rbBaseMeasurechk">{{'ManualBaseMeasure'|translate}}</label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="radio">
+          <label><input type="radio" name="ticketsummaryradio" id="rbTicketSummary" value="N" (checked)="basemeasurecomp.rbTicketSummarychk">{{'TicketSummaryBaseMeasure'|translate}}</label>
+        </div>
+      </div>
+
+    </div>
+  </div>
+ 
+  <div id="topfiltersMps" *ngIf="basemeasurecomp.topfiltersMps">
+    <div class="row" style="display:none">
+      <div class="col-md-4">
+        <div class="radio">
+          <label>
+            <input type="radio" name="optionsRadios" id="rbUserDefined" value="Y" checked="checked" data-lang="ManualMeasure">
+            {{'ManualMeasure'|translate}}
+          </label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="radio">
+          <label>
+            <input type="radio" name="optionsRadios" id="rbSystemDefined" value="N" data-lang="ComputedMeasure(BasedonTicketSummary)">
+            {{'ComputedMeasure(BasedonTicketSummary)'|translate}}
+          </label>
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+
+      <div class="col-md-3" id="projectdropdown" *ngIf="basemeasurecomp.ddlprojectdropdown">
+        <label><span id="mandatory">*</span> {{'Project'|translate}}</label>
+        <p-dropdown appendTo="body" styleClass="search-filter-project" [options]="basemeasurecomp.projects" [(ngModel)]="basemeasurecomp.selectedProjects"
+                    emptyFilterMessage="No projects Found" placeholder="Select Project" (onChange)="projectChange($event)"></p-dropdown>
+        <input type="hidden" id="hdnODC" value="" />
+      </div>
+      <div class="col-md-3" id="Frequency" *ngIf="basemeasurecomp.frequency">
+        <label ><span id="mandatory">*</span>{{'Frequencyy'|translate}}</label>
+        <p-dropdown appendTo="body" styleClass="search-filter-project" [options]="basemeasurecomp.ddlfrequency" [(ngModel)]="basemeasurecomp.selectedfrequency" emptyFilterMessage="No frequency found" placeholder="Select Frequency" ></p-dropdown>
+
+        <!--<select class="form-control" id="ddlfrequency"></select>-->
+      </div>
+      <div class="col-md-3" id="ReportingPeriod" *ngIf="basemeasurecomp.reportingPeriod">
+        <label ><span id="mandatory">*</span>{{'ReportingPeriodd'|translate}}</label>
+        <p-dropdown appendTo="body" styleClass="search-filter-project" [options]="basemeasurecomp.ddlReportingPeriod" [(ngModel)]="basemeasurecomp.selectedReportingPeriod" emptyFilterMessage="No reporting period found" placeholder="Reporting Period" ></p-dropdown>
+        <!--<select class="form-control" id="ddlReportingPeriod"></select>-->
+      </div>
+      <div class="col-md-3" id="Services" *ngIf="basemeasurecomp.services">
+        <label><span id="mandatory">*</span>{{'Servicess'|translate}}</label>
+        <!--<select class="form-control" name="Service" id="ddlservice" multiple="multiple"></select>-->
+        <!--<p-dropdown styleClass="search-filter-project" [options]="ddlservice" optionLabel="ServicesName" [(ngModel)]="selectedddlservice" emptyFilterMessage="No Services found" placeholder="Services"></p-dropdown>-->
+        <p-multiSelect [options]="basemeasurecomp.ddlservice" (onChange)="defaulterschange()"
+                       appendTo="body"
+                       [(ngModel)]="basemeasurecomp.selectedddlservice"
+                       maxSelectedLabels="1" [resetFilterOnHide]="true" [panelStyle]="{minWidth:'100px'}" defaultLabel="Select Options">
+        </p-multiSelect>
+
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-md-3" id="divMetrics" *ngIf="basemeasurecomp.divMetrics">
+        <label><span id="mandatory">*</span>{{'Metrics'|translate}}</label>
+        <!--<select class="form-control" name="metrics" id="ddlmetrics" multiple="multiple"></select>-->
+        <!--<p-dropdown styleClass="search-filter-project" [options]="ddlmetrics" optionLabel="MetricsName" [(ngModel)]="selectedddlmetrics" emptyFilterMessage="No Metrics found" placeholder="Metrics"></p-dropdown>-->
+        <p-multiSelect [options]="basemeasurecomp.ddlmetrics" (onChange)="defaulterschange()"
+                       appendTo="body"
+                       [(ngModel)]="basemeasurecomp.selectedddlmetrics"
+                       maxSelectedLabels="1" [resetFilterOnHide]="true" [panelStyle]="{minWidth:'100px'}" defaultLabel="Select Options">
+        </p-multiSelect>
+
+      </div>
+      <div class="col-md-9"></div>
+
+    </div>
+  </div>
+
+  <div id="topfiltersMpsTicketSummary" *ngIf="basemeasurecomp.topfiltersMpsTicketSummary">
+    <div class="row" style="display:none">
+      <div class="col-md-4">
+        <div class="radio">
+          <label data-lang="ManualMeasure">
+            <input type="radio" name="optionsRadios" id="rbUserDefined" value="Y" checked="checked">
+            {{'ManualMeasure'|translate}}
+          </label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="radio">
+          <label data-lang="ComputedMeasure(BasedonTicketSummary)">
+            <input type="radio" name="optionsRadios" id="rbSystemDefined" value="N">
+            {{'ComputedMeasure(BasedonTicketSummary)'|translate}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3" id="projectdropdown1" *ngIf="basemeasurecomp.ddlprojectdropdown">
+        <label><span id="mandatory">*</span> {{'Project'|translate}}</label>
+        <p-dropdown styleClass="search-filter-project" [options]="basemeasurecomp.projects" [(ngModel)]="basemeasurecomp.selectedProjects"
+                    emptyFilterMessage="No projects Found" placeholder="Select Project" (onChange)="projectChange($event)"></p-dropdown>
+        <input type="hidden" id="hdnODC" value="" />
+      </div>
+      <div class="col-md-3" id="Frequency">
+        <label data-lang="Frequencyy"><span id="mandatory">*</span>{{'Frequencyy'|translate}}</label>
+        <!--<select class="form-control" id="ddlfrequency"></select>-->
+        <p-dropdown styleClass="search-filter-project" [options]="basemeasurecomp.ddlfrequency" [(ngModel)]="basemeasurecomp.selectedfrequency" emptyFilterMessage="No frequency found" placeholder="Select Frequency"></p-dropdown>
+
+      </div>
+      <div class="col-md-3" id="ReportingPeriodd">
+        <label data-lang="ReportingPeriodd"><span id="mandatory">*</span>{{'ReportingPeriodd'|translate}}</label>
+        <!--<select class="form-control" id="ddlReportingPeriod"></select>-->
+        <p-dropdown styleClass="search-filter-project" [options]="basemeasurecomp.ddlReportingPeriod" [(ngModel)]="basemeasurecomp.selectedReportingPeriod" emptyFilterMessage="No reporting period found" placeholder="Reporting Period"></p-dropdown>
+
+      </div>
+      <div class="col-md-3" id="Servicess">
+        <label data-lang="Servicess"><span id="mandatory">*</span>{{'Servicess'|translate}}</label>
+        <!--<select class="form-control" name="Service" id="ddlservice" multiple="multiple"></select>-->
+        <p-multiSelect [options]="basemeasurecomp.ddlservice" (onChange)="defaulterschange()"
+                       appendTo="body"
+                       [(ngModel)]="basemeasurecomp.selectedddlservice"
+                       maxSelectedLabels="1" [resetFilterOnHide]="true" [panelStyle]="{minWidth:'100px'}" defaultLabel="Select Options">
+        </p-multiSelect>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row" id="btnRow" *ngIf="basemeasurecomp.btnRow">
+    <div class="col-md-2" style="margin-left: 3px;max-width: 12% !important;">
+       <button type="button" title="Search" id="btnSearchBaseMeasures" (on MpsMetricsSearch style="margin-left:10px;margin-top:20px">
+        {{'Search'|translate}}
+      </button>
+    </div>
+    <div class="col-md-2">
+      <button id="btnExportToExcel" title="Export to Excel" style="display:none">
+        {{'Export'|translate}}
+      </button>
+    </div>
+  </div>
+</div>

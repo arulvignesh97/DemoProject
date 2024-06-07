@@ -1,0 +1,204 @@
+
+@import "~primeng/resources/primeng.min.css";
+@import "~primeicons/primeicons.css";
+
+.bullet { font: 10px sans-serif; }
+.bullet .marker { stroke: #000; stroke-width: 2px; }
+.bullet .tick line { stroke: #666; stroke-width: .5px; }
+.bullet .range.s0 { fill: #eee; }
+.bullet .range.s1 { fill: #ddd; }
+.bullet .range.s2 { fill: #ccc; }
+.bullet .measure.s0 { fill: lightsteelblue; }
+.bullet .measure.s1 { fill: steelblue; }
+.bullet .title { font-size: 14px; font-weight: bold; }
+.bullet .subtitle { fill: #999; }
+
+
+body {    
+    background-image: url("assets/updatedBG1.png");
+    background-size: auto;
+/*    position: fixed;
+*/    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.box {
+    /*fill: teal;*/
+  font: 10px sans-serif;
+}
+
+.box line,
+.box rect,
+.box circle {
+  fill: olive;
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.box .center {
+  stroke-dasharray: 3,3;
+}
+
+.box .outlier {
+  fill: none;
+  stroke: #ccc;
+}
+
+
+.pagination { margin: 0px !important; }
+body { 
+    background-color: lightgray;
+    /*background-image: url("assets/login.jpg");*/
+    background-size: auto;  
+}
+td, th {
+    padding: 5px;
+    font: bold;
+    font-size: 16px;
+}
+
+td.legt {
+    padding: 3px;
+}
+table#legendg {
+    margin-left: 104px;
+    margin-top: 7px;
+}
+table#legendt {
+    margin-left: -488px;
+    margin-top: -3px;
+}
+td, th {
+    padding: 3px;
+}
+color-band-gauge,div,svg{
+     fill: white;
+     font: bold;
+}
+circle.needle-center{
+    fill: #52555b;    
+}
+
+path.needle{
+    fill: #52555b;    
+}
+a {
+    color: black;
+    text-decoration: none; 
+}
+
+.bar {
+  fill: #3eba85
+}
+
+.bar:hover {
+  fill: #52555b
+}
+text{
+  fill: black;
+  font-family: "Proxima Nova";
+  font-weight: bold;
+}
+
+ul.breadcrumb {
+    padding: 10px 16px; 
+    list-style: none;
+    margin-left: -19px;
+    font-family: "Proxima Nova"
+}
+ul.breadcrumb li {
+    display: inline;
+    font-size: 16px;
+    font-family: "Proxima Nova"
+}
+ul.breadcrumb li+li:before {
+    padding: 8px;
+    color: #53565b;
+    content: "/\00a0";
+}
+ul.breadcrumb li a {
+    color: #01677E;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: "Proxima Nova"
+}
+ul.breadcrumb li a:hover {
+    color: #01677E;
+    text-decoration: underline;
+}
+.tick text {
+        font-size: 12px;
+    }
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: #4C5554;
+        stroke-width: 1;
+    }
+ 
+    .x.axis .tick line {
+        display: none
+    }
+ 
+    .domain {
+        display: block !important;
+        stroke: #4C5554 !important;
+        stroke-width: 2 !important;
+    }
+
+
+ .ng5-slider .ng5-slider-bar {
+    background: #ffe4d1;
+    height: 2px;
+  }
+.ng5-slider .ng5-slider-selection {
+    background: orange;
+  }
+
+ .ng5-slider .ng5-slider-pointer {
+        cursor: pointer;
+    width: 20px !important;
+    height: 20px !important;
+    top: -8px !important;
+    background-color:teal !important;
+    z-index: 3;
+    border-radius: 16px;
+  }
+
+.ng5-slider .ng5-slider-pointer:after {
+    display: none;
+  }
+
+.ng5-slider .ng5-slider-bubble {
+    bottom: 14px;
+    font-size: 10px !important;
+  }
+
+ .ng5-slider .ng5-slider-limit {
+    font-weight: bold;
+    color: orange;
+  }
+  
+  
+
+.ng5-slider .ng5-slider-tick {
+    width: 1px;
+    height: 10px;
+    margin-left: 4px;
+    border-radius: 0;
+    background: #ffe4d1;
+    top: -1px;
+  }
+
+ .ng5-slider .ng5-slider-tick.ng5-slider-selected {
+    background: orange !important;
+  }
+    .legend {
+        font-size: 12px;
+        font-family: sans-serif;
+        rect {
+            stroke-width: 2;
+        }
+    }
+
+  
+

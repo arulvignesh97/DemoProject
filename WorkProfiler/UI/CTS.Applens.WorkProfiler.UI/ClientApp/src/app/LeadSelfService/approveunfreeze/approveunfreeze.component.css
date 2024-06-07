@@ -1,0 +1,128 @@
+.datepickerposition {
+  margin-left: 1%;
+}
+
+.displaynone {
+  display: none;
+}
+
+.iconleft {
+  margin-left: -22%;
+  font-size: 15px;
+}
+
+.calendarlabel {
+  
+  font-size: x-small;
+  width: 100%;
+  height: 26px;
+  margin-top: 5%;
+  font-weight: 500;
+}
+
+.lblselectweek {
+  font-size: 11px;
+  font-weight: 400;
+  margin-left: 100%;
+}
+
+.bottom {
+  top: 30% !important;
+  left: 30% !important;
+}
+.p-datatable .p-datatable-thead > tr > th {
+   font-size:12px !important;
+}
+.textaligncenter
+{
+    text-align:center;
+}
+
+.filterheader
+{
+    height:50px;
+}
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  color: #212529;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+#btnSubmit {
+  cursor: pointer;
+  width: 116px;
+  height: 36px;
+  background-color: #0031A0;
+  border: 1px solid #0031A0;
+  color: white;
+  border-radius: 5px;
+  font-size: 14px;
+}
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+  cursor: pointer;
+}
+
+.btnDownload {
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  background: #0031A0;
+  width: 16%;
+  border: 1px solid #0031A0;
+}
+
+.border{
+  border-top: 2px solid #53565B;
+  margin-top: 0rem !important;
+}
+
+
+.header {
+  padding: 0.3rem 0.3rem !important;
+  text-align: center !important;
+  background: #0031A0 !important;
+  height: 45px !important;
+  width: 155px !important;
+}
+
+.body {
+  padding: 0.3rem 0.3rem !important;
+  text-align: center !important;
+  width: 155px !important;
+  height: 45px;
+}
+
+.usernamecss {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.chart {
+  height: 165px;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.background {
+  margin-top: 1%;
+  padding: 0.4rem 0.4rem !important;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 3px;
+}
+.cntrAlign {
+  text-align: center !important;
+  background-color: #f8f9fa;
+}

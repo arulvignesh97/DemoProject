@@ -1,0 +1,159 @@
+.p-button, .p-inputtext {
+    margin-right: 2px;
+    margin-left: 2px;
+}
+.p-toolbar {
+    padding: 0.5rem !important;
+}
+#search-filter .form-group {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+#search-filter .form-group label {
+    margin-right: 20px !important;
+    margin-bottom: 4px !important;
+}
+.data-dropdown {
+    padding: 0.2rem;
+}
+#data-dictionary .optionafield-button{
+    font-size: 12px !important;
+    padding: 0.28rem !important;
+    font-weight: bold;
+    width: 100%;
+}
+.search-filter-multi {
+    width:100%;
+}
+.search-filter-label {
+    font-size: 14px;
+}
+.pattern-mandatory {
+color:#ff0000;
+font-weight: bold;
+}
+.clear-filter {
+    padding: 0 !important;    
+    min-width: 1.357rem !important;
+    color: red;
+    font-weight: bold;
+    cursor: pointer;
+    pointer-events: auto;
+}
+.clear-filter i {
+    font-size: 12px !important;
+}
+
+.data-toast {
+    font-size: 14px !important;
+}
+.clsBgGreen {
+    background-color: green !important;
+}
+
+.clsBgRed {
+    background-color: red !important;
+}
+
+.clsBgGrey {
+    background-color: grey !important;
+}
+
+.error-width-lg {
+    width: 250px;    
+}
+.error-width-sm {
+    width: 150px;    
+}
+.error-width-md {
+    width: 200px;    
+}
+.data-header {
+    padding: 0.5rem 0 0.5rem 0 !important;
+    text-align: center !important;
+}
+.app-name {
+    width: 15% !important;
+}
+.search-button {
+    margin-left: 2% !important;
+}
+.data-button {
+    background: #0031A0;
+    height: 30px;
+}
+.w-80 {
+    width: 90px !important;
+}
+.w-10 {
+width: 10% !important;
+}
+.h-80 {
+    height: 80vh !important;
+}
+.h-85 {
+    height: 85vh !important;
+}
+.search-col {
+    max-width: 28% !important;
+}
+.dictionary-accordion {
+    padding: 2px 0px 0px 0px;
+}
+.calendarlabel {   
+    height: 25px;   
+    font-weight: normal;
+    font-size: 12px;
+    padding-left: 5px;
+  }
+  .iconleft {
+    margin-left: -14%;
+    font-size: 14px;
+  }
+  .data-enable {
+      height: 60vh;
+  }
+.signOff-date {
+    height: 30px !important;
+}
+.signoff-cal-icon {
+    left: unset !important;
+}
+.ConflictPattern {
+    animation: DDthresholdglow 1s infinite alternate;
+}
+.button-outline {
+    color: #0031A0 !important;
+}
+.alert {
+    font-size: 14px;font-weight: 500; 
+}
+
+@keyframes DDthresholdglow {
+    from {
+        box-shadow: 0 0 10px -10px #4cabea;
+    }
+
+    to {
+        box-shadow: 0 0 5px 5px #4cabea;
+    }
+}
+
+@media screen and (max-width: 1230px) {
+    #search-filter .form-group label {
+        margin-right: 80px !important;
+        margin-bottom: 4px !important;
+    }    
+    .h-80 {
+        height: 85vh !important
+     }
+}
+@media screen and (min-width: 1230px) and (max-width: 1340px) {
+    .h-80 {
+       height: 83vh !important
+    }
+}
+:disabled{
+    opacity: 0.5;
+    cursor: not-allowed !important;
+}

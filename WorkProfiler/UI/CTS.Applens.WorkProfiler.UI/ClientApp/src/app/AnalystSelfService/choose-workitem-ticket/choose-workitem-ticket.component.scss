@@ -1,0 +1,107 @@
+.radiobtn {
+    width: 11px;
+    height: 20px;
+    border: 1px solid #707070;
+    background: #FFFFFF;
+}
+.inlinebox{
+    display: -webkit-inline-box;
+}
+#btnSearchTicket {
+    width: 77px;
+    height: 30px;
+    border-radius: 4px;
+    padding: 2px;
+    background: #0033A0;
+    font-size: 12px;
+    border: 1px #C8C9CB;
+    color: white;    
+    cursor: pointer;
+}
+#btnClearTicket {
+    height: 30px;
+    width: 77px;
+    border: 1px solid #0033A0;
+    background: white;
+    font-size: 12px;
+    border-radius: 4px;
+    color: #0033A0;    
+    cursor: pointer;
+}
+.multiselectclass .p-multiselect{
+    width: 75% !important;
+    height: 27px !important; 
+}
+.multiselectclass .p-multiselect-label-container .p-multiselect-label {
+    margin-top: -3px;
+}
+#ticketrow1 {
+    padding-top: 10px;
+}
+.radiobuttonalign {
+    margin-left: 325px;
+    margin-top: -35px;
+    position: absolute;
+}
+.rdoticketworkitem {
+    width: 100px;
+}
+#btnOkTicket{
+    width: 77px;
+    height: 30px;
+    border-radius: 4px;
+    padding: 2px;
+    background: #0033A0;
+    font-size: 12px;
+    border: 1px #C8C9CB;
+    color: white;    
+    cursor: pointer;
+}
+.addTicketcontainer{
+    border: 1px solid #0033a0;
+    min-height: 480px;
+    max-height: auto;
+}
+.top1margin{
+    margin-top: 1%;
+    max-height: auto;
+}
+.txtaddTicket{
+    width: 75%;
+    height: 25px;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+}
+.lbladdTickets{
+    width: 75%;
+    font-weight: 400;
+    font-size: 11px;
+}
+.movestatus {
+    margin-left: 75%;
+    margin-top: -5.7%;
+}
+.tableheader{   
+    color: rgb(255,255,255) !important;
+    font-size: 10px !important;
+    font-weight: 400 !important;
+    background: #0031A0 !important;
+}
+.tableheaderselection{
+    color: rgb(255,255,255) !important;
+    font-size: 10px !important;
+    font-weight: 400 !important;
+    background: #0031A0 !important;
+    width: 3rem;
+    overflow: hidden;
+}
+.headerdisplay {
+    display: none;
+}
+.margintop{
+    margin-top: 1%;
+}
+:disabled{
+    opacity: 0.5;
+    cursor: not-allowed !important;
+}

@@ -1,0 +1,33 @@
+<div class="row col-md-12" id="divChart" style="display: contents;">
+    <div class="card" id="effortGraph" >
+
+        <div class="card-body" *ngIf="showgraph">
+            <div class="card-header collapsed" href="#collapseOne" id="divHeader" >
+                <em class="pi pi-plus-circle" *ngIf="isShow" id="faicon" (click)="toggle()"></em>
+                <em class="pi pi-minus-circle" *ngIf="!isShow" id="faicon" (click)="toggle()"></em>
+                <span id="effortHeader" *ngIf="isShow" style="margin-left: 3px;">&nbsp;&nbsp;{{'ShowEffortGraph' | translate}}</span>
+                <span id="effortHeader" *ngIf="!isShow" style="margin-left: 3px;">&nbsp;&nbsp;{{'HideEffortGraph' | translate}}</span>
+
+            </div>
+            <div id="collapseOne" class="card-body" *ngIf="show">
+                <div class="d-flex flex-row checkchart">
+
+                    <canvas id="myChart"></canvas>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-8"></div>
+                    <div class="col-md-4">
+                        <em class="fa fa-square" style="color:rgb(68, 119, 170);font-size:12px;margin-left: -15%;"></em>&nbsp;&nbsp;<span class="chartspan" id="hrsAbove"> {{mandatoryHours}} {{'Hrsandabove'| translate}}</span>
+                        <em class="fa fa-square" style="color:rgb(221, 204, 119);font-size:12px;margin-left: 3%;"></em>&nbsp;&nbsp;<span class="chartspan" id="hrsLess"><{{mandatoryHours}} {{'Hrs' | translate}}</span>
+                        <em class="fa fa-square" style="color:rgb(204, 102, 119);font-size:12px;margin-left: 3%;"></em>&nbsp;&nbsp;<span class="chartspan">{{'Noeffort' | translate}}</span>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
