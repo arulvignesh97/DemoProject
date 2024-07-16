@@ -40,7 +40,7 @@ jobs:
     # Path to packages.config file
         packages-config-path: packages.config
     # Path to packages directory
-        packages-directory-path: default
+        packages-directory-path: ~/.nuget/NuGet/NuGet.Config
     # Packages source URI
         packages-repository-uri: https://api.nuget.org/v3/index.json
           
