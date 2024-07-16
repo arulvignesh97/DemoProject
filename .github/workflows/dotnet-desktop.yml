@@ -38,7 +38,7 @@ jobs:
     # NuGet version
         nuget-version: latest
     # Path to packages.config file
-        packages-config-path: packages.config
+        packages-config-path: ~/.nuget/NuGet/packages.config
     # Path to packages directory
         packages-directory-path: ~/.nuget/NuGet/NuGet.Config
     # Packages source URI
